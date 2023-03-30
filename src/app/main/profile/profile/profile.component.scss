@@ -1,0 +1,360 @@
+.job-top-image{
+  height: 196px;
+  background-image:
+  linear-gradient(to bottom, rgba(116, 116, 117, 0.609), rgba(125, 125, 125, 0.461)),
+  url('../../../../assets/images/m1.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 84px 25px;
+  .area{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 55px;
+    img{
+      height:160px;
+      width:160px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .about{
+      h2{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 39px;
+        color: #FFFFFF;
+      }
+      p{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 27px;
+        color: #FFFFFF;
+        margin-top: 16px;
+      }
+
+
+    }
+  }
+
+
+}
+.rating{
+  display: flex;
+  margin-top: 20px;
+  gap: 20px;
+  align-items: flex-end;
+  .rate-txt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    width: 54px;
+    height: 47px;
+    background: #FEBE42;
+    border-radius: 5px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 27px;
+    color: #FFFFFF;
+  }
+  .rate-txt-mini{
+    // width: 25px;
+    // height: 19px;
+    background: #FEBE42;
+    padding: 6px;
+    gap: 6px;
+
+    width: 36.69px;
+    height: 30.69px;
+
+    background: #FEBE42;
+    border-radius: 2.92279px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+  }
+  .stars{
+    display: flex;
+    gap:5px;
+  }
+}
+
+
+/* Base setup */
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+// body {
+//     margin: 5%;
+//     text-align: center;
+//     background: #111;
+//     color: #333;
+// }
+// h1 {
+//     font-size: 2em;
+//     margin-bottom: .5rem;
+// }
+
+/* Ratings widget */
+.rate {
+    display: inline-block;
+    border: 0;
+    padding-top: 14px;
+}
+
+/* Hide radio */
+.rate > input {
+    display: none;
+}
+/* Order correctly by floating highest to the right */
+.rate > label {
+    float: right;
+}
+/* The star of the show */
+.rate > label:before {
+    display: inline-block;
+    font-size: 1.5rem;
+    padding: .3rem .2rem;
+    margin: 0;
+    cursor: pointer;
+    font-family: FontAwesome;
+    content: "\f005 "; /* full star */
+}
+
+/* Half star trick */
+.rate .half:before {
+    content: "\f089 "; /* half star no outline */
+    position: absolute;
+    padding-right: 0;
+}
+/* Click + hover color */
+input:checked ~ label, /* color current and previous stars on checked */
+// label:hover, label:hover ~ label { color: #73B100;  } /* color previous stars on hover */
+
+/* Hover highlights */
+// input:checked + label:hover, input:checked ~ label:hover, /* highlight current and previous stars */
+// input:checked ~ label:hover ~ label, /* highlight previous selected stars for new rating */
+label:hover ~ input:checked ~ label /* highlight previous selected stars */ { color: #FEBE42;  }
+
+
+.profile-body{
+  padding: 40px;
+  display: flex;
+  gap: 40px;
+  background-color: #FFFFFF;
+  .body-main{
+    flex: 65%;
+    h3{
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 24px;
+      color: #000000;
+      margin-bottom: 20px;
+    }
+    p{
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 28px;
+      text-align: justify;
+      color: #454F5B;
+    }
+    .work-heading{
+      margin-top: 40px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 0px 32px;
+      gap: 10px;
+      // width: 891px;
+      height: 64px;
+      background: #F2F2F2;
+
+    }
+    .work-title{
+      font-family: 'Inter';
+      font-style: normal;
+      // font-weight: 500;
+      font-size: 18px;
+      line-height: 22px;
+      display: flex;
+      align-items: center;
+      color: #212B36;
+    }
+    .work-detail{
+      padding: 16px;
+    }
+
+  }
+  .body-detail{
+    flex: 35%;
+    .offer-area{
+      padding: 35px;
+      background-color: #FAFAFA;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .rates{
+        flex: 1;
+        font-family: 'Inter';
+        font-style: normal;
+        h2{
+          font-weight: 500;
+          font-size: 24px;
+          line-height: 29px;
+        }
+        p{
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 22px;
+          color: #637381;
+        }
+      }
+      .rates:not(:first-child){
+        // background-color: red;
+        padding-left: 30px;
+        border-left: 1px solid #DFE3E8;
+      }
+    }
+    .personal-info{
+      padding: 0px 35px;
+      margin-top: 25px;
+      .progress{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        .each-progress{
+          flex: 1;
+          h2{
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 27px;
+            color: #161C24;
+          }
+          p{
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+            color: #637381;
+          }
+
+        }
+      }
+      .social-profile{
+        margin-top: 40px;
+        p{
+          font-family: 'Inter';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 24px;
+          color: #000000;
+        }
+        .logos{
+          margin-top: 25px;
+          display: flex;
+          align-items: flex-end;
+          gap: 40px;
+        }
+        .skills{
+          margin-top: 25px;
+          display: flex;
+          flex-wrap: wrap;
+          p{
+            margin: 15px 15px 0 0;
+            padding: 10px;
+            background-color: #F0F2FD;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #3563E9;
+          }
+        }
+      }
+    }
+  }
+}
+.work-detail:nth-child(odd){
+  background: #FAFAFA;
+}
+.employment-detail{
+  padding: 16px;
+  display: flex;
+  gap: 20px;
+  img{
+    height: 72px;
+    width: 72px;
+  }
+  .employment-body{
+    display: flex;
+    flex-direction: column;
+    p{
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 29px;
+      color: #000000;
+    }
+    .office-date{
+      margin-top: 20px;
+      display: flex;
+      gap:7px;
+      p{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 22px;
+        color: #454F5B;
+        margin-right: 4rem;
+      }
+    }
+  }
+  ul{
+    margin-top: 20px;
+    margin-left: 20px;
+    li{
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 27px;
+
+      color: #454F5B;
+    }
+  }
+}
+.button-primary{
+  flex: 3;
+  width: 100%;
+  height: 56px;
+  font-family: 'Public Sans';
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18.8px;
+  background-color: #1939B7;
+}

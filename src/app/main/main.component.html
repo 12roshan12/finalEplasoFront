@@ -1,0 +1,24 @@
+<app-loader *ngIf="loading"></app-loader>
+<ng-container *ngIf="IsDashboard">
+  <div class="base">
+    <ng-container>
+      <app-sidebar></app-sidebar>
+    </ng-container>
+    <div class="body">
+      <app-topbar></app-topbar>
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</ng-container>
+<ng-container *ngIf="!IsDashboard">
+  <app-top-nav-bar></app-top-nav-bar>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+  <!-- <div class="sticky bg-transparent  flex flex-col items-end justify-end gap-y-4 right-0 bottom-0 p-4 "
+    style="z-index: 99999 !important">
+    <button class="h-10 w-10 rounded-full bg-blue-600 "></button>
+    <button class="h-10 w-10 rounded-full bg-blue-600 "></button>
+  </div> -->
+
+</ng-container>

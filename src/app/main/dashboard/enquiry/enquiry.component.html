@@ -1,0 +1,155 @@
+<div class="p-4 bg-white">
+
+    <div class="flex flex-row justify-between">
+        <div class="headMain">Enquiry</div>
+        <!-- <div class="headButton cursor-pointer">
+            <span>
+                <button (click)="openPopup()" class="flex flex-row gap-x-4 items-center">
+                    <span>
+                        <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5.16666 12.3337V7.33366H0.166664V5.66699H5.16666V0.666992H6.83333V5.66699H11.8333V7.33366H6.83333V12.3337H5.16666Z"
+                                fill="#FBFBFB" />
+                        </svg>
+
+                    </span>
+                    <span>
+                        Create&nbsp;Category
+                    </span>
+                </button>
+            </span>
+        </div> -->
+    </div>
+
+    <div class="pt-5 pb-8">
+        <app-bread-crumb [routeData]="routeData"></app-bread-crumb>
+    </div>
+
+    <div>
+        <table class="w-full">
+            <thead class="bg-[#DCEAFA] rounded-t-lg">
+                <tr>
+                    <th colspan="2">
+                        <div class="flex flex-row gap-x-5 px-4 py-2">
+                            <div class="flex flex-row cursor-pointer gap-x-2">
+                                <span>
+                                    <svg width="18" height="19" viewBox="0 0 18 19" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M2.25 5.75C2.25 6.1625 2.5875 6.5 3 6.5H15C15.4125 6.5 15.75 6.1625 15.75 5.75C15.75 5.3375 15.4125 5 15 5H3C2.5875 5 2.25 5.3375 2.25 5.75ZM8.25 14H9.75C10.1625 14 10.5 13.6625 10.5 13.25C10.5 12.8375 10.1625 12.5 9.75 12.5H8.25C7.8375 12.5 7.5 12.8375 7.5 13.25C7.5 13.6625 7.8375 14 8.25 14ZM12.75 10.25H5.25C4.8375 10.25 4.5 9.9125 4.5 9.5C4.5 9.0875 4.8375 8.75 5.25 8.75H12.75C13.1625 8.75 13.5 9.0875 13.5 9.5C13.5 9.9125 13.1625 10.25 12.75 10.25Z"
+                                            fill="#363636" />
+                                    </svg>
+                                </span>
+                                <span class="font-semibold">
+                                    Filters
+                                </span>
+                            </div>
+                        </div>
+                    </th>
+                    <th colspan="7">
+                        <div class="flex w-full justify-end px-4 py-2">
+                            <div class="searchInput w-auto p-4 flex justify-end">
+                                <div class="searchInp px-4 py-3 flex flex-row items-center gap-x-2 w-full">
+                                    <div>
+                                        <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="5.875" cy="5.5" r="4.3" stroke="#2B3674" stroke-width="1.4" />
+                                            <line x1="10.8851" y1="11.5" x2="8.875" y2="9.48995" stroke="#2B3674"
+                                                stroke-width="1.4" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <input class="w-full bg-transparent focus-visible:outline-none" type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="w-[10px] px-4 py-2 pb-2">S.N.</th>
+                    <th class="text-left px-4 py-2"> Package</th>
+                    <th class="text-left px-4 py-2"> Name</th>
+                    <th class="text-left px-4 py-2"> Email</th>
+                    <th class="text-left px-4 py-2"> Address</th>
+                    <th class="text-left px-4 py-2"> Expected Date</th>
+                    <th class="text-left px-4 py-2"> Traveller</th>
+                    <th class="text-left px-4 py-2"> Status</th>
+                    <th class="text-right px-4 py-2"></th>
+
+                </tr>
+            </thead>
+            <tbody class="border-b border-gray-200">
+                <tr *ngIf="enquiryList.length == 0">
+                    <td colspan="5">
+                        <div class="w-ful p-4 flex items-center justify-center">
+                            No Enquiry Found
+                        </div>
+                    </td>
+                </tr>
+                <tr *ngFor="let data of enquiryList;let i = index" class="border-b border-[#E8E8E8]">
+                    <td class="px-4 py-4 text-left">{{i+1}}.</td>
+                    <td class="px-4 py-4 text-left">{{data.packageName}}</td>
+                    <td class="px-4 py-4 text-left">{{data.name}}</td>
+                    <td class="px-4 py-4 text-left">{{data.email}}</td>
+                    <td class="px-4 py-4 text-left">{{data.address}}</td>
+                    <td class="px-4 py-4 text-left">{{data.date | date: 'dd/MM/yyyy'}}</td>
+                    <td class="px-4 py-4 text-left">{{data.totalTraveller}}</td>
+                    <td class="px-4 py-4 text-left">
+                      <span *ngIf="data.status == 0" class="bg-blue-600 text-white p-2 rounded-lg" >Pending</span>  
+                      <span *ngIf="data.status == 1" class="bg-green-600 text-white p-2 rounded-lg">Approved</span>  
+                      <span *ngIf="data.status == 2" class="bg-red-600 text-white p-2 rounded-lg">Rejected</span>  
+                    </td>
+                    <td>
+                        <div class="flex w-full justify-end">
+                            <button mat-button [matMenuTriggerFor]="menu"><svg width="4" height="16" viewBox="0 0 4 16"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M3.66678 8C3.66678 8.92047 2.92059 9.66667 2.00012 9.66667C1.07964 9.66667 0.33345 8.92047 0.33345 8C0.33345 7.07953 1.07964 6.33333 2.00012 6.33333C2.92059 6.33333 3.66678 7.07953 3.66678 8Z"
+                                        fill="#637381" />
+                                    <path
+                                        d="M3.66678 2.16667C3.66678 3.08714 2.92059 3.83333 2.00012 3.83333C1.07964 3.83333 0.33345 3.08714 0.33345 2.16667C0.33345 1.24619 1.07964 0.5 2.00012 0.5C2.92059 0.5 3.66678 1.24619 3.66678 2.16667Z"
+                                        fill="#637381" />
+                                    <path
+                                        d="M3.66678 13.8333C3.66678 14.7538 2.92059 15.5 2.00012 15.5C1.07964 15.5 0.33345 14.7538 0.33345 13.8333C0.33345 12.9129 1.07964 12.1667 2.00012 12.1667C2.92059 12.1667 3.66678 12.9129 3.66678 13.8333Z"
+                                        fill="#637381" />
+                                </svg>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item (click)="openPopup(data)">Response</button>
+                                <button mat-menu-item (click)="deleteGroup(data._id)">Delete</button>
+                            </mat-menu>
+
+                        </div>
+                </tr>
+            </tbody>
+            <!-- <tfoot>
+                <tr *ngIf="enquiryList.length != 0">
+                    <td colspan="10">
+                        <div class="w-full flex flex-row justify-end gap-x-6 items-center py-4 px-8">
+                            <div>
+                                Row Per Page:
+                            </div>
+                            <div>
+                                <select class="border border-gray-300 rounded-md px-2 py-1">
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>30</option>
+                                    <option>40</option>
+                                    <option>50</option>
+                                </select>
+                            </div>
+                            <div>
+                                6-10 of 11
+                            </div>
+                            <div class="flex flex-row gap-2 items-center justify-center">
+                                <button class="flex items-center justify-center w-4 h-4 border rounded-full"><</button>
+                                <button class="flex items-center justify-center w-4 h-4 border rounded-full">></button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot> -->
+        </table>
+    </div>
+</div>

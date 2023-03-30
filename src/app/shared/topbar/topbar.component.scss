@@ -1,0 +1,24 @@
+.header{
+  // border-left: 3px solid rgb(238, 238, 238) ;
+  margin-bottom: 2px;
+  height: 105px;
+  // border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 2px 2px 9px #dbdbdb, -1px 3px 3px #ffffff;
+  padding: 25px 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .others{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    img{
+      width: 57px;
+      height: 57px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+  }
+}

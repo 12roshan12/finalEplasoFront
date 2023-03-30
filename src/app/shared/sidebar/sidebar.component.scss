@@ -1,0 +1,80 @@
+.side-bar {
+  padding: 20px;
+  height: 100%;
+  position: fixed;
+  overflow-y: auto !important;
+  // border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 2px 2px 9px #dbdbdb, -1px 3px 3px #ffffff;
+  margin-right: 2px;
+  transition: width 1s;
+
+  .head {
+    height: 60px;
+    padding: 11px;
+    display: flex;
+
+    svg {
+      font-size: 37px;
+    }
+
+    h2 {
+      margin-left: 11px;
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 29px;
+      color: #3563E9;
+      transition: all 2s ease-in-out;
+    }
+  }
+
+  .toggle {
+    background: #e7e6e6;
+    box-shadow: 6px 6px 10px #dbdbdb,
+      -6px -6px 10px #ffffff;
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    border-radius: 50%;
+    color: rgb(0, 0, 0);
+    float: right;
+    margin-right: -20px;
+  }
+}
+
+.navigation-list {
+  margin-top: 26px;
+  list-style: none;
+
+  li {
+    padding: 12px 12px 12px 15px;
+    font-family: 'Inter';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+
+    a {
+      text-decoration: none;
+      color: rgb(0, 0, 0);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+}
+
+.active {
+  background: #EFF6FF;
+  border-radius: 4px;
+
+  a {
+    div {
+      color: #3563E9;
+    }
+  }
+}

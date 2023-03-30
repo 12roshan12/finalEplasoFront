@@ -1,0 +1,93 @@
+<section class="px-6 sm:px-12 lg:px-12 xl:px-12 2xl:px-12 py-4 bg-gray-900 text-white">
+    <div class="grid sm:grid-cols-2 grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-x-6 border-b-2 border-white">
+      <div class="w-full items-center justify-center p-6">
+        <div class="flex flex-row gap-x-4 items-center justify-center">
+          <div class="flex items-center justify-center"> <i class="fa-solid fa-map-location-dot fa-2xl"></i> </div>
+          <div class="flex flex-col">
+            <span>Find Us</span>
+            <span class="cursor-pointer">Thamel,Kathmandu</span>
+          </div>
+        </div>
+      </div>
+  
+      <div class="w-full items-center justify-center p-6">
+        <div class="flex flex-row gap-x-4 items-center justify-center">
+          <div class="flex items-center justify-center"> <i class="fa-solid fa-phone-volume fa-2xl"></i> </div>
+          <div class="flex flex-col">
+            <span>Call Us</span>
+            <span class="cursor-pointer">+977-1234567890</span>
+          </div>
+        </div>
+      </div>
+  
+      <div class="w-full items-center justify-center p-6">
+        <div class="flex flex-row gap-x-4 items-center justify-center">
+          <div class="flex items-center justify-center"> <i class="fa-solid fa-paper-plane fa-2xl"></i> </div>
+          <div class="flex flex-col">
+            <span>Mail Us</span>
+            <span class="cursor-pointer">elpaso@gmail.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-6 border-b-2 border-white">
+      <div class="pt-4">
+        <div class="logo">
+          <svg width="31" height="26" viewBox="0 0 31 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M15.5 25.75L0.916687 8.75L5.29169 0.25H25.7084L30.0834 8.75L15.5 25.75ZM12.0365 7.33333H18.9636L16.7761 3.08333H14.224L12.0365 7.33333ZM14.0417 19.6229V10.1667H5.94794L14.0417 19.6229ZM16.9584 19.6229L25.0521 10.1667H16.9584V19.6229ZM22.2084 7.33333H26.0729L23.8854 3.08333H20.0209L22.2084 7.33333ZM4.9271 7.33333H8.79169L10.9792 3.08333H7.1146L4.9271 7.33333Z"
+              fill="#3563E9" />
+          </svg>
+          <h1>Elpaso</h1>
+        </div>
+        <div class="text-xl pt-2">
+          Since 2002, we have been offering travel services of the highest quality, combining our energy and enthusiasm.
+        </div>
+        <div class="pt-4 pb-8">
+          <span class="text-xl">Follow Us On</span>
+        </div>
+        <div class="flex flex-row gap-x-6 ">
+          <span class="cursor-pointer"><i class="fa-brands fa-facebook fa-2xl"></i></span>
+          <span class="cursor-pointer"><i class="fa-brands fa-instagram fa-2xl"></i></span>
+          <span class="cursor-pointer"><i class="fa-brands fa-youtube fa-2xl"></i></span>
+        </div>
+      </div>
+  
+      <div class="flex flex-col lg:items-center xl:items-center 2xl:items-center gap-6 pt-4">
+        <div class="flex lg:justify-center xl:justify-center 2xl:justify-center lg:items-center xl:items-center 2xl:items-center"><span
+            class="border-b border-white text-xl lg:text-center xl:text-center 2xl:text-center">Useful Link</span></div>
+        <div class="flex flex-col gap-x-4">
+          <span class="cursor-pointer text-lg">Home</span>
+          <span class="cursor-pointer text-lg">Package</span>
+          <span class="cursor-pointer text-lg">Blogs</span>
+          <span class="cursor-pointer text-lg">Travel Guide</span>
+          <span class="cursor-pointer text-lg">Gallery</span>
+          <span class="cursor-pointer text-lg">Contact</span>
+        </div>
+      </div>
+  
+      <div class="flex flex-col  gap-y-6 pt-4">
+        <div class="flex"><span class="border-b border-white text-xl">Subscribe</span></div>
+        <div class="flex flex-col gap-x-4">
+          <span class="text-xl">
+            Don’t miss to subscribe to our new feeds and get notiied about latest trips and discount.
+          </span>
+          <span class="flex flex-col gap-y-4 pt-4" [formGroup]="subscriptionForm" >
+            <input type="text" placeholder="Name" class="w-full h-[40px] p-4 rounded-xl text-black" formControlName="name"  />
+            <input type="text" placeholder="Email" class="w-full h-[40px] p-4 rounded-xl text-black"  formControlName="email"  />
+            <button class="w-full px-4 py-2 flex items-center justify-center bg-gray-100 rounded-xl text-gray-900 font-semibold text-2xl" (click)="submit()" >
+              Subscribe
+            </button>
+          </span>
+        </div>
+      </div>
+  
+  
+    </div>
+  
+    <div class="p-6 text-white">
+      © Elpaso Adventure (P) Ltd.2003-2023 All Rights Reserved. 
+    </div>
+  
+  </section>

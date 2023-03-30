@@ -1,0 +1,107 @@
+<div class="job-top-image">
+  <h2>Find Trips</h2>
+  <p>Home/Package</p>
+</div>
+
+<div class="jobtype-body">
+  <form [formGroup]="form" class="jobtype-filter w-2/12 !hidden xl:!block lg:!block 2xl:!block ">
+    <div class="search">
+      <p>Search By Keyword</p>
+      <div class="search-input">
+        <button class="reset" type="reset" style="margin-right: 5px;">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M14.0262 12.3473L17.5953 15.9157L16.4162 17.0948L12.8478 13.5257C11.5201 14.59 9.86866 15.1689 8.16699 15.1665C4.02699 15.1665 0.666992 11.8065 0.666992 7.6665C0.666992 3.5265 4.02699 0.166504 8.16699 0.166504C12.307 0.166504 15.667 3.5265 15.667 7.6665C15.6694 9.36817 15.0905 11.0196 14.0262 12.3473ZM12.3545 11.729C13.4121 10.6414 14.0027 9.18353 14.0003 7.6665C14.0003 4.44317 11.3895 1.83317 8.16699 1.83317C4.94366 1.83317 2.33366 4.44317 2.33366 7.6665C2.33366 10.889 4.94366 13.4998 8.16699 13.4998C9.68402 13.5022 11.1419 12.9116 12.2295 11.854L12.3545 11.729Z"
+              fill="#686868" />
+          </svg>
+        </button>
+        <input class="input" placeholder="Trip, package or category" required="" type="text">
+
+      </div>
+    </div>
+    <div class="jobtype">
+      <p>Trip Type</p>
+      <div class="search-input" *ngFor="let item of categoryList">
+        <mat-slide-toggle class="slider">{{item.name}}</mat-slide-toggle>
+      </div>
+    </div>
+    <div class="dateposted">
+      <p>Person Capacity</p>
+      <div class="search-input" *ngFor="let item of postedTime">
+        <input type="checkbox" class="chbx">
+        <label class="label">{{item}}</label>
+      </div>
+    </div>
+
+    <div class="salary">
+      <p>Price</p>
+      <input type="range" class="range" min="0" max="10000" formControlName="priceRange" (change)="change()">
+      <div class="range-val-div">
+        <div class="range-val">
+          $0 - ${{form.value.priceRange}}
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="jobtype-list w-full xl:!10/12 lg:!10/12 2xl:!10/12">
+    <div class="top-filter">
+      <div class="no-of-jobs">
+        <div class="selectors w-full !flex !justify-end">
+          <button class="duration">
+            <p class="duration-text">Sort By Price</p>
+            <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M7.56694 0.683058C7.81102 0.927136 7.81102 1.32286 7.56694 1.56694L4.44194 4.69194C4.19786 4.93602 3.80214 4.93602 3.55806 4.69194L0.433058 1.56694C0.18898 1.32286 0.18898 0.927136 0.433058 0.683058C0.677136 0.438981 1.07286 0.438981 1.31694 0.683058L4 3.36612L6.68306 0.683058C6.92714 0.438981 7.32286 0.438981 7.56694 0.683058Z"
+                fill="#1C1C1C" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-2 py-4">
+      <ng-container *ngFor="let data of tripList">
+
+        <div class="package-div unhide flex flex-col rounded-xl relative cursor-pointer" [routerLink]="['/package/package-details', data._id]" >
+          <div class="p-1 relative z-99">
+            <span class="bannerDiv rounded-xl"> <img [src]="imageEnvironmentUrl+data.tripImage"
+                class="w-full h-[30vh] rounded-xl object-cover z-90" /></span>
+            <span *ngIf="data.isSpecialOffer == true" class="absolute top-[-12%] right-[-5%]"><img
+                src="assets/images/discount.png" class="w-12 h-12" /></span>
+            <span
+              class="package-div absolute bottom-[2%] right-[3%] px-1 flex flex-row gap-x-2 !rounded-lg items-center">
+              <span class="font-semibold text-black ">{{data.rating}}</span> <img src="assets/images/star.png"
+                class="w-4 h-4 " /></span>
+          </div>
+          <div class="p-2 gap-y-4">
+            <div class="flex flex-row justify-between items-center">
+              <p class="pTitle font-semibold pb-2">{{data.name}}</p> <span class="flex gap-x-2 items-center"
+                matTooltip="Total Views"> <img src="assets/images/visiblity.png" class="w-4 h-4 text-xs" />
+                {{data.totalViews}} </span>
+            </div>
+            <p class=" flex flex-col gap-x-4 pb-2"> <span
+                [ngClass]="data.isSpecialOffer.toString() == 'true'? 'text-red-600 line-through':'' ">USD.{{data.price}}</span>
+              <span *ngIf="data.isSpecialOffer == true" class="text-green-600">USD.{{data.offerPrice}}
+                ({{calculateDiscount(data?.price,data?.offerPrice)}})%Off
+              </span>
+            </p>
+            <span class="flex flex-row gap-x-2 items-center pb-2"> <img src="assets/images/calendar.png"
+                class="w-6 h-6" />
+              <p>{{data.summary.duration | titlecase}}</p>
+            </span>
+            <span class="flex flex-row gap-x-2 items-center pb-2"> <img src="assets/images/location.png" class="w-6 h-6" />
+              <p>{{data.summary.destination | titlecase}}</p>
+            </span>
+            <span class="flex flex-row gap-x-2 items-center pb-2"> <img src="assets/images/categories.png" class="w-6 h-6" />
+              <p>{{data.category | titlecase}}</p>
+            </span>
+            <span class="flex flex-row gap-x-2 items-center"> <img src="assets/images/group.png" class="w-6 h-6" />
+              <p>{{data.summary.groupSize }} People</p>
+            </span>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+</div>

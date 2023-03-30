@@ -1,0 +1,36 @@
+<label class="text-2xl px-2">Latest Blog</label>
+<div *ngIf="blogList?.length == 0" class="h-[50vh]">
+  <div class="w-full h-full items-cener justify-center">
+    <div class="flex flex-col justify-center items-center">
+      <div class="text-2xl">No Blog Found</div>
+    </div>
+  </div>   
+</div>
+
+<div class="p-4 flex flex-col gap-y-4 overflow-hidden">
+  <div *ngFor="let data of blogList; let i = index" class="w-full flex xl:flex-none 2xl:flex-none gap-x-4"
+    [ngClass]="i %2 ==0 ? 'flex-row':'flex-row-reverse'">
+    <div
+      class="flex flex-col gap-y-4 items-start justify-start lg:p-12 xl:p-12 2xl:p-12 p-4 rounded-xl bg-gray-100 w-full  xl:w-2/3  2xl:w-2/3 ">
+      <div class="flex flex-row gap-x-2">
+        <div class="rounded-full">
+          <img [src]="imageEnvironmentUrl+data.author?.image" class="w-12 h-12 object-fit rounded-full" />
+        </div>
+        <div>
+          <div class="text-xl">{{data.author?.name | titlecase}}</div>
+          <div class="text-sm">{{data.author?.profession | titlecase}}</div>
+        </div>
+      </div>
+      <span class="visible xl:hidden 2xl:hidden  w-full">
+        <img [src]="imageEnvironmentUrl+data.image" class="w-full h-[50vh] object-contain" />
+      </span>
+      <span class="text-2xl">{{data.name | titlecase}}</span>
+      <span [innerHTML]="data.description" class="h-[100px]  overflow-clip ">
+      </span>
+      <a class="cursor-pointer" [routerLink]="['/blog-preview', data._id]" >Read More -></a>
+    </div>
+    <div class="xl:w-1/3 2xl:1/3 w-full hidden xl:block 2xl:block float-left">
+      <img [src]="imageEnvironmentUrl+data.image" class="!w-full h-[50vh] object-fit rounded-lg" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+.header {
+  height: 90px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    // gap: 1rem;
+    h1 {
+      margin-left: 11px;
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 29px;
+      color: #3563E9;
+      // font-size: 35px;
+      // line-height: 60px;
+      // letter-spacing: 2px;
+      transition: all 2s ease-in-out;
+    }
+  }
+
+  .nav {
+    ul {
+      display: flex;
+      // gap: 120px;
+      list-style: none;
+
+      li {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 22px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.2px;
+        color: #424242;
+        cursor: pointer;
+
+        a {
+          text-decoration: none;
+          color: #000000;
+        }
+      }
+
+      li:hover {
+        a {
+          content: '';
+          color: red;
+          padding-bottom: 4px;
+
+          div {
+            height: 2px;
+            width: 100%;
+            transition: all ease-in-out 1s;
+          }
+        }
+      }
+    }
+
+  }
+
+  .cool-link {
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+  }
+
+  .cool-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: red;
+    border-radius: 20px;
+    transition: width .3s;
+  }
+
+  .cool-link:hover::after {
+    width: 100%;
+  }
+
+  .login {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+
+    p {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      display: flex;
+      align-items: center;
+      letter-spacing: 0.2px;
+      color: #424242;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+body {
+  position: relative;
+}
+
+
+.base {
+  display: flex;
+
+  .body {
+    margin-left: 288px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #F9FAFB;
+  }
+}

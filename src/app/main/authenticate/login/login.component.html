@@ -1,0 +1,118 @@
+<div class="login">
+  <div class="login-image">
+    <img src="../../../../assets/images/login.png" alt="login">
+  </div>
+  <div class="login-form">
+    <div class="form-header">
+      <h3>
+        <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M18 30L0.916656 10L6.04166 0H29.9583L35.0833 10L18 30ZM13.9427 8.33333H22.0573L19.4948 3.33333H16.5052L13.9427 8.33333ZM16.2917 22.7917V11.6667H6.81041L16.2917 22.7917ZM19.7083 22.7917L29.1896 11.6667H19.7083V22.7917ZM25.8583 8.33333H30.3854L27.8229 3.33333H23.2958L25.8583 8.33333ZM5.61457 8.33333H10.1417L12.7042 3.33333H8.17707L5.61457 8.33333Z"
+            fill="#3563E9" />
+        </svg>
+        elpaso
+      </h3>
+      <p>Sign in to your account</p>
+    </div>
+    <form class="main-form" [formGroup]="form">
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" type="text" formControlName="email" />
+        <mat-error>Invalid email</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Password</mat-label>
+        <input #passwordInput matInput placeholder="Password" type="password" formControlName="password" />
+        <mat-icon matSuffix (click)="tooglePassIcon()">
+          <i *ngIf="isPassVisible">
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M8.60005 11.2247C7.00671 11.2247 5.71338 9.93142 5.71338 8.33808C5.71338 6.74475 7.00671 5.45142 8.60005 5.45142C10.1934 5.45142 11.4867 6.74475 11.4867 8.33808C11.4867 9.93142 10.1934 11.2247 8.60005 11.2247ZM8.60005 6.45142C7.56005 6.45142 6.71338 7.29808 6.71338 8.33808C6.71338 9.37808 7.56005 10.2247 8.60005 10.2247C9.64005 10.2247 10.4867 9.37808 10.4867 8.33808C10.4867 7.29808 9.64005 6.45142 8.60005 6.45142Z"
+                fill="#292D32" />
+              <path
+                d="M8.60031 14.3514C6.09365 14.3514 3.72698 12.8847 2.10031 10.338C1.39365 9.23804 1.39365 7.44471 2.10031 6.33804C3.73365 3.79137 6.10031 2.32471 8.60031 2.32471C11.1003 2.32471 13.467 3.79137 15.0936 6.33804C15.8003 7.43804 15.8003 9.23137 15.0936 10.338C13.467 12.8847 11.1003 14.3514 8.60031 14.3514ZM8.60031 3.32471C6.44698 3.32471 4.38698 4.61804 2.94698 6.87804C2.44698 7.65804 2.44698 9.01804 2.94698 9.79804C4.38698 12.058 6.44698 13.3514 8.60031 13.3514C10.7536 13.3514 12.8136 12.058 14.2536 9.79804C14.7536 9.01804 14.7536 7.65804 14.2536 6.87804C12.8136 4.61804 10.7536 3.32471 8.60031 3.32471Z"
+                fill="#292D32" />
+            </svg>
+          </i>
+          <i *ngIf="!isPassVisible">
+            <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_501_2483)">
+                <path
+                  d="M2.26673 2L4.6595 4.39277M14.2667 14L11.8742 11.6075M9.51664 12.5497C9.11187 12.6265 8.69414 12.6667 8.26704 12.6667C5.28193 12.6667 2.75507 10.7047 1.90556 7.99998C2.13683 7.26367 2.4924 6.5824 2.94768 5.98079M6.85252 6.58579C7.21444 6.22386 7.71444 6 8.26673 6C9.3713 6 10.2667 6.89543 10.2667 8C10.2667 8.55228 10.0429 9.05229 9.68094 9.41421M6.85252 6.58579L9.68094 9.41421M6.85252 6.58579L4.6595 4.39277M9.68094 9.41421L4.6595 4.39277M9.68094 9.41421L11.8742 11.6075M4.6595 4.39277C5.69938 3.72236 6.93777 3.33333 8.26702 3.33333C11.2521 3.33333 13.779 5.29528 14.6285 8.00002C14.1572 9.50048 13.1697 10.7723 11.8742 11.6075"
+                  stroke="#4D4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </g>
+              <defs>
+                <clipPath id="clip0_501_2483">
+                  <rect width="16" height="16" fill="white" transform="translate(0.266724)" />
+                </clipPath>
+              </defs>
+            </svg>
+          </i>
+        </mat-icon>
+        <!-- <mat-error
+          *ngIf="
+            this.loginForm.get('password')?.invalid &&
+            (this.loginForm.get('password')?.dirty ||
+              this.loginForm.get('password')?.touched)
+          "
+        >
+          Password is <strong>required</strong>
+        </mat-error> -->
+        <mat-error>Invalid password</mat-error>
+
+      </mat-form-field>
+      <div>
+        <button class="button-primary" mat-raised-button color="primary" type="submit" (click)="loginSubmit()">
+          Login
+        </button>
+      </div>
+      <!-- <button mat-flat-button color="primary">Primary</button> -->
+      <div class="forgot-div">
+        <p class="forgot-pass">Forgot your password?</p>
+      </div>
+      <div class="login-via-div">
+        <svg width="169" height="2" viewBox="0 0 169 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0.5" y1="1" x2="168.507" y2="1" stroke="#898989" stroke-dasharray="8 8" />
+        </svg>
+        <p class="login-via-text">
+          Or Login Via
+        </p>
+
+        <svg width="169" height="2" viewBox="0 0 169 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0.493164" y1="1" x2="168.5" y2="1" stroke="#898989" stroke-dasharray="8 8" />
+        </svg>
+      </div>
+      <div class="buttons-div">
+        <button class="apple">
+          <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M23.0542 26.199C21.8148 28.0507 20.5007 29.8577 18.4996 29.8875C16.4986 29.9323 15.8564 28.7078 13.5866 28.7078C11.3018 28.7078 10.5999 29.8577 8.70342 29.9323C6.74717 30.007 5.26879 27.9611 4.0144 26.1542C1.46082 22.4657 -0.49543 15.6711 2.13281 11.1016C3.432 8.83171 5.76158 7.39812 8.28529 7.35332C10.1967 7.32346 12.0186 8.65251 13.1983 8.65251C14.3631 8.65251 16.5732 7.05466 18.8879 7.29359C19.8585 7.33839 22.5764 7.68185 24.3235 10.2504C24.1892 10.34 21.083 12.1618 21.1129 15.9399C21.1577 20.4497 25.0702 21.958 25.115 21.9729C25.0702 22.0775 24.4878 24.1233 23.0542 26.199ZM14.5274 2.3059C15.6175 1.06644 17.4244 0.125651 18.9177 0.065918C19.1119 1.8131 18.41 3.57522 17.3647 4.82961C16.3343 6.09893 14.6319 7.08453 12.9594 6.95013C12.7354 5.23281 13.5716 3.44082 14.5274 2.3059Z"
+              fill="black" />
+          </svg>
+          Apple
+        </button>
+        <button class="facebook">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M19.4 0.199951H2.60001C1.28001 0.199951 0.200012 1.27995 0.200012 2.59995V19.4C0.200012 20.7211 1.28001 21.7999 2.60001 21.7999H11V13.4H8.60001V10.4299H11V7.96995C11 5.37315 12.4544 3.54915 15.5192 3.54915L17.6828 3.55155V6.67755H16.2464C15.0536 6.67755 14.6 7.57275 14.6 8.40315V10.4312H17.6816L17 13.4H14.6V21.7999H19.4C20.72 21.7999 21.8 20.7211 21.8 19.4V2.59995C21.8 1.27995 20.72 0.199951 19.4 0.199951Z"
+              fill="white" />
+          </svg>
+          Facebook
+
+        </button>
+        <button class="gmail">
+          <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M24 3.45685V17.3658C24 18.2698 23.268 19.0018 22.364 19.0018H18.545V9.72985L12 14.6398L5.455 9.72985V19.0028H1.636C1.42107 19.0028 1.20825 18.9605 1.0097 18.8782C0.811145 18.7959 0.63075 18.6753 0.47882 18.5233C0.32689 18.3713 0.206404 18.1908 0.124246 17.9922C0.0420884 17.7936 -0.000131068 17.5808 3.05652e-07 17.3658V3.45685C3.05652e-07 1.43385 2.309 0.278845 3.927 1.49285L5.455 2.63985L12 7.54785L18.545 2.63785L20.073 1.49285C21.69 0.279845 24 1.43385 24 3.45685Z"
+              fill="white" />
+          </svg>
+          Gmail
+        </button>
+      </div>
+      <div class="register-here">
+        <p>Don't have an account?<span class="cursor-pointer" (click)="openPopup()"> Register here</span> </p>
+      </div>
+    </form>
+
+  </div>
+</div>

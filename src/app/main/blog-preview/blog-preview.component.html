@@ -1,0 +1,32 @@
+<div class="p-2 grid grid-cols-1 gap-2">
+    <div  class="rounded-lg flex flex-col gap-y-4 p-4 relative">
+
+        <div class="w-full justify-end">
+            <div class="w-[50px] h-[50px] rounded-full">
+                <img class="w-[48]" />
+            </div>
+        </div>
+      
+
+        <div class="w-full h-[400px] flex items-center justify-center">
+            <img class="w-full lg:w-2/3 xl:w-2/3 2xl:w-1/2 h-full object-fit rounded-lg" [src]="imageEnvironmentUrl+BlogDetail.image" alt="" />
+        </div>
+        <div class="text-xl font-bold">
+            {{BlogDetail.name | titlecase}}
+        </div>
+        <div class="absolute">
+            <div class="flex flex-row justify-between items-center">
+                <span class="flex gap-x-2 items-center" matTooltip="Total Views"> <img src="assets/images/visiblity.png"
+                        class="w-4 h-4 text-xs" />
+                    {{BlogDetail.views}} </span>
+            </div>
+        </div>
+
+        <div [innerHTML]="BlogDetail.description ">
+        </div>
+
+
+       
+
+    </div>
+</div>

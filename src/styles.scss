@@ -1,0 +1,85 @@
+/* You can add global styles to this file, and also import other style files */
+// @use '@angular/material' as mat;
+// @include mat.core();
+// $elpaso-primary: mat.define-palette(mat.$indigo-palette);
+// $elpaso-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+// // The warn palette is optional (defaults to red).
+// $elpaso-warn: mat.define-palette(mat.$red-palette);
+// // Create the theme object. A theme consists of configurations for individual
+// // theming systems such as "color" or "typography".
+// $elpaso-theme: mat.define-light-theme(( color: ( primary: $elpaso-primary, accent: $elpaso-accent, warn: $elpaso-warn, )));
+// // Include theme styles for core and each component used in your app.
+// // Alternatively, you can import and @include the theme mixins for each component
+// // that you are using.
+// @include mat.all-component-themes($elpaso-theme);
+
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+// @import "./assets/styles/slidertoogler.scss";
+
+// @import "./assets/styles/inputbox.scss";
+// @use '@angular/material' as mat;
+// @include mat.core();
+// $police-department-primary: mat.define-palette(mat.$indigo-palette);
+// $police-department-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+// $police-department-warn: mat.define-palette(mat.$red-palette);
+// $police-department-theme: mat.define-light-theme(( color: ( primary: $police-department-primary, accent: $police-department-accent, warn: $police-department-warn, )));
+// @include mat.all-component-themes($police-department-theme);
+@import '~quill/dist/quill.snow.css';
+@import 'ngx-toastr/toastr';
+@import "~@ng-select/ng-select/themes/material.theme.css";
+@import 'sweetalert2/src/sweetalert2.scss';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter';
+  font-style: normal;
+}
+::ng-deep .mat-input-element{
+  caret-color: #ef0707 !important;
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f100;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+// .button-primary{
+//   width: 100%;
+//   height: 56px;
+//   font-family: 'Public Sans';
+//   font-size: 16px;
+//   font-weight: 500;
+//   line-height: 18.8px;
+//   background-color: #1939B7;
+// }
+
+
+
+
+
+
+
+
