@@ -41,7 +41,7 @@ export class TopNavBarComponent implements OnInit {
     sessionStorage.clear()
     localStorage.clear()
     window.location.reload()
-    this._route.navigate(['home']);
+    this._route.navigate(['/']);
 
   }
 

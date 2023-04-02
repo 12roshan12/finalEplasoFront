@@ -6,6 +6,7 @@ import { AdminService } from '../../dashboard/dashboard.service';
 import { BlogPopUpComponent } from '../blog-popup/pop.component';
 import { ProfilePopUpComponent } from '../edit-pop/edit-pop.component';
 import { ProfileService } from '../profile.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -19,9 +20,14 @@ export class ProfileComponent implements OnInit {
   userDetails: any
   imageEnvironmentUrl = environment.Main_Api + 'media/file/'
 
-  constructor(private dialog: MatDialog, private service: AdminService, private toastr: ToastrService, private profileService: ProfileService) { }
+  constructor(private dialog: MatDialog, private service: AdminService,private router:Router, private toastr: ToastrService, private profileService: ProfileService) { }
 
   ngOnInit(): void {
+
+    if(sessionStorage.getItem('token') == undefined )
+    {
+      this.router.navigateByUrl('/')
+    }
 
     this.profileService.getUserDetails(sessionStorage.getItem('userId')).subscribe({
       next: (res: any) => {

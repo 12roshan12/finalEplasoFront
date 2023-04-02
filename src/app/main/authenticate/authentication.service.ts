@@ -22,6 +22,18 @@ export class AuthentictaionService {
         return this.http.post(`${environment.Main_Api}authentication/sign-up`, data)
     }
 
+    requestOtp(data:any){
+        return this.http.post(`${environment.Main_Api}authentication/request-otp`, data)
+    }
+
+    verifyOtp(data:any){
+        return this.http.post(`${environment.Main_Api}authentication/verify-otp`, data)
+    }
+
+    changePassword(data:any){
+        return this.http.post(`${environment.Main_Api}authentication/change-password`, data)
+    }
+
     // GetAllCategory(){
     //     return this.http.get(`${environment.Main_Api}category/get-all`)
     // }

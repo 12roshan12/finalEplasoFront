@@ -4,9 +4,8 @@
 
 export const environment = {
   production: false,
-  // Main_Api: 'http://192.168.1.80:8000/api/'
+  Main_Api: 'http://192.168.1.80:8000/api/'
   // Main_Api: 'http://192.168.13.146:8000/api/'
-  Main_Api: 'https://tame-teal-centipede-slip.cyclic.app/api/'
 
 }
 

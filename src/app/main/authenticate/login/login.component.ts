@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthentictaionService } from '../authentication.service';
+import { RequestOTPComponent } from '../request-otp/request-otp.component';
 import { RegisterComponent } from '../register/register.component';
 
 @Component({
@@ -47,6 +48,16 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  forgotPassword(data?: any) {
+    let dialog = this.dialogRef.open(RequestOTPComponent, {
+      disableClose: true,
+      minWidth: '50vw',
+      data :{'type':'forgot-password'}
+    })
+    dialog.afterClosed().subscribe((e: any) => {
+    })
+  }
+
   loginSubmit() {
     if (this.form.invalid) return
     this.service.signIn(this.form.value).subscribe({
@@ -69,8 +80,6 @@ export class LoginComponent implements OnInit {
         this.toastr.error(err.error.message)
       }
     })
-
-  
   }
 
   tooglePassIcon() {

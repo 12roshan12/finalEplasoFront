@@ -67,8 +67,9 @@
         </button>
       </div>
       <!-- <button mat-flat-button color="primary">Primary</button> -->
-      <div class="forgot-div">
-        <p class="forgot-pass">Forgot your password?</p>
+      <div class="forgot-div flex flex-row justify-between items-center !w-full">
+        <a class="forgot-pass !cursor-pointer" routerLink="/" >Back to homepage</a>
+        <p class="forgot-pass !cursor-pointer" (click)="forgotPassword()" >Forgot your password?</p>
       </div>
       <div class="login-via-div">
         <svg width="169" height="2" viewBox="0 0 169 2" fill="none" xmlns="http://www.w3.org/2000/svg">

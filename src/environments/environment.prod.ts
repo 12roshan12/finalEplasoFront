@@ -1,5 +1,4 @@
 export const environment = {
   production: true,
-  Main_Api: 'http://localhost:8000/'
-
+  Main_Api: 'https://tame-teal-centipede-slip.cyclic.app/api/'
 };
