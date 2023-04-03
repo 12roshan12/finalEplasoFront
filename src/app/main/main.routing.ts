@@ -4,6 +4,7 @@ import { BlogPreviewComponent } from './blog-preview/blog-preview.component';
 import { BlogComponent } from './blog/blog.component';
 import { LandingPageComponent } from './landing/landing-page/landing-page.component';
 import { MainComponent } from './main.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const routes: Routes = [
     {
@@ -17,6 +18,7 @@ const routes: Routes = [
             },
             { path: 'home', component: LandingPageComponent },
             { path: 'blog', component: BlogComponent },
+            { path: 'contact-us', component: ContactUsComponent },
             { path: 'blog-preview/:id', component: BlogPreviewComponent },
             {
                 path: 'package',

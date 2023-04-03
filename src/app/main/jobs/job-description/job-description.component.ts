@@ -46,6 +46,7 @@ export class JobDescriptionComponent implements OnInit {
       _id: [''],
       packageId: [''],
       packageName: [''],
+      userId: [sessionStorage.getItem('userId') ? sessionStorage.getItem('userId') : '' ],
       name: ['', Validators.required],
       email: ['', Validators.required],
       contactnumber: ['', Validators.required],
@@ -60,6 +61,7 @@ export class JobDescriptionComponent implements OnInit {
       _id: [''],
       packageId: [''],
       packageName: [''],
+      userId: [sessionStorage.getItem('userId') ? sessionStorage.getItem('userId') : '' ],
       name: ['', Validators.required],
       email: ['', Validators.required],
       expectedPrice: ['', Validators.required],
@@ -85,6 +87,8 @@ export class JobDescriptionComponent implements OnInit {
   calculatePrice(e: any) {
     this.finalPrice = this.price
     this.finalPrice = this.toNumber(e.target.value) * this.toNumber(this.price)
+    console.log(this.finalPrice);
+    
   }
 
   openMedia(data: any) {
@@ -113,14 +117,11 @@ export class JobDescriptionComponent implements OnInit {
 
   placeBooking() {
 
-    
-
     this.bookingForm.get('price')?.setValue(this.finalPrice)
     if (this.bookingForm.invalid) {
       this.toastr.error("Please fill all details to place request")
       return
     }
-
     this.service.createBooking(this.bookingForm.value).subscribe({
       next: (data: any) => {
         this.toastr.success(data.message)
@@ -134,8 +135,7 @@ export class JobDescriptionComponent implements OnInit {
   }
 
   placeEnquiry() {
-    this.bookingForm.get('expectedPrice')?.setValue(this.finalPrice)
-
+    this.enquiryFrom.get('expectedPrice')?.setValue(this.finalPrice)
     if (this.enquiryFrom.invalid) {
       this.toastr.error("Please fill all details to place request")
       return

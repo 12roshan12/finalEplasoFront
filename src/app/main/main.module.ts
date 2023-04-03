@@ -7,6 +7,7 @@ import { BlogComponent } from './blog/blog.component';
 import { BlogPreviewComponent } from './blog-preview/blog-preview.component';
 import { LandingPageComponent } from './landing/landing-page/landing-page.component';
 import { NoticePopComponent } from './landing/landing-page/notice-pop/notice-pop.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { NoticePopComponent } from './landing/landing-page/notice-pop/notice-pop
     BlogPreviewComponent ,
     LandingPageComponent,
     NoticePopComponent,
+    ContactUsComponent,
 
   ],
   imports: [

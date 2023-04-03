@@ -1,0 +1,100 @@
+<div class="py-6 xl:px-16 px-4">
+    <div class="text-3xl pb-8">
+        About Us
+    </div>
+    <div class="flex flex-col gap-4 xl:flex-row 2xl:flex-row gap-x-4 ">
+        <div class="w-full">
+            <img src="assets/images/exped1.jpg" class="w-full h-[40vh] xl:h-full 2xl:h-full object-cover rounded-xl" />
+        </div>
+        <div class="w-full text-xl font-normal pl-2 flex flex-col gap-y-4">
+            <div> <span class="font-semibold"> With over 10+
+                    Years of Experience in tourism industry</span>,
+                ELPASO offers expertise, customization, value, safety, sustainability, hassle-free planning, and
+                excellent
+                customer service. Our team of experienced professionals creates personalized itineraries to fit your
+                needs while
+                ensuring your safety and providing 24/7 support. We are committed to responsible and sustainable tourism
+                and
+                take care of all the details, making travel planning hassle-free. Our goal is to exceed your
+                expectations and
+                provide a memorable and enjoyable travel experience.
+            </div>
+            <div>
+                <span class="underline pb-2">Our Services</span>
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-4 py-4">
+
+                    <button
+                        class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-fit flex items-center justify-center">Expedition</button>
+                    <button
+                        class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-fit flex items-center justify-center">Hotel
+                        Booking</button>
+
+                    <button
+                        class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-fit flex items-center justify-center">Vehical
+                        Rental</button>
+
+                    <button
+                        class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-fit flex items-center justify-center">Peak
+                        Climbing</button>
+
+                    <button
+                        class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-fit flex items-center justify-center">Equipment
+                        Rental</button>
+                    <button
+                        class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-fit flex items-center justify-center xl:col-span-2 2xl:col-span-2">Travelling
+                        Assistance</button>
+                    <button
+                        class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-fit flex items-center justify-center xl:col-span-2 2xl:col-span-2">Law
+                        Suit Services</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="flex justify-center p-4">
+
+    <div class="py-6 xl:px-16 px-4 lg:w-1/2 xl:w-1/2 2xl:w-1/2 w-full bg-blue-100 rounded-lg mb-2">
+
+        <div class="mb-5">
+            <h3 class="text-xl">Get in touch</h3>
+            <p class="text-lg">We’re very approachable and would love to speak to you. Feel free to call, send us an
+                email,
+                Tweet us or
+                simply complete the enquiry form.</p>
+        </div>
+
+        <div class="form-box">
+            <h4 class="text-lg pb-2">Send Us a Message</h4>
+
+            <form [formGroup]="getInTouchFrom" class=" w-full">
+                <div class="flex flex-col gap-4">
+                    <mat-form-field appearance="fill" class="form-field">
+                        <mat-label>Username</mat-label>
+                        <input matInput placeholder="John Deep*" type="text" formControlName="name" required />
+                        <mat-error>Username is required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="form-field">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="johndeep@gmail.com*" type="text" formControlName="email"
+                            required />
+                        <mat-error>Invalid Email</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="form-field">
+                        <mat-label>Contact Number</mat-label>
+                        <input matInput placeholder="John Deep*" type="number" formControlName="contactNumber" />
+                    </mat-form-field>
+
+                    <textarea name="" id="" cols="30" rows="10" class=" p-2 rounded-lg w-full bg-gray-100 " [ngClass]=" getInTouchFrom.controls['message'].invalid && getInTouchFrom.controls['message'].touched ? 'border border-red-600' :'border-b border-black' "
+                        placeholder="Message" formControlName="message">Message</textarea>
+
+                    <button type="submit" mat-flat-button color="primary" (click)="sendMessage()" >SEND MESSAGE</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

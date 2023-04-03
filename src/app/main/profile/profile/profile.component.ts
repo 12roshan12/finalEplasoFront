@@ -7,6 +7,7 @@ import { BlogPopUpComponent } from '../blog-popup/pop.component';
 import { ProfilePopUpComponent } from '../edit-pop/edit-pop.component';
 import { ProfileService } from '../profile.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -37,13 +38,58 @@ export class ProfileComponent implements OnInit {
       }
     })
 
-    this.profileService.GetAllblogByUser(sessionStorage.getItem('user')).subscribe({
+    this.profileService.GetAllblogByUser(sessionStorage.getItem('userId')).subscribe({
       next: (res: any) => {
         this.blogList = res.data
         console.log(this.blogList);
       },
       error: (err: any) => {
         this.toastr.error(err.error.message)
+      }
+    })
+
+    this.profileService.GetAllenquiryByUser(sessionStorage.getItem('userId')).subscribe({
+      next: (res: any) => {
+        this.enquiryList = res.data
+        console.log(this.enquiryList);
+      },
+      error: (err: any) => {
+        this.toastr.error(err.error.message)
+      }
+    })
+
+    this.profileService.GetAllbookingByUser(sessionStorage.getItem('userId')).subscribe({
+      next: (res: any) => {
+        this.bookingList = res.data
+        console.log(this.bookingList);
+      },
+      error: (err: any) => {
+        this.toastr.error(err.error.message)
+      }
+    })
+  }
+
+  deleteEnquiry(data:any){
+    Swal.fire({
+      title: 'Do you want to delete the enquiry?',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Cancel`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.profileService.deleteenquiry(data).subscribe({
+          next: (data: any) => {
+            Swal.fire('Deleted', '', 'success')
+            this.toastr.success(data.data)
+            this.ngOnInit()
+          },
+          error: (err: any) => {
+            console.log(err);
+          }
+        })
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
       }
     })
   }

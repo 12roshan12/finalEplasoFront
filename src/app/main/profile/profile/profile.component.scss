@@ -154,6 +154,7 @@ label:hover ~ input:checked ~ label /* highlight previous selected stars */ { co
 .profile-body{
   padding: 40px;
   display: flex;
+  flex-direction: row;
   gap: 40px;
   background-color: #FFFFFF;
   .body-main{
@@ -179,7 +180,6 @@ label:hover ~ input:checked ~ label /* highlight previous selected stars */ { co
     .work-heading{
       margin-top: 40px;
       display: flex;
-      flex-direction: row;
       align-items: center;
       padding: 0px 32px;
       gap: 10px;
@@ -297,6 +297,15 @@ label:hover ~ input:checked ~ label /* highlight previous selected stars */ { co
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .profile-body
+  {
+    flex-direction:column-reverse;
+  }
+}
+
+
 .work-detail:nth-child(odd){
   background: #FAFAFA;
 }

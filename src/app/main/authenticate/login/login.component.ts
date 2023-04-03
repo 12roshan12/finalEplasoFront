@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('token', data.token)
         sessionStorage.setItem('user', data.user)
         sessionStorage.setItem('role', data.role)
+        sessionStorage.setItem('email', data.userMail)
         sessionStorage.setItem('userId', data.id)
         if(data.role == 'admin')
         {

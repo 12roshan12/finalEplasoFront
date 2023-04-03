@@ -39,15 +39,15 @@ export class ProfileService {
     }
 
     createenquiry(data:any){
-        return this.http.post(`${environment.Main_Api}enquiry`, data)
+        return this.http.post(`${environment.Main_Api}query`, data)
     }
 
     deleteenquiry(id:any){
-        return this.http.delete(`${environment.Main_Api}enquiry/delete/${id}`)
+        return this.http.delete(`${environment.Main_Api}query/delete/${id}`)
     }
 
     GetAllenquiryByUser(data:any){
-        return this.http.get(`${environment.Main_Api}enquiry/getByUser/${data}`)
+        return this.http.get(`${environment.Main_Api}query/getByUser/${data}`)
     }
 
     
