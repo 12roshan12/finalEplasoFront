@@ -19,6 +19,9 @@
         <div>
           <div class="text-xl">{{data.author?.name | titlecase}}</div>
           <div class="text-sm">{{data.author?.profession | titlecase}}</div>
+          <div class="text-xs">
+            {{data.createdon | date: 'dd/MM/yyyy'}}
+          </div>
         </div>
       </div>
       <span class="visible xl:hidden 2xl:hidden  w-full">

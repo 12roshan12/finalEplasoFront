@@ -1,9 +1,10 @@
 import { Component, Inject, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { AdminService } from '../../dashboard/dashboard.service';
+import { RequestOTPComponent } from '../../authenticate/request-otp/request-otp.component';
 
 @Component({
     selector: 'app-edit-pop-pop',
@@ -34,6 +35,7 @@ export class ProfilePopUpComponent {
     ];
 
     constructor(private dialog: MatDialogRef<ProfilePopUpComponent>, private service: AdminService,
+        private dialogRef:MatDialog,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private toastr: ToastrService,
         private fb: FormBuilder) { }
@@ -80,6 +82,16 @@ export class ProfilePopUpComponent {
 
     clear() {
         this.imageTemp = null
+    }
+
+    changePassword(){
+        let dialog = this.dialogRef.open(RequestOTPComponent, {
+            disableClose: true,
+            minWidth: '35vw',
+            data: { 'type': 'forgot-password' }
+          })
+          dialog.afterClosed().subscribe((e: any) => {
+          })
     }
 
 

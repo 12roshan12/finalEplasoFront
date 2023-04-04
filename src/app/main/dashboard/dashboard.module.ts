@@ -22,6 +22,8 @@ import { UserComponent } from './user/user.component';
 import { BlogAdminPopUpComponent } from './blog/blog-popup/pop.component';
 import { GuidlinePopupComponent } from './guidline/guidline-popup/guidline-popup.component';
 import { NoticePopupComponent } from './notice/notice-popup/notice-popup.component';
+import { TeamComponent } from './team/team.component';
+import { TeamPopupComponent } from './team/team-popup/team-popup.component';
 
 
 
@@ -45,7 +47,9 @@ import { NoticePopupComponent } from './notice/notice-popup/notice-popup.compone
     UserComponent,
     BlogAdminPopUpComponent,
     GuidlinePopupComponent,
-    NoticePopupComponent
+    NoticePopupComponent,
+    TeamComponent,
+    TeamPopupComponent
   ],
   imports: [
     SharedModule,

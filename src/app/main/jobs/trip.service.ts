@@ -50,6 +50,10 @@ export class TripService {
         return this.http.get(`${environment.Main_Api}trip/get-trip/${id}`)
     }
 
+    postReview(data:any){
+        return this.http.post(`${environment.Main_Api}trip/post-comment`, data)
+    }
+
    
 
 }

@@ -4,12 +4,14 @@ import { JobDescriptionComponent } from './job-description/job-description.compo
 import { JobListComponent } from './job-list/job-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ReviewComponent } from './review/review.component';
 
 
 @NgModule({
   declarations: [
     JobDescriptionComponent,
-    JobListComponent
+    JobListComponent,
+    ReviewComponent
   ],
   imports: [
     JobsRoutingModule,

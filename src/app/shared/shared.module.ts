@@ -26,7 +26,6 @@ import {MatChipsModule} from '@angular/material/chips';
 import {ToastrModule} from 'ngx-toastr'
 import { NgSelectModule } from '@ng-select/ng-select';
 
-
 @NgModule({
   declarations: [
     SidebarComponent,

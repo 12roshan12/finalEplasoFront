@@ -69,6 +69,31 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  deleteBooking(data:any){
+    Swal.fire({
+      title: 'Do you want to delete the booking?',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Cancel`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.profileService.deletebooking(data).subscribe({
+          next: (data: any) => {
+            Swal.fire('Deleted', '', 'success')
+            this.toastr.success(data.data)
+            this.ngOnInit()
+          },
+          error: (err: any) => {
+            console.log(err);
+          }
+        })
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+  }
+
   deleteEnquiry(data:any){
     Swal.fire({
       title: 'Do you want to delete the enquiry?',
@@ -132,13 +157,25 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteBog(data: any) {
-    this.profileService.deleteblog(data).subscribe({
-      next: (res: any) => {
-        this.toastr.success(res.message)
-        this.ngOnInit()
-      },
-      error: (err: any) => {
-        this.toastr.error(err.error.message)
+
+    Swal.fire({
+      title: 'Do you want to delete the blog?',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Cancel`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.profileService.deleteblog(data).subscribe({
+          next: (res: any) => {
+            this.toastr.success(res.data)
+            this.ngOnInit()
+          },
+          error: (err: any) => {
+            this.toastr.error(err.error.message)
+          }
+        })
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
       }
     })
   }

@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
   createForm() {
     this.form = this._fb.group({
-      email: ['', [Validators.required,Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       password: ['', Validators.required]
     })
   }
@@ -51,8 +51,8 @@ export class LoginComponent implements OnInit {
   forgotPassword(data?: any) {
     let dialog = this.dialogRef.open(RequestOTPComponent, {
       disableClose: true,
-      minWidth: '50vw',
-      data :{'type':'forgot-password'}
+      minWidth: '35vw',
+      data: { 'type': 'forgot-password' }
     })
     dialog.afterClosed().subscribe((e: any) => {
     })
@@ -69,10 +69,9 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('role', data.role)
         sessionStorage.setItem('email', data.userMail)
         sessionStorage.setItem('userId', data.id)
-        if(data.role == 'admin')
-        {
+        if (data.role == 'admin') {
           this._route.navigate(['/dashboard']);
-        }else{
+        } else {
           this._route.navigate(['/']);
         }
       },

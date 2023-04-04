@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<div class="profile-body">
+<div class="profile-body overflow-auto">
 
 
   <div class="body-main">
@@ -82,14 +82,18 @@
     </div>
 
     <div class="p-4">
-      <div>
+      <ng-container *ngIf="bookingList.length !=0">
         <span class="text-lg underline">Your Booking</span>
         <div class="grid grid-cols-2 gap-2 p-2 ">
           <div *ngFor="let data of bookingList" >
             <div class="flex flex-col bg-gray-50 p-2 rounded-lg">
+              <div class="flex justify-end">
+                <button class="px-4 py-2 text-white rounded-lg" (click)="deleteBooking(data._id)"><img src="assets/images/trash.png" class="w-5 h-5" /></button>
+              </div>
               <span>Name: {{data?.packageName}}</span>
               <span>Price: {{data?.price}}</span>
-              <span>Date:{{data?.date}}</span>
+              <span>Person Count: {{data?.totalTraveller}}</span>
+              <span>Date: {{data?.date | date: 'dd/MM/yyyy' }}</span>
               <div class="flex flex-row gap-x-2 items-center col-span-2">
                 <span>Status:</span> <span *ngIf="data.status == 0"
                   class="bg-blue-600 text-white px-1 rounded-lg">Pending</span>
@@ -99,9 +103,9 @@
             </div>
           </div>
         </div>
-      </div>
-      <div>
-        <span class="text-lg underline">Enquiry List</span>
+      </ng-container>
+      <ng-container *ngIf="enquiryList.length !=0">
+        <span class="text-lg underline">Your Query</span>
         <div class="grid grid-cols-2 gap-2 p-2">
           <div *ngFor="let data of enquiryList">
             <div class="flex flex-col bg-gray-50 p-2 rounded-lg">
@@ -110,7 +114,8 @@
               </div>
               <span>Name: {{data?.packageName}}</span>
               <span>Price: {{data?.expectedPrice}}</span>
-              <span>Date: {{data?.date}}</span>
+              <span>Person Count: {{data?.totalTraveller}}</span>
+              <span>Date: {{data?.date | date: 'dd/MM/yyyy' }}</span>
               <div class="flex flex-row gap-x-2 items-center col-span-2">
                 <span>Status:</span> <span *ngIf="data.status == 0"
                   class="bg-blue-600 text-white px-1 rounded-lg">Pending</span>
@@ -120,7 +125,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </ng-container>
     </div>
 
     <div class="work-heading flex flex-row justify-between">
@@ -153,6 +158,9 @@
               </div>
               <div>
                 {{data.author.profession | titlecase}}
+              </div>
+              <div class="text-xs">
+                {{data.createdon | date: 'dd/MM/yyyy'}}
               </div>
             </div>
           </div>

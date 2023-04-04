@@ -86,7 +86,11 @@ export class TripComponent implements OnInit {
       }
     })
 
+  }
 
+  calculateDiscount(basePrice:any,offerPrice:any){
+    let discount = ((basePrice - offerPrice) / basePrice) * 100
+    return Math.round(discount)
   }
 
 }

@@ -12,6 +12,7 @@ import { TripComponent } from './trip/trip.component';
 import { BlogComponent } from './blog/blog.component';
 import { GuidlineComponent } from './guidline/guidline.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
+import { TeamComponent } from './team/team.component';
 
 const routes: Routes = [
   {
@@ -65,6 +66,10 @@ const routes: Routes = [
   {
     path: 'subscription',
     component: SubscriptionComponent
+  },
+  {
+    path: 'our-team',
+    component: TeamComponent
   }
 ];
 

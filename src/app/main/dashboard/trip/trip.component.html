@@ -87,7 +87,7 @@
                             <p class=" flex flex-col gap-x-4 pb-2"> <span
                                     [ngClass]="data.isSpecialOffer.toString() == 'true'? 'text-red-600 line-through':'' ">USD.{{data.price}}</span>
                                 <span *ngIf="data.isSpecialOffer == true" class="text-green-600">USD.{{data.offerPrice}}
-                                    (20% Off)
+                                    ({{calculateDiscount(data?.price,data?.offerPrice)}})%Off
                                 </span>
                             </p>
                             <span class="flex flex-row gap-x-2 items-center pb-2"> <img src="assets/images/calendar.png"

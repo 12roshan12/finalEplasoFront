@@ -67,6 +67,7 @@ export class BlogAdminPopUpComponent {
             trip: [this.data ? this.data.trip : ''],
             author: this.fb.group({
                 name:[],
+                id:[sessionStorage.getItem('userId')],
                 image:[],
                 profession:[],
             }),

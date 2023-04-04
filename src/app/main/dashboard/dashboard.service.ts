@@ -26,6 +26,18 @@ export class AdminService {
         return this.http.delete(`${environment.Main_Api}category/delete/${id}`)
     }
 
+    createTeam(data:any){
+        return this.http.post(`${environment.Main_Api}team`, data)
+    }
+
+    GetAllTeam(){
+        return this.http.get(`${environment.Main_Api}team/get-all`)
+    }
+
+    deleteTeam(id:any){
+        return this.http.delete(`${environment.Main_Api}team/delete/${id}`)
+    }
+
     createguidline(data:any){
         return this.http.post(`${environment.Main_Api}guidline`, data)
     }

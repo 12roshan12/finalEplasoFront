@@ -22,7 +22,7 @@
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Email</mat-label>
-                        <input matInput formControlName="email" [disabled]="true"/>
+                        <input matInput formControlName="email" [readonly]="true"/>
                     </mat-form-field>
 
                     <mat-form-field appearance="fill">
@@ -57,6 +57,7 @@
                         <img src="assets/images/altitude.png" class="w-20 h-20" />
                         <h1 class="text-md">Upload Profile</h1>
                     </div>
+                    
                     <div *ngIf="profileForm.value.image != ''"
                         class="flex flex-col items-center justify-center cursor-pointer relative">
                         <img [src]="imageEnvironmentUrl+profileForm.value.image"
@@ -113,6 +114,9 @@
     <div class="flex !justify-end gap-x-2">
         <button class="discardButton" mat-dialog-close>
             Discard
+        </button>
+        <button class="submitButton !bg-green-600" (click)="changePassword()" [disabled]="buttonDisabled">
+            <span>Change password</span>
         </button>
         <button class="submitButton" (click)="submit()" [disabled]="buttonDisabled">
             <span *ngIf="updateBoolean">Update</span>

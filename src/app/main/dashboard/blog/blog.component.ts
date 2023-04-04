@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { ProfileService } from '../../profile/profile.service';
 import { AdminService } from '../dashboard.service';
 import { BlogAdminPopUpComponent } from './blog-popup/pop.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-blog',
@@ -64,15 +65,31 @@ export class BlogComponent implements OnInit {
   }
 
   deleteBog(data: any) {
-    this.profileService.deleteblog(data).subscribe({
-      next: (res: any) => {
-        this.toastr.success(res.message)
-        this.ngOnInit()
-      },
-      error: (err: any) => {
-        this.toastr.error(err.error.message)
+
+    Swal.fire({
+      title: 'Do you want to delete the blog?',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Cancel`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.profileService.deleteblog(data).subscribe({
+          next: (res: any) => {
+            this.toastr.success(res.message)
+            this.ngOnInit()
+          },
+          error: (err: any) => {
+            this.toastr.error(err.error.message)
+          }
+        })
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
       }
     })
+
+
+ 
   }
 
 

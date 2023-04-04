@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Post a review</h1>
+<div mat-dialog-content>
+    <div [formGroup]="reviewForm" >
+        <h1 class="text-xs">Rating</h1>
+        <mat-radio-group aria-label="Select an option" formControlName="rating">
+            <mat-radio-button value="1">1</mat-radio-button>
+            <mat-radio-button value="2">2</mat-radio-button>
+            <mat-radio-button value="3">3</mat-radio-button>
+            <mat-radio-button value="4">4</mat-radio-button>
+            <mat-radio-button value="5">5</mat-radio-button>
+        </mat-radio-group>
+        <h1 class="text-xs">Comment</h1>
+        <div class="popInput">
+            <textarea class="bg-[#919EAB]/[0.1] w-full p-2 rounded-lg focus-visible:outline-none"
+                formControlName="comment" placeholder="Comment" rows="4" cols="50">
+              </textarea>
+        </div>
+    </div>
+
+</div>
+<div mat-dialog-actions class="flex !justify-end gap-x-4">
+    <button mat-dialog-close class="discardButton">Cancel</button>
+    <button class="submitButton" (click)="postComment()" >Post</button>
+</div>

@@ -1,31 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from '../dashboard.service';
-import { CategoryPopupComponent } from './category-popup/category-popup.component';
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
+import { TeamPopupComponent } from './team-popup/team-popup.component';
 
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  selector: 'app-team',
+  templateUrl: './team.component.html',
+  styleUrls: ['./team.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-export class CategoryComponent implements OnInit {
+export class TeamComponent implements OnInit {
 
   routeData = [
     {
-      'name': 'Category',
+      'name': 'Team member',
       'link': '/dashboard'
     }
   ]
-  categoryList: any = []
+  tripList: any = []
 
   constructor(private dialogRef: MatDialog, private service: AdminService,private toastr:ToastrService) { }
 
   ngOnInit(): void {
-    this.service.GetAllCategory().subscribe({
+    this.service.GetAllTeam().subscribe({
       next: (data: any) => {
-        this.categoryList = data.data
+        this.tripList = data.data
       },
       error: (err: any) => {
         console.log(err);
@@ -34,7 +35,7 @@ export class CategoryComponent implements OnInit {
   }
 
   openPopup(data?: any) {
-    let dialog = this.dialogRef.open(CategoryPopupComponent, {
+    let dialog = this.dialogRef.open(TeamPopupComponent, {
       disableClose: false,
       data: data ? data : null,
       minWidth: '50vw',
@@ -47,20 +48,21 @@ export class CategoryComponent implements OnInit {
     })
   }
 
-  deleteGroup(id: any) {
+  deleteTeam(id: any) {
 
     Swal.fire({
-      title: 'Do you want to delete the category?',
+      title: 'Do you want to delete the team member?',
       showCancelButton: true,
       confirmButtonText: 'Delete',
       denyButtonText: `Cancel`,
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.service.deleteCategory(id).subscribe({
+        this.service.deleteTeam(id).subscribe({
           next: (data: any) => {
             this.toastr.success(data.data)
             this.ngOnInit()
+
           },
           error: (err: any) => {
             this.toastr.error(err.error.message)

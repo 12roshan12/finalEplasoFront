@@ -1,10 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { LandingService } from '../../landing/landing.service';
 import { TripService } from '../trip.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ReviewComponent } from '../review/review.component';
 
 @Component({
   selector: 'app-job-description',
@@ -12,6 +14,21 @@ import { TripService } from '../trip.service';
   styleUrls: ['./job-description.component.scss']
 })
 export class JobDescriptionComponent implements OnInit {
+  innerWidth: any;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event:any) {
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth <= 1023)
+    {
+      this.bookingDiv = false
+      this.enquiryDiv = false
+    }
+    else{
+      this.bookingDiv = true
+      this.enquiryDiv = true
+    }
+  }
 
   bookingForm: FormGroup = new FormGroup({})
   enquiryFrom: FormGroup = new FormGroup({})
@@ -21,10 +38,27 @@ export class JobDescriptionComponent implements OnInit {
   price: any
   finalPrice: any
   showImageGallery: any = false
+  token = sessionStorage.getItem('token')
+  bookingDiv:boolean = true
+  enquiryDiv:boolean = true
 
-  constructor(private fb: FormBuilder, private toastr: ToastrService, private service: TripService, private landingService: LandingService, private route: ActivatedRoute) { }
+  constructor(private fb: FormBuilder,
+    private dialogRef:MatDialog,
+     private toastr: ToastrService, private service: TripService, private landingService: LandingService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.innerWidth = window.innerWidth;
+    console.log(this.innerWidth);
+    if(this.innerWidth <= 1023)
+    {
+      this.bookingDiv = false
+      this.enquiryDiv = false
+    }
+    else{
+      this.bookingDiv = true
+      this.enquiryDiv = true
+    }
 
     this.route.paramMap.subscribe((e: any) => {
       let id = e.params.id
@@ -37,7 +71,6 @@ export class JobDescriptionComponent implements OnInit {
           this.enquiryFrom.get('packageName')?.setValue(this.packageDetails?.name)
           this.price = this.packageDetails.offerPrice ? this.packageDetails.offerPrice : this.packageDetails.price
           this.finalPrice = this.price
-
         }
       })
     })
@@ -46,7 +79,7 @@ export class JobDescriptionComponent implements OnInit {
       _id: [''],
       packageId: [''],
       packageName: [''],
-      userId: [sessionStorage.getItem('userId') ? sessionStorage.getItem('userId') : '' ],
+      userId: [sessionStorage.getItem('userId') ? sessionStorage.getItem('userId') : ''],
       name: ['', Validators.required],
       email: ['', Validators.required],
       contactnumber: ['', Validators.required],
@@ -61,7 +94,7 @@ export class JobDescriptionComponent implements OnInit {
       _id: [''],
       packageId: [''],
       packageName: [''],
-      userId: [sessionStorage.getItem('userId') ? sessionStorage.getItem('userId') : '' ],
+      userId: [sessionStorage.getItem('userId') ? sessionStorage.getItem('userId') : ''],
       name: ['', Validators.required],
       email: ['', Validators.required],
       expectedPrice: ['', Validators.required],
@@ -80,6 +113,10 @@ export class JobDescriptionComponent implements OnInit {
     })
   }
 
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({behavior: 'smooth'});
+}
+
   toNumber(data: any) {
     return Number(data)
   }
@@ -88,7 +125,7 @@ export class JobDescriptionComponent implements OnInit {
     this.finalPrice = this.price
     this.finalPrice = this.toNumber(e.target.value) * this.toNumber(this.price)
     console.log(this.finalPrice);
-    
+
   }
 
   openMedia(data: any) {
@@ -102,11 +139,11 @@ export class JobDescriptionComponent implements OnInit {
     }
   }
 
-  closeCrousel(){
+  closeCrousel() {
     this.showImageGallery = false
   }
 
-  calculateDiscount(basePrice:any,offerPrice:any){
+  calculateDiscount(basePrice: any, offerPrice: any) {
     let discount = ((basePrice - offerPrice) / basePrice) * 100
     return Math.round(discount)
   }
@@ -148,6 +185,27 @@ export class JobDescriptionComponent implements OnInit {
       },
       error: (err: any) => {
         this.toastr.error(err.error.message)
+      }
+    })
+  }
+
+  openReviewPopup(data:any) {
+
+      if(this.token == undefined)
+      {
+        this.toastr.error("Please login to post a comment")
+        return
+      }
+
+    let dialog = this.dialogRef.open(ReviewComponent, {
+      disableClose: false,
+      minWidth: '50vw',
+      data:data
+    })
+
+    dialog.afterClosed().subscribe((e: any) => {
+      if (e != '') {
+        this.ngOnInit()
       }
     })
   }
