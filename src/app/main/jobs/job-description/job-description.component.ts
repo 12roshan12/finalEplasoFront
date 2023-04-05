@@ -7,7 +7,6 @@ import { LandingService } from '../../landing/landing.service';
 import { TripService } from '../trip.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ReviewComponent } from '../review/review.component';
-
 @Component({
   selector: 'app-job-description',
   templateUrl: './job-description.component.html',
@@ -17,14 +16,13 @@ export class JobDescriptionComponent implements OnInit {
   innerWidth: any;
 
   @HostListener('window:resize', ['$event'])
-  onResize(event:any) {
+  onResize(event: any) {
     this.innerWidth = window.innerWidth;
-    if(this.innerWidth <= 1023)
-    {
+    if (this.innerWidth <= 1023) {
       this.bookingDiv = false
       this.enquiryDiv = false
     }
-    else{
+    else {
       this.bookingDiv = true
       this.enquiryDiv = true
     }
@@ -39,23 +37,26 @@ export class JobDescriptionComponent implements OnInit {
   finalPrice: any
   showImageGallery: any = false
   token = sessionStorage.getItem('token')
-  bookingDiv:boolean = true
-  enquiryDiv:boolean = true
+  bookingDiv: boolean = true
+  enquiryDiv: boolean = true
+
 
   constructor(private fb: FormBuilder,
-    private dialogRef:MatDialog,
-     private toastr: ToastrService, private service: TripService, private landingService: LandingService, private route: ActivatedRoute) { }
+    private dialogRef: MatDialog,
+    private toastr: ToastrService, private service: TripService, private landingService: LandingService, private route: ActivatedRoute) {
+
+  }
 
   ngOnInit(): void {
 
+
     this.innerWidth = window.innerWidth;
     console.log(this.innerWidth);
-    if(this.innerWidth <= 1023)
-    {
+    if (this.innerWidth <= 1023) {
       this.bookingDiv = false
       this.enquiryDiv = false
     }
-    else{
+    else {
       this.bookingDiv = true
       this.enquiryDiv = true
     }
@@ -114,8 +115,8 @@ export class JobDescriptionComponent implements OnInit {
   }
 
   scroll(el: HTMLElement) {
-    el.scrollIntoView({behavior: 'smooth'});
-}
+    el.scrollIntoView({ behavior: 'smooth' });
+  }
 
   toNumber(data: any) {
     return Number(data)
@@ -189,18 +190,17 @@ export class JobDescriptionComponent implements OnInit {
     })
   }
 
-  openReviewPopup(data:any) {
+  openReviewPopup(data: any) {
 
-      if(this.token == undefined)
-      {
-        this.toastr.error("Please login to post a comment")
-        return
-      }
+    if (this.token == undefined) {
+      this.toastr.error("Please login to post a comment")
+      return
+    }
 
     let dialog = this.dialogRef.open(ReviewComponent, {
       disableClose: false,
       minWidth: '50vw',
-      data:data
+      data: data
     })
 
     dialog.afterClosed().subscribe((e: any) => {
@@ -209,7 +209,5 @@ export class JobDescriptionComponent implements OnInit {
       }
     })
   }
-
-
 
 }

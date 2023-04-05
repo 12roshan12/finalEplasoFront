@@ -22,35 +22,43 @@
             <div
                 class="lg:flex lg:flex-row xl:flex xl:flex-row 2xl:flex 2xl:flex-row grid grid-cols-3 md:grid-cols-6 sm:grid-cols-5 gap-4">
                 <button
-                    class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center" (click)="scroll(outline)">
+                    class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center"
+                    (click)="scroll(outline)">
                     Outline
                 </button>
                 <button
-                    class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center" (click)="scroll(description)">
+                    class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center"
+                    (click)="scroll(description)">
                     Description
                 </button>
                 <button
-                    class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center" (click)="scroll(itinerary)">
+                    class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center"
+                    (click)="scroll(itinerary)">
                     Itinerary
                 </button>
                 <button
-                    class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center" (click)="scroll(inclusion)">
+                    class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center"
+                    (click)="scroll(inclusion)">
                     Inclusion
                 </button>
                 <button
-                    class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center" (click)="scroll(exclusion)">
+                    class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center"
+                    (click)="scroll(exclusion)">
                     Exclusion
                 </button>
                 <button
-                    class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center" (click)="scroll(aboutTrip)">
+                    class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center"
+                    (click)="scroll(aboutTrip)">
                     About&nbsp;Trip
                 </button>
                 <button
-                    class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center" (click)="scroll(faq)">
+                    class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center"
+                    (click)="scroll(faq)">
                     FAQ
                 </button>
                 <button
-                    class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center" (click)="scroll(review)">
+                    class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center"
+                    (click)="scroll(review)">
                     Reviews
                 </button>
             </div>
@@ -262,7 +270,8 @@
             <div class="lg:w-1/4 xl:w-1/4 2xl:w-1/4 w-full relative">
                 <div class="sticky top-0">
                     <div class="lg:hidden xl:hidden 2xl:hidden block w-full mb-2">
-                        <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg w-full" (click)="bookingDiv = !bookingDiv" >Book this trip</button>
+                        <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg w-full"
+                            (click)="bookingDiv = !bookingDiv">Book this trip</button>
                     </div>
                     <div *ngIf="bookingDiv" class="border border-black rounded-lg p-2 w-full mb-2 "
                         [formGroup]="bookingForm">
@@ -293,7 +302,8 @@
                         </div>
                     </div>
                     <div class="lg:hidden xl:hidden 2xl:hidden block w-full mb-2">
-                        <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg w-full" (click)="enquiryDiv = !enquiryDiv">Enquiry about this trip</button>
+                        <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg w-full"
+                            (click)="enquiryDiv = !enquiryDiv">Enquiry about this trip</button>
                     </div>
                     <div *ngIf="enquiryDiv" class="border border-black rounded-lg p-2 w-full mb-2">
                         <h1 class="text-xl font-bold">Message or query for this trip</h1>
@@ -376,7 +386,7 @@
         </div>
     </div>
 
-    <div *ngIf="showImageGallery" class="absolute !z-9999 top-[2%] left-[25%] w-[50vw] h-[50vh] bg-white">
+    <div *ngIf="showImageGallery" class="absolute !z-9999 top-[1%] left-[10%] w-[80vw] h-[80vh] bg-white">
         <div class="relative p-2 w-full h-full">
             <div class="p-2">
                 <div (click)="closeCrousel()" class="absolute p-2 top-0 right-0 bg-white rounded-full cursor-pointer">
@@ -386,9 +396,11 @@
                             fill="#D84743" />
                     </svg>
                 </div>
-
             </div>
+          
         </div>
+
+
     </div>
 
 </div>

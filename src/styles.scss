@@ -29,19 +29,21 @@
 @import "~@ng-select/ng-select/themes/material.theme.css";
 @import 'sweetalert2/src/sweetalert2.scss';
 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Inter';
   font-style: normal;
 }
-::ng-deep .mat-input-element{
+
+::ng-deep .mat-input-element {
   caret-color: #ef0707 !important;
 }
 
@@ -75,11 +77,3 @@
 //   line-height: 18.8px;
 //   background-color: #1939B7;
 // }
-
-
-
-
-
-
-
-
