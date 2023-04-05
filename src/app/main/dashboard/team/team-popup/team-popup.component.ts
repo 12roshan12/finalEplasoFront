@@ -38,7 +38,11 @@ export class TeamPopupComponent implements OnInit {
             _id: [this.data ? this.data._id : ''],
             bio: [this.data ? this.data.bio : '', Validators.required],
             name: [this.data ? this.data.name : '', Validators.required],
-            image: [this.data ? this.data.image : '', Validators.required]
+            profession: [this.data ? this.data.profession : '', Validators.required],
+            image: [this.data ? this.data.image : '', Validators.required],
+            facebook: [this.data ? this.data.facebook : ''],
+            instagram: [this.data ? this.data.instagram : ''],
+            twitter: [this.data ? this.data.twitter : '']
         })
         if(this.updateBoolean == true)
         {

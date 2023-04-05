@@ -18,6 +18,7 @@ export class LandingPageComponent implements OnInit {
   categoryList: any[] = []
   blogList: any[] = []
   tripList: any[] = []
+  teamList: any[] = []
   offerTripList: any[] = []
   normalTripList: any[] = []
   masterData: any
@@ -53,6 +54,17 @@ export class LandingPageComponent implements OnInit {
         this.blogList = data.data
         this.blogList.sort((a, b) => b.updatedon.localeCompare(a.updatedon))
         this.blogList = this.blogList.splice(0, 3)
+
+      },
+      error: (err: any) => {
+      }
+    })
+
+    this.landingService.getAllTeam().subscribe({
+      next: (data: any) => {
+        this.teamList = data.data
+        this.teamList.sort((a, b) => b.updatedon.localeCompare(a.updatedon))
+        this.teamList = this.teamList.splice(0, 3)
 
       },
       error: (err: any) => {
@@ -97,6 +109,11 @@ export class LandingPageComponent implements OnInit {
   calculateDiscount(basePrice: any, offerPrice: any) {
     let discount = ((basePrice - offerPrice) / basePrice) * 100
     return Math.round(discount)
+  }
+
+  goto(link:any){
+    if(link == "") return
+    window.open(link, "_blank");
   }
 
   openNoticePop(dat: any) {

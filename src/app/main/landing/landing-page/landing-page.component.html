@@ -36,7 +36,8 @@
     </div>
   </div>
 
-  <div class="flex flex-col lg:flex-row sm:flex-row md:flex-row xl:flex-row 2xl:flex-row gap-4 lg:divide-y-0 sm:divide-y-0 md:divide-y-0 xl:divide-y-0 2xl:divide-y-0 divide-y-2 lg:divide-x-2 sm:divide-x-2 md:divide-x-2 xl:divide-x-2 2xl:divide-x-2 text-2xl">
+  <div
+    class="flex flex-col lg:flex-row sm:flex-row md:flex-row xl:flex-row 2xl:flex-row gap-4 lg:divide-y-0 sm:divide-y-0 md:divide-y-0 xl:divide-y-0 2xl:divide-y-0 divide-y-2 lg:divide-x-2 sm:divide-x-2 md:divide-x-2 xl:divide-x-2 2xl:divide-x-2 text-2xl">
     <div class="text-white p-4 flex flex-col gap-2 ">
       <h4>1200 +</h4>
       <p>Happy Clients</p>
@@ -96,7 +97,8 @@
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-2 py-4">
     <ng-container *ngFor="let data of offerTripList">
-      <div class="package-div unhide flex flex-col rounded-xl relative cursor-pointer" [routerLink]="['/package/package-details', data._id]">
+      <div class="package-div unhide flex flex-col rounded-xl relative cursor-pointer"
+        [routerLink]="['/package/package-details', data._id]">
         <div class="p-1 relative z-99">
           <span class="bannerDiv rounded-xl"> <img [src]="imageEnvironmentUrl+data.tripImage" loading="lazy"
               class="w-full h-[40vh] rounded-xl object-cover z-90" /></span>
@@ -185,7 +187,8 @@
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-2 py-4">
     <ng-container *ngFor="let data of normalTripList">
-      <div class="package-div unhide flex flex-col rounded-xl relative cursor-pointer" [routerLink]="['/package/package-details', data._id]">
+      <div class="package-div unhide flex flex-col rounded-xl relative cursor-pointer"
+        [routerLink]="['/package/package-details', data._id]">
         <div class="p-1 relative z-99">
           <span class="bannerDiv rounded-xl"> <img [src]="imageEnvironmentUrl+data.tripImage"
               class="w-full h-[40vh] rounded-xl object-cover z-90" /></span>
@@ -315,11 +318,43 @@
         <span class="text-2xl">{{data.name | titlecase}}</span>
         <span [innerHTML]="data.description" class="h-[100px]  overflow-clip ">
         </span>
-        <a class="cursor-pointer" [routerLink]="['/blog-preview', data._id]" >Read More -></a>
+        <a class="cursor-pointer" [routerLink]="['/blog-preview', data._id]">Read More -></a>
       </div>
       <div class="xl:w-1/3 2xl:1/3 w-full hidden xl:block 2xl:block float-left">
         <img [src]="imageEnvironmentUrl+data.image" class="!w-full h-[40vh] object-fit rounded-lg" />
       </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="py-6 xl:px-16 px-4">
+  <div class="text-3xl pb-8 px-4">
+    Meet Our Teams
+  </div>
+
+  <div class="p-4  grid lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 2xl:grid-cols-3 grid-cosl-1 gap-4">
+    <div *ngFor="let data of teamList" class="rounded-xl flex flex-col gap-4 bg-gray-100 p-6 ">
+      <div class="flex flex-col justify-center items-center gap-2 pt-4">
+        <div class="w-30 h-30 rounded-full ">
+          <img [src]="imageEnvironmentUrl+data.image" class="w-36 h-36 rounded-lg" />
+        </div>
+        <div class="flex flex-col justify-center gap-y-1">
+          <span class="text-lg">{{data.name}}</span>
+          <span class="text-md">{{data.profession}}</span>
+        </div>
+      </div>
+      <div class="text-lg font-normal">
+        {{data?.bio}}
+      </div>
+      <div class="flex items-center justify-center gap-2">
+        <div class="flex flex-row gap-x-6 ">
+          <span class="cursor-pointer"><i class="fa-brands fa-facebook fa-2xl" (click)="goto(data.facebook)" ></i></span>
+          <span class="cursor-pointer"><i class="fa-brands fa-instagram fa-2xl" (click)="goto(data.instagram)" ></i></span>
+          <span class="cursor-pointer"><i class="fa-brands fa-twitter fa-2xl" (click)="goto(data.twitter)" ></i></span>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -331,8 +366,9 @@
     Testimonials
   </div>
 
-  <div class="py-6 xl:px-16  grid lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 2xl:grid-cols-3 grid-cosl-1 gap-4">
+  <div class="p-4  grid lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 2xl:grid-cols-3 grid-cosl-1 gap-4">
     <div class="rounded-xl bg-gray-100 p-6 ">
+
       <div class="text-xl font-semibold">
         At first, it may be intimidating to see all of the available courses. Pick a track that interests you and work
         through it at your own pace.
@@ -346,6 +382,7 @@
           <span class="text-xs">Computer Engineer</span>
         </div>
       </div>
+
     </div>
 
     <div class="rounded-xl bg-gray-100 p-6 ">

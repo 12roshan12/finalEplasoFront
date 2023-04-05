@@ -18,6 +18,10 @@ export class LandingService {
         return this.http.get(`${environment.Main_Api}blog/get-all`)
     }
 
+    getAllTeam(){
+        return this.http.get(`${environment.Main_Api}team/get-all`)
+    }
+
     GetAllnotice(){
         return this.http.get(`${environment.Main_Api}notice/get-all`)
     }
