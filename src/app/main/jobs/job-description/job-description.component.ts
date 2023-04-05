@@ -39,19 +39,19 @@ export class JobDescriptionComponent implements OnInit {
   token = sessionStorage.getItem('token')
   bookingDiv: boolean = true
   enquiryDiv: boolean = true
-
-
   constructor(private fb: FormBuilder,
     private dialogRef: MatDialog,
     private toastr: ToastrService, private service: TripService, private landingService: LandingService, private route: ActivatedRoute) {
 
   }
 
+  slides:any[] = [];
+  slideConfig = { slidesToShow: 1, slidesToScroll: 1 };
+
+
   ngOnInit(): void {
 
-
     this.innerWidth = window.innerWidth;
-    console.log(this.innerWidth);
     if (this.innerWidth <= 1023) {
       this.bookingDiv = false
       this.enquiryDiv = false
@@ -72,6 +72,7 @@ export class JobDescriptionComponent implements OnInit {
           this.enquiryFrom.get('packageName')?.setValue(this.packageDetails?.name)
           this.price = this.packageDetails.offerPrice ? this.packageDetails.offerPrice : this.packageDetails.price
           this.finalPrice = this.price
+          this.slides = this.packageDetails?.imageGallery
         }
       })
     })
@@ -132,10 +133,11 @@ export class JobDescriptionComponent implements OnInit {
   openMedia(data: any) {
 
     if (data == 'video') {
+      if(this.packageDetails?.video == "") return
       window.open(this.packageDetails?.video)
-      return
     }
     else {
+      if(this.slides.length == 0) return
       this.showImageGallery = true
     }
   }

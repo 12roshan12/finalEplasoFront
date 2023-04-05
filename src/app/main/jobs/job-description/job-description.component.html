@@ -386,7 +386,7 @@
         </div>
     </div>
 
-    <div *ngIf="showImageGallery" class="absolute !z-9999 top-[1%] left-[10%] w-[80vw] h-[80vh] bg-white">
+    <div *ngIf="showImageGallery" class="slider-div absolute !z-9999 top-[1%] left-[10%] w-[80vw] h-[80vh]  p-4">
         <div class="relative p-2 w-full h-full">
             <div class="p-2">
                 <div (click)="closeCrousel()" class="absolute p-2 top-0 right-0 bg-white rounded-full cursor-pointer">
@@ -397,7 +397,12 @@
                     </svg>
                 </div>
             </div>
-          
+
+            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+                <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+                    <img [src]="imageEnvironmentUrl+slide" alt="" class="w-[80vw] h-[70vh]">
+                </div>
+            </ngx-slick-carousel>
         </div>
 
 

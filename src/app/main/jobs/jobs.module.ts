@@ -5,7 +5,7 @@ import { JobListComponent } from './job-list/job-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ReviewComponent } from './review/review.component';
-
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 @NgModule({
   declarations: [
     JobDescriptionComponent,
@@ -16,7 +16,8 @@ import { ReviewComponent } from './review/review.component';
     JobsRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    SlickCarouselModule
   ]
 })
 export class JobsModule { }
