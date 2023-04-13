@@ -16,16 +16,16 @@
         <div class="flex flex-row gap-x-2 items-center">
             <span>Package:</span> <span class="text-lg font-bold">{{data.packageName}}</span>
         </div>
-        <div class="flex flex-row gap-x-2 items-center">
+        <!-- <div class="flex flex-row gap-x-2 items-center">
             <span>Package Id:</span> <span class="text-lg font-bold">{{data.packageId}}</span>
-        </div>
+        </div> -->
         <div class="flex flex-row gap-x-2 items-center">
             <span>Total Traveller:</span> <span class="text-lg font-bold">{{data.totalTraveller}}</span>
         </div>
         <div class="flex flex-row gap-x-2 items-center">
             <span>Price:</span> <span class="text-lg font-bold">{{data.price}}</span>
         </div>
-        <div class="flex flex-row gap-x-2 items-center col-span-2">
+        <div class="flex flex-row gap-x-2 items-center ">
             <span>Date:</span> <span class="text-lg font-bold">{{data.date | date: 'dd/MM/yyyy' }}</span>
         </div>
 
@@ -51,8 +51,6 @@
             <span *ngIf="data.status == 1" class="bg-green-600 text-white p-2 rounded-lg">Approved</span>
             <span *ngIf="data.status == 2" class="bg-red-600 text-white p-2 rounded-lg">Rejected</span>
         </div>
-
-
     </div>
 </div>
 <div mat-dialog-actions class="w-full flex !justify-end">
@@ -60,10 +58,13 @@
         <button class="discardButton" mat-dialog-close>
             Close
         </button>
-        <button class="discardButton !bg-red-600 !text-white">
+        <button *ngIf="data.status ==0 " class="discardButton "
+            [ngClass]="disableButton ? '!bg-gray-50 !text-gray-200':'!bg-red-600 !text-white'"
+            [disabled]="disableButton" (click)="rejected()">
             Reject
         </button>
-        <button class="submitButton">
+        <button *ngIf="data.status ==0 " class="submitButton" [ngClass]="disableButton ? '!bg-gray-50 !text-gray-200':'!bg-blue-600 !text-white'"
+            (click)="approved()" [disabled]="disableButton">
             Approve
         </button>
     </div>

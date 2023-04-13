@@ -63,6 +63,7 @@ export class BlogAdminPopUpComponent {
             name: [this.data ? this.data.name : '', Validators.required],
             image: [this.data ? this.data.image : '', Validators.required],
             description: [this.data ? this.data.description : '', Validators.required],
+            isGuidline: [this.data ? this.data.isGuidline : false, Validators.required],
             category: [this.data ? this.data.category : ''],
             trip: [this.data ? this.data.trip : ''],
             author: this.fb.group({

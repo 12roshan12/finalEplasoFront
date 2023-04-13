@@ -17,15 +17,12 @@
             <span>Package:</span> <span class="text-lg font-bold">{{data.packageName}}</span>
         </div>
         <div class="flex flex-row gap-x-2 items-center">
-            <span>Package Id:</span> <span class="text-lg font-bold">{{data.packageId}}</span>
-        </div>
-        <div class="flex flex-row gap-x-2 items-center">
             <span>Total Traveller:</span> <span class="text-lg font-bold">{{data.totalTraveller}}</span>
         </div>
         <div class="flex flex-row gap-x-2 items-center ">
             <span>Expected Price:</span> <span class="text-lg font-bold">{{data.expectedPrice }}</span>
         </div>
-        <div class="flex flex-row gap-x-2 items-center col-span-2">
+        <div class="flex flex-row gap-x-2 items-center ">
             <span>Expected Date:</span> <span class="text-lg font-bold">{{data.date | date: 'dd/MM/yyyy' }}</span>
         </div>
 
@@ -44,12 +41,14 @@
         <div class="flex flex-row gap-x-2 items-center col-span-2">
             <span>Message:</span> <span class="text-lg font-bold">{{data.message}}</span>
         </div>
-        
+        <textarea *ngIf="data.status ==0 " class="bg-[#919EAB]/[0.1] w-full p-2 rounded-lg focus-visible:outline-none col-span-2"
+            [(ngModel)]="responseText" placeholder="Response" rows="4" cols="50">
+      </textarea>
+
         <div class="flex flex-row gap-x-2 items-center col-span-2">
             <span>Status:</span> <span *ngIf="data.status == 0"
                 class="bg-blue-600 text-white p-2 rounded-lg">Pending</span>
-            <span *ngIf="data.status == 1" class="bg-green-600 text-white p-2 rounded-lg">Approved</span>
-            <span *ngIf="data.status == 2" class="bg-red-600 text-white p-2 rounded-lg">Rejected</span>
+            <span *ngIf="data.status == 1" class="bg-green-600 text-white p-2 rounded-lg">Responded</span>
         </div>
 
     </div>
@@ -59,11 +58,16 @@
         <button class="discardButton" mat-dialog-close>
             Close
         </button>
-        <button class="discardButton !bg-red-600 !text-white">
-            Reject
+        <button *ngIf="data.status ==0 " class="discardButton "
+            [ngClass]="disableButton ? '!bg-gray-50 !text-gray-200':'!bg-red-600 !text-white'"
+            (click)="deleteEnquiry()">
+            Delete
         </button>
-        <button class="submitButton">
-            Approve
+        <button *ngIf="data.status ==0 " class="submitButton"
+            [ngClass]="disableButton ? '!bg-gray-50 !text-gray-200':'!bg-blue-600 !text-white'"
+            (click)="enquiryResponse()">
+            Send Response
         </button>
     </div>
+
 </div>

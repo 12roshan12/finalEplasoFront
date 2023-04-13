@@ -22,10 +22,12 @@ export class LandingPageComponent implements OnInit {
   offerTripList: any[] = []
   normalTripList: any[] = []
   masterData: any
+  searchTripName:any
   imageEnvironmentUrl = environment.Main_Api + 'media/file/'
   constructor(private adminService: AdminService, private landingService: LandingService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+
     setTimeout(() => {
     }, 3000);
 

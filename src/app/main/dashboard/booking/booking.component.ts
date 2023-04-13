@@ -25,6 +25,8 @@ export class BookingComponent {
     this.service.GetAllBooking().subscribe({
       next: (data: any) => {
         this.bookingList = data.data
+        this.bookingList.sort((a:any, b:any) => b.updatedon.localeCompare(a.updatedon))
+
       },
       error: (err: any) => {
         console.log(err);

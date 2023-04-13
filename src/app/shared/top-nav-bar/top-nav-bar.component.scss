@@ -66,6 +66,21 @@
 
   }
 
+
+  .active-link{
+    a {
+      content: '';
+      color: red !important;
+      padding-bottom: 4px;
+
+      div {
+        height: 2px;
+        width: 100%;
+        transition: all ease-in-out 1s;
+      }
+    }
+  }
+
   .cool-link {
     display: inline-block;
     color: #000;

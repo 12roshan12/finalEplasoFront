@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
@@ -8,19 +8,24 @@ import { NavigationEnd, Router } from '@angular/router';
 
 })
 export class MainComponent implements OnInit {
-
+    showCompressedMenu = false
     IsDashboard = false
     isAdmin: boolean = sessionStorage.getItem('login') ? true : false;
     loading: boolean = true;
     goToLoginPageBool: boolean = false;
     routePath: any;
+    yaxis:any = 0
+    @HostListener('window:scroll', ['$event']) 
+    onScroll(event:any) {
+        this.yaxis = window.pageYOffset
+    }
 
     constructor(private route: Router) {
         this.loadingAction();
     }
 
     ngOnInit() {
-
+        
         if (window.location.pathname.startsWith('/dashboard')) {
             this.IsDashboard = true
         }
@@ -55,6 +60,10 @@ export class MainComponent implements OnInit {
     goToLoginPage(event: boolean) {
         this.goToLoginPageBool = event;
         this.loadingAction();
+    }
+
+    scrollToTop(){
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" }); 
     }
 
 }

@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from '../dashboard.service';
 import { GuidlinePopupComponent } from './guidline-popup/guidline-popup.component';
+import { BlogAdminPopUpComponent } from '../blog/blog-popup/pop.component';
+import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
+import { ProfileService } from '../../profile/profile.service';
 
 @Component({
   selector: 'app-guidline',
@@ -10,69 +15,84 @@ import { GuidlinePopupComponent } from './guidline-popup/guidline-popup.componen
 })
 export class GuidlineComponent {
 
-  routeData = [
-    {
-      'name': 'Guidline',
-      'link': '/dashboard'
-    }
-  ]
-  guidlineList:any = []
+  imageEnvironmentUrl = environment.Main_Api + 'media/file/'
+  blogList: any[] = []
+  userDetails: any
 
-  constructor(private dialogRef: MatDialog,private service:AdminService) { }
+  constructor(private dialog: MatDialog, private service: AdminService, private toastr: ToastrService, private profileService: ProfileService) { }
 
   ngOnInit(): void {
-    this.service.GetAllguidline().subscribe({
-      next: (data: any) => {
-        this.guidlineList = data.data
+
+    this.profileService.getUserDetails(sessionStorage.getItem('userId')).subscribe({
+      next: (res: any) => {
+        this.userDetails = res.data
       },
       error: (err: any) => {
-        console.log(err);
+      }
+    })
+
+    this.service.GetAllblog().subscribe({
+      next: (res: any) => {
+        this.blogList = res.data
+        this.blogList = this.blogList.filter((data: any) => {
+          if (data.isGuidline == true) return data
+        })
+      },
+      error: (err: any) => {
+        this.toastr.error(err.error.message)
       }
     })
   }
 
-  openPopup(data?: any) {
-    let dialog = this.dialogRef.open(GuidlinePopupComponent, {
-      disableClose:false,
-      data: data?data:null,
-      minWidth:'50vw',
+  openBlogPopup(data?: any) {
+
+    if (this.userDetails.profession == '' && this.userDetails.image == '') {
+      this.toastr.error("Please Complete profile to post blog")
+      return
+    }
+
+
+    let dialog = this.dialog.open(BlogAdminPopUpComponent, {
+      minWidth: '90vw',
+      minHeight: '90vh',
+      disableClose: true,
+      data: data ? data : null
     })
 
-    dialog.afterClosed().subscribe((e: any) => {
-      if(e !='')
-      {
-        this.ngOnInit()
+    dialog.afterClosed().subscribe((result: any) => {
+      if (result != '') {
+        window.location.reload();
       }
     })
   }
 
-  deleteGroup(id: any) {
-    // this.GroupService.deleteGroup(id).subscribe({
-    //   next: (data: any) => {
-    //     console.log(data);
-    //     this.toastr.success(data)
-    //     this.ngOnInit()
-    //   },
-    //   error: (err: any) => {
-    //     console.log(err);
-    //     this.toastr.error(err.error.message)
-    //   }
-    // })
+  deleteBog(data: any) {
+
+    Swal.fire({
+      title: 'Do you want to delete the blog?',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Cancel`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.profileService.deleteblog(data).subscribe({
+          next: (res: any) => {
+            this.toastr.success(res.message)
+            this.ngOnInit()
+          },
+          error: (err: any) => {
+            this.toastr.error(err.error.message)
+          }
+        })
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+
+
+
   }
 
-  statusChanged(data: any,id:any) {
-    // let formObject = <any>{}
-    // formObject.status = data.target.checked
-    // formObject.id = id
-    // this.GroupService.changeGroupStatus(formObject).subscribe({
-    //   next: (data: any) => {
-    //     this.toastr.success(data)
-    //     this.ngOnInit()
-    //   },
-    //   error: (err: any) => {
-    //     this.toastr.error(err.error.message)
-    //   }
-    // })
-  }
 
 }

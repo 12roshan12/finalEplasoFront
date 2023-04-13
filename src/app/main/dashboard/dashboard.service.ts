@@ -151,4 +151,20 @@ export class AdminService {
         return this.http.delete(`${environment.Main_Api}user/delete/${id}`)
     }
 
+    bookingApproval(data:any){
+        return this.http.post(`${environment.Main_Api}response/booking/approval`, data)
+    }
+
+    bookingRejection(data:any){
+        return this.http.post(`${environment.Main_Api}response/booking/rejection`, data)
+    }
+
+    enquiryResponse(data:any){
+        return this.http.post(`${environment.Main_Api}response/enquiry`, data)
+    }
+
+    deleteEnquiryMessage(id:any){
+        return this.http.delete(`${environment.Main_Api}response/enquiry/delete/${id}`)
+    }
+
 }

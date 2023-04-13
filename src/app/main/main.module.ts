@@ -8,6 +8,7 @@ import { BlogPreviewComponent } from './blog-preview/blog-preview.component';
 import { LandingPageComponent } from './landing/landing-page/landing-page.component';
 import { NoticePopComponent } from './landing/landing-page/notice-pop/notice-pop.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { TravelGuideComponent } from './travel-guide/travel-guide.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     LandingPageComponent,
     NoticePopComponent,
     ContactUsComponent,
+    TravelGuideComponent,
 
   ],
   imports: [

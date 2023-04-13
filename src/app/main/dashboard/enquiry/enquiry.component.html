@@ -97,8 +97,7 @@
                     <td class="px-4 py-4 text-left">{{data.totalTraveller}}</td>
                     <td class="px-4 py-4 text-left">
                       <span *ngIf="data.status == 0" class="bg-blue-600 text-white p-2 rounded-lg" >Pending</span>  
-                      <span *ngIf="data.status == 1" class="bg-green-600 text-white p-2 rounded-lg">Approved</span>  
-                      <span *ngIf="data.status == 2" class="bg-red-600 text-white p-2 rounded-lg">Rejected</span>  
+                      <span *ngIf="data.status != 0" class="bg-green-600 text-white p-2 rounded-lg">Responded</span>  
                     </td>
                     <td>
                         <div class="flex w-full justify-end">
@@ -117,7 +116,6 @@
                             </button>
                             <mat-menu #menu="matMenu">
                                 <button mat-menu-item (click)="openPopup(data)">Response</button>
-                                <button mat-menu-item (click)="deleteEnquiry(data._id)">Delete</button>
                             </mat-menu>
                         </div>
                 </tr>

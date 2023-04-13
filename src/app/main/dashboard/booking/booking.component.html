@@ -118,8 +118,8 @@
                                 </svg>
                             </button>
                             <mat-menu #menu="matMenu">
-                                <button mat-menu-item (click)="openPopup(data)">Response</button>
-                                <button mat-menu-item (click)="deleteGroup(data._id)">Delete</button>
+                                <button  mat-menu-item (click)="openPopup(data)">Response</button>
+                                <button [disabled]="data.status != 2" mat-menu-item (click)="deleteGroup(data._id)">Delete</button>
                             </mat-menu>
 
                         </div>
