@@ -1,11 +1,6 @@
 <div class="header  xl:px-20 2xl:px-20 px-6">
-  <div class="logo" [routerLink]="['home']">
-    <svg width="31" height="26" viewBox="0 0 31 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M15.5 25.75L0.916687 8.75L5.29169 0.25H25.7084L30.0834 8.75L15.5 25.75ZM12.0365 7.33333H18.9636L16.7761 3.08333H14.224L12.0365 7.33333ZM14.0417 19.6229V10.1667H5.94794L14.0417 19.6229ZM16.9584 19.6229L25.0521 10.1667H16.9584V19.6229ZM22.2084 7.33333H26.0729L23.8854 3.08333H20.0209L22.2084 7.33333ZM4.9271 7.33333H8.79169L10.9792 3.08333H7.1146L4.9271 7.33333Z"
-        fill="#3563E9" />
-    </svg>
-    <h1>Elpaso</h1>
+  <div class="logo cursor-pointer" [routerLink]="['home']">
+    <img [src]="imageEnvironmentUrl+masterData?.logo" class="w-40 h-20" />
   </div>
   <div class="nav hidden xl:block 2xl:block lg:block">
     <ul class="gap-x-[40px]">

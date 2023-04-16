@@ -58,11 +58,19 @@
             </div>
         </div>
 
-        <h1 class="text-md underline py-2">Banner Quote</h1>
-        <quill-editor class="min-h-[40vh]" formControlName="bannerQuote"></quill-editor>
+      
 
-        <h1 class="text-md underline py-2">Banner Bio</h1>
-        <quill-editor class="min-h-[40vh]" formControlName="bannerBio"></quill-editor>
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Banner Quote</mat-label>
+            <input matInput formControlName="bannerQuote" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Banner Bio</mat-label>
+            <input matInput formControlName="bannerBio" />
+        </mat-form-field>
+
+      
 
         <div class="mb-3">
             <h1 class="text-center text-md">About Us Image</h1>
@@ -118,8 +126,10 @@
             </mat-form-field>
         </div>
 
-        <h1 class="text-md underline py-2">Footer Bio</h1>
-        <quill-editor class="min-h-[40vh]" formControlName="footerBio"></quill-editor>
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Footer Bio</mat-label>
+            <input matInput formControlName="footerBio" />
+        </mat-form-field>
 
         <h1 class="text-md underline py-2">Company Information</h1>
         <div class="grid grid-cols-3 gap-x-2">

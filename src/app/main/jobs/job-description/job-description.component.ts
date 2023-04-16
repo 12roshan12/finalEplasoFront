@@ -119,6 +119,13 @@ export class JobDescriptionComponent implements OnInit {
     el.scrollIntoView({ behavior: 'smooth' });
   }
 
+  scrolltotop(){
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
+
   toNumber(data: any) {
     return Number(data)
   }

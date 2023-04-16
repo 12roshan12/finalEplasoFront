@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from '../dashboard.service';
 import { NoticePopupComponent } from './notice-popup/notice-popup.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-notice',
@@ -17,7 +18,7 @@ export class NoticeComponent implements OnInit {
   ]
   NoticeList:any = []
 
-  constructor(private dialogRef: MatDialog,private service:AdminService) { }
+  constructor(private dialogRef: MatDialog,private service:AdminService,private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.service.GetAllnotice().subscribe({
@@ -60,18 +61,18 @@ export class NoticeComponent implements OnInit {
   }
 
   statusChanged(data: any,id:any) {
-    // let formObject = <any>{}
-    // formObject.status = data.target.checked
-    // formObject.id = id
-    // this.GroupService.changeGroupStatus(formObject).subscribe({
-    //   next: (data: any) => {
-    //     this.toastr.success(data)
-    //     this.ngOnInit()
-    //   },
-    //   error: (err: any) => {
-    //     this.toastr.error(err.error.message)
-    //   }
-    // })
+    let formObject = <any>{}
+    formObject.status = data.target.checked
+    formObject.id =id
+    this.service.toggleNotice(formObject).subscribe({
+      next: (data: any) => {
+        this.toastr.success(data.data)
+        this.ngOnInit()
+      },
+      error: (err: any) => {
+        this.toastr.error(err.error.message)
+      }
+    })
   }
 
 }

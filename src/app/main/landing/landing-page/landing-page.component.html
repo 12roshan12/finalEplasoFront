@@ -2,9 +2,8 @@
   <div class="text-white  p-2">
     <h1
       class="text-2xl lg:text-5xl md:text-5xl xl:text-5xl 2xl:text-5xl font-semibold tracking-wide pr-16 pb-4 leading-relaxed">
-      &#8220; Life Is Either A Daring
-      Adventure Or Nothing At All &#8221; – Helen Keller</h1>
-    <p class="text-xl lg:text-3xl md:text-3xl xl:text-3xl 2xl:text-3xl font-medium">Be Prepared For Mountain And Beyond
+      {{masterData?.bannerQuote}}</h1>
+    <p class="text-xl lg:text-3xl md:text-3xl xl:text-3xl 2xl:text-3xl font-medium">{{masterData?.bannerBio}}
     </p>
   </div>
 
@@ -262,11 +261,7 @@
     <div class="w-full text-xl font-normal pl-2 flex flex-col gap-y-4">
       <div> <span class="font-semibold"> With over 10+
           Years of Experience in tourism industry</span>,
-        ELPASO offers expertise, customization, value, safety, sustainability, hassle-free planning, and excellent
-        customer service. Our team of experienced professionals creates personalized itineraries to fit your needs while
-        ensuring your safety and providing 24/7 support. We are committed to responsible and sustainable tourism and
-        take care of all the details, making travel planning hassle-free. Our goal is to exceed your expectations and
-        provide a memorable and enjoyable travel experience.
+       <div [innerHTML]="masterData?.aboutUsDescription"></div>
       </div>
       <div>
         <span class="underline pb-2">Our Services</span>

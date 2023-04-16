@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { LandingService } from 'src/app/main/landing/landing.service';
 import { ProfileService } from 'src/app/main/profile/profile.service';
 import { environment } from 'src/environments/environment';
 
@@ -15,10 +16,11 @@ export class TopNavBarComponent implements OnInit {
   role = sessionStorage.getItem('role')
   userDetails:any
   imageEnvironmentUrl = environment.Main_Api + 'media/file/'
-
+  masterData:any
   constructor(
     private _route: Router,
-    private service:ProfileService
+    private service:ProfileService,
+    private landingService:LandingService
   ) { }
 
   ngOnInit(): void {
@@ -31,6 +33,14 @@ export class TopNavBarComponent implements OnInit {
         }
       })
     }
+    this.landingService.getMasterData('elpaso').subscribe({
+      next: (data: any) => {
+        this.masterData = data.data[0]
+        console.log(this.masterData);
+      },
+      error: (err: any) => {
+      }
+    })
   }
 
   goToLogin() {

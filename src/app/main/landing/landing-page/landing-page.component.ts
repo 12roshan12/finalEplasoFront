@@ -99,7 +99,10 @@ export class LandingPageComponent implements OnInit {
         this.noticeList = data.data
         if (sessionStorage.getItem('notice') != 'true') {
           for (let i = 0; i < this.noticeList.length; i++) {
-            this.openNoticePop(this.noticeList[i])
+            if(this.noticeList[i].status == true)
+            {
+              this.openNoticePop(this.noticeList[i])
+            }
           }
         }
       },
@@ -120,8 +123,8 @@ export class LandingPageComponent implements OnInit {
 
   openNoticePop(dat: any) {
     let dialogRef = this.dialog.open(NoticePopComponent, {
-      width: '70vw',
-      height: '70vh',
+      maxWidth: '50vw',
+      minHeight: '70vh',
       data: dat
     })
     dialogRef.afterClosed().subscribe((data: any) => {

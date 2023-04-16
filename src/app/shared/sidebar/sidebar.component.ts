@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { environment } from 'src/environments/environment';
+import { LandingService } from 'src/app/main/landing/landing.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -29,10 +31,23 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class SidebarComponent implements OnInit {
   full: boolean = true;
-  constructor() { }
+  imageEnvironmentUrl = environment.Main_Api + 'media/file/'
+  masterData:any
+  constructor(private landingService:LandingService) { }
 
   ngOnInit(): void {
+
+    this.landingService.getMasterData('elpaso').subscribe({
+      next: (data: any) => {
+        this.masterData = data.data[0]
+        console.log(this.masterData);
+
+      },
+      error: (err: any) => {
+      }
+    })
   }
+  
 
   toggleSidebar() {
     this.full = !this.full;

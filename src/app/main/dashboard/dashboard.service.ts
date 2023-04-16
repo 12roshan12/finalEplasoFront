@@ -167,4 +167,8 @@ export class AdminService {
         return this.http.delete(`${environment.Main_Api}response/enquiry/delete/${id}`)
     }
 
+    toggleNotice(data:any){
+        return this.http.patch(`${environment.Main_Api}notice`, data)
+    }
+
 }

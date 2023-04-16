@@ -340,7 +340,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-2 py-4">
             <ng-container *ngFor="let data of tripList">
                 <div class="package-div unhide flex flex-col rounded-xl relative cursor-pointer"
-                    [routerLink]="['/package/package-details', data._id]">
+                    [routerLink]="['/package/package-details', data._id]" (click)="scrolltotop()" >
                     <div class="p-1 relative z-99">
                         <span class="bannerDiv rounded-xl"> <img [src]="imageEnvironmentUrl+data?.tripImage"
                                 class="w-full h-[40vh] rounded-xl object-cover z-90" /></span>

@@ -89,7 +89,7 @@
                         <div class="px-4 py-4">
                             <label class="switch">
                                 <input type="checkbox" [checked]="data?.status ? data.status : false"
-                                    (change)="statusChanged($event,data.id)">
+                                    (change)="statusChanged($event,data._id)">
                                 <span class="slider"></span>
                             </label>
                         </div>
