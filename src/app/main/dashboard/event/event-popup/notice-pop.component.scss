@@ -1,0 +1,54 @@
+.popupInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1px 12px;
+    gap: 8px;
+    isolation: isolate;
+    height: 56px;
+    background: rgba(145, 158, 171, 0.08);
+    border-radius: 8px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    z-index: 0;
+}
+
+.discardButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 22px;
+    gap: 8px;
+    width: 95px;
+    height: 48px;
+    background: rgba(255, 86, 48, 0.16);
+    border-radius: 8px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    color: #B71D18;
+}
+
+.submitButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 22px;
+    gap: 8px;
+    width: 91px;
+    height: 48px;
+    background: #2B66B1;
+    border-radius: 8px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    color:white;
+}
+
+.ql-toolbar.ql-snow+.ql-container.ql-snow {
+    min-height: 60vh !important;
+}

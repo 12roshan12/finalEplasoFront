@@ -24,6 +24,9 @@ import { GuidlinePopupComponent } from './guidline/guidline-popup/guidline-popup
 import { NoticePopupComponent } from './notice/notice-popup/notice-popup.component';
 import { TeamComponent } from './team/team.component';
 import { TeamPopupComponent } from './team/team-popup/team-popup.component';
+import { EventComponent } from './event/event.component';
+import { EventPopupComponent } from './event/event-popup/notice-popup.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 
 
@@ -49,11 +52,14 @@ import { TeamPopupComponent } from './team/team-popup/team-popup.component';
     GuidlinePopupComponent,
     NoticePopupComponent,
     TeamComponent,
-    TeamPopupComponent
+    TeamPopupComponent,
+    EventComponent,
+    EventPopupComponent
   ],
   imports: [
     SharedModule,
     DashboardRoutingModule,
+    SlickCarouselModule
 
   ]
 })

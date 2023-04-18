@@ -13,6 +13,7 @@ import { BlogComponent } from './blog/blog.component';
 import { GuidlineComponent } from './guidline/guidline.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { TeamComponent } from './team/team.component';
+import { EventComponent } from './event/event.component';
 
 const routes: Routes = [
   {
@@ -70,6 +71,10 @@ const routes: Routes = [
   {
     path: 'our-team',
     component: TeamComponent
+  },
+  {
+    path: 'event',
+    component: EventComponent
   }
 ];
 

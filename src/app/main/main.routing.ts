@@ -6,6 +6,7 @@ import { LandingPageComponent } from './landing/landing-page/landing-page.compon
 import { MainComponent } from './main.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { TravelGuideComponent } from './travel-guide/travel-guide.component';
+import { GalleryComponent } from './dashboard/gallery/gallery.component';
 
 const routes: Routes = [
     {
@@ -20,6 +21,7 @@ const routes: Routes = [
             { path: 'home', component: LandingPageComponent },
             { path: 'blog', component: BlogComponent },
             { path: 'travel-guide', component: TravelGuideComponent },
+            { path: 'gallery', component: GalleryComponent },
             { path: 'contact-us', component: ContactUsComponent },
             { path: 'blog-preview/:id', component: BlogPreviewComponent },
             {

@@ -135,6 +135,10 @@ export class AdminService {
         return this.http.delete(`${environment.Main_Api}notice/delete/${id}`)
     }
 
+    toggleNotice(data:any){
+        return this.http.patch(`${environment.Main_Api}notice`, data)
+    }
+
     createUser(data:any){
         return this.http.post(`${environment.Main_Api}user`, data)
     }
@@ -167,8 +171,22 @@ export class AdminService {
         return this.http.delete(`${environment.Main_Api}response/enquiry/delete/${id}`)
     }
 
-    toggleNotice(data:any){
-        return this.http.patch(`${environment.Main_Api}notice`, data)
+
+    createevent(data:any){
+        return this.http.post(`${environment.Main_Api}event`, data)
     }
+
+    GetAllevent(){
+        return this.http.get(`${environment.Main_Api}event/get-all`)
+    }
+
+    deleteevent(id:any){
+        return this.http.delete(`${environment.Main_Api}event/delete/${id}`)
+    }
+
+    toggleevent(data:any){
+        return this.http.patch(`${environment.Main_Api}event`, data)
+    }
+ 
 
 }
