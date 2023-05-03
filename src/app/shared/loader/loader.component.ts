@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { LoaderService } from 'src/app/main/authenticate/loader.service';
 
 @Component({
   selector: 'app-loader',
   templateUrl: './loader.component.html',
-  styleUrls: ['./loader.component.scss']
+  styleUrls: ['./loader.component.scss'],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class LoaderComponent implements OnInit {
-
-  constructor() { }
+  loaderBool = true
+  constructor(public loader: LoaderService) { }
 
   ngOnInit(): void {
+    
   }
 
 }

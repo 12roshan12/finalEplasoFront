@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { LoaderService } from './main/authenticate/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { NavigationEnd, NavigationError, NavigationStart, Router } from '@angula
 })
 export class AppComponent  {
   title = 'elpaso';
-  constructor(){
+  constructor(public loader: LoaderService){
     
   }
 

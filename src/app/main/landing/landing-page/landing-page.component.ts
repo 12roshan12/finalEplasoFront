@@ -123,7 +123,7 @@ export class LandingPageComponent implements OnInit {
 
   openNoticePop(dat: any) {
     let dialogRef = this.dialog.open(NoticePopComponent, {
-      maxWidth: '50vw',
+      minWidth: '50vw',
       minHeight: '70vh',
       data: dat
     })
