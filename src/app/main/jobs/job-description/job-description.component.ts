@@ -45,7 +45,7 @@ export class JobDescriptionComponent implements OnInit {
 
   }
 
-  slides:any[] = [];
+  slides: any[] = [];
   slideConfig = { slidesToShow: 1, slidesToScroll: 1 };
 
 
@@ -85,7 +85,7 @@ export class JobDescriptionComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', Validators.required],
       contactnumber: ['', Validators.required],
-      totalTraveller: ['', Validators.required],
+      totalTraveller: [1, Validators.required],
       address: ['', Validators.required],
       date: ['', Validators.required],
       price: ['', Validators.required],
@@ -101,7 +101,7 @@ export class JobDescriptionComponent implements OnInit {
       email: ['', Validators.required],
       expectedPrice: ['', Validators.required],
       contactnumber: ['', Validators.required],
-      totalTraveller: ['', Validators.required],
+      totalTraveller: [1, Validators.required],
       address: ['', Validators.required],
       date: ['', Validators.required],
       message: [null]
@@ -119,7 +119,7 @@ export class JobDescriptionComponent implements OnInit {
     el.scrollIntoView({ behavior: 'smooth' });
   }
 
-  scrolltotop(){
+  scrolltotop() {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
@@ -132,7 +132,11 @@ export class JobDescriptionComponent implements OnInit {
 
   calculatePrice(e: any) {
     this.finalPrice = this.price
-    this.finalPrice = this.toNumber(e.target.value) * this.toNumber(this.price)
+    this.finalPrice = this.toNumber(e.target.value) * this.toNumber(e.target.value == 1 ? this.packageDetails.offerPrice ? Number(this.packageDetails.offerPrice) : Number(this.packageDetails.price)
+      : e.target.value == 2 ? Number(this.packageDetails.pax2Price)
+        : e.target.value > 2 && e.target.value <= 5 ? Number(this.packageDetails.pax5price)
+          : e.target.value > 5 && e.target.value < 16 ? this.packageDetails.pax15price
+            : Number(this.packageDetails.pax16price))
     console.log(this.finalPrice);
 
   }
@@ -140,11 +144,11 @@ export class JobDescriptionComponent implements OnInit {
   openMedia(data: any) {
 
     if (data == 'video') {
-      if(this.packageDetails?.video == "") return
+      if (this.packageDetails?.video == "") return
       window.open(this.packageDetails?.video)
     }
     else {
-      if(this.slides.length == 0) return
+      if (this.slides.length == 0) return
       this.showImageGallery = true
     }
   }

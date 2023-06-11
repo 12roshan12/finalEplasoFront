@@ -22,6 +22,7 @@ export class TripPopupComponent implements OnInit {
     readonly separatorKeysCodes = [ENTER, COMMA] as const;
     inclusions: any[] = ['Food', 'Hotels', 'Guide'];
     exclusions: any[] = ['Food', 'Hotels', 'Guide'];
+    tripHighlightss:any[]=[]
 
     imageGalleryList: any = []
     categotyList: any = []
@@ -46,6 +47,10 @@ export class TripPopupComponent implements OnInit {
             category: ['', Validators.required],
             video: ['', Validators.required],
             price: ['', Validators.required],
+            pax2Price: [''],
+            pax5price: [''],
+            pax15price: [''],
+            pax16price: [''],
             summary: this.getSummaryFrom(),
             isSpecialOffer: ['', Validators.required],
             offerPrice: ['', Validators.required],
@@ -55,6 +60,7 @@ export class TripPopupComponent implements OnInit {
             itinerary: this.getIteniraryFrom(),
             inclusion: new FormArray([]),
             exclusion: new FormArray([]),
+            tripHighlight: new FormArray([]),
             aboutTrip: new FormArray([this.getAboutTripDetail()]),
             faq: new FormArray([this.getFaqDetail()]),
             customerReview: new FormArray([]),
@@ -111,6 +117,10 @@ export class TripPopupComponent implements OnInit {
             category: [elem ? elem.category : '', Validators.required],
             video: [elem ? elem.video : ''],
             price: [elem ? elem.price : '', Validators.required],
+            pax2Price: [elem ? elem.pax2Price : ''],
+            pax5price: [elem ? elem.pax5price : ''],
+            pax15price: [elem ? elem.pax15price : ''],
+            pax16price: [elem ? elem.pax16price : ''],
             summary: this.getSummaryFrom(elem),
             isSpecialOffer: [elem ? elem.isSpecialOffer : false],
             offerPrice: [elem ? elem.offerPrice : ''],
@@ -120,6 +130,7 @@ export class TripPopupComponent implements OnInit {
             itinerary: this.getIteniraryFrom(),
             inclusion: new FormArray([]),
             exclusion: new FormArray([]),
+            tripHighlight: new FormArray([]),
             aboutTrip: new FormArray([this.getAboutTripDetail()]),
             faq: new FormArray([this.getFaqDetail()]),
             customerReview: new FormArray([]),
@@ -149,8 +160,9 @@ export class TripPopupComponent implements OnInit {
                 this.reviewDetails.push(this.getCustomerReview(this.data.customerReview[i]))
             }
 
-            this.inclusions = this.data.inclusion
-            this.exclusions = this.data.exclusion
+            this.inclusions = this.data?.inclusion
+            this.exclusions = this.data?.exclusion
+            this.tripHighlightss = this.data?.tripHighlight
 
             for (let i = 0; i < this.data.imageGallery.length; i++) {
                 this.ImageArray.push(this.fb.control(this.data.imageGallery[i]))
@@ -185,6 +197,15 @@ export class TripPopupComponent implements OnInit {
         return this.fb.group({
             head: [elem ? elem.head : ''],
             headDetails: [elem ? elem.headDetails : ''],
+            mode: [elem ? elem.mode : ''],
+            routeItinerary: [elem ? elem.routeItinerary : ''],
+            elevation: [elem ? elem.elevation : ''],
+            duration: [elem ? elem.duration : ''],
+            overnight: [elem ? elem.overnight : ''],
+            included: [elem ? elem.included : ''],
+            activity: [elem ? elem.activity : ''],
+            activityDuration: [elem ? elem.activityDuration : ''],
+            accomodation: [elem ? elem.accomodation : ''],
         })
     }
 
@@ -264,6 +285,11 @@ export class TripPopupComponent implements OnInit {
         return this.tripForm.controls['exclusion'] as FormArray;
     }
 
+    get TripHiglightsArray() {
+        return this.tripForm.controls['tripHighlight'] as FormArray;
+    }
+
+
     submit() {
 
         this.tripForm.markAllAsTouched()
@@ -274,6 +300,13 @@ export class TripPopupComponent implements OnInit {
         for (let i = 0; i < this.exclusions.length; i++) {
             this.ExclusionArray.push(this.fb.control(this.exclusions[i]))
         }
+
+        for (let i = 0; i < this.tripHighlightss.length; i++) {
+            this.TripHiglightsArray.push(this.fb.control(this.tripHighlightss[i]))
+        }
+
+
+
         this.service.createTrip(this.tripForm.value).subscribe({
             next: (data: any) => {
                 this.toastr.success(data.message)
@@ -429,6 +462,33 @@ export class TripPopupComponent implements OnInit {
         const index = this.exclusions.indexOf(inclusion);
         if (index >= 0) {
             this.exclusions.splice(index, 1);
+        }
+    }
+
+    addTripHighlights(event: MatChipInputEvent): void {
+        const value = (event.value || '').trim();
+        if (value) {
+            this.tripHighlightss.push(value);
+        }
+        event.chipInput!.clear();
+    }
+
+    editTripHighlights(inclusion: any, event: MatChipEditedEvent) {
+        const value = event.value.trim();
+        if (!value) {
+            this.removeInclusion(inclusion);
+            return;
+        }
+        const index = this.tripHighlightss.indexOf(inclusion);
+        if (index >= 0) {
+            this.tripHighlightss[index] = value;
+        }
+    }
+
+    removeTripHighlights(inclusion: any): void {
+        const index = this.tripHighlightss.indexOf(inclusion);
+        if (index >= 0) {
+            this.tripHighlightss.splice(index, 1);
         }
     }
 

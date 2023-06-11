@@ -83,7 +83,7 @@
   }
 }
 
-.banner{
+.banner {
   min-height: 800px;
   // background-image: linear-gradient(103.45deg, rgba(0, 0, 0, 0.54) 9.31%, rgba(0, 0, 0, 0.375115) 37.5%, rgba(0, 0, 0, 0) 98.61%);
   background-image: url('../../../../assets/images/m1.jpg');
@@ -148,13 +148,21 @@ h2 {
   color: #000000;
 }
 
+.excButton {
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 65% 85%, 50% 100%, 38% 86%, 0 85%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 65% 85%, 50% 100%, 38% 86%, 0 85%);  
+
+  // -webkit-clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
+  // clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
+}
+
 .job-category-area {
 
   .job-category {
     margin-top: 35px;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
 
     .job-card {
@@ -584,4 +592,358 @@ h2 {
 
 .mat-focused .placeholder {
   color: #00D318;
+}
+
+.gradient-banner {
+  background: rgb(125, 126, 125);
+  background: -moz-linear-gradient(-45deg, rgba(125, 126, 125, 1) 0%, rgba(14, 14, 14, 1) 100%);
+  background: -webkit-linear-gradient(-45deg, rgba(125, 126, 125, 1) 0%, rgba(14, 14, 14, 1) 100%);
+  background: linear-gradient(135deg, rgba(125, 126, 125, 1) 0%, rgba(14, 14, 14, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7d7e7d', endColorstr='#0e0e0e', GradientType=1);
+}
+
+.bounce-in-left {
+  animation: bounce-in-left 2s ease-in-out;
+}
+
+@keyframes bounce-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-2000px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateX(30px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.bounce-in-right {
+  animation: bounce-in-right 2s ease-in-out;
+}
+
+@keyframes bounce-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(2000px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateX(-30px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.background-animation {
+  animation: bgScale 3s ease-out 0s forwards;
+}
+
+@keyframes bgScale {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+.slide {
+  width: 100%;
+  position: relative;
+}
+
+#slide-02 .image-rotator {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+#slide-02.animate .image-rotator img {
+  position: absolute;
+  top: 0;
+  // left: -450px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 3px;
+  animation: imgRotator 15s ease-in-out infinite;
+  // animation: bgScale 3s ease-out 0s forwards;
+}
+
+
+#slide-02.animate .image-rotator img:nth-child(2) {
+  animation-delay: -5s;
+}
+
+#slide-02.animate .image-rotator img:nth-child(3) {
+  animation-delay: -10s;
+}
+
+@keyframes imgRotator {
+  0% {
+    opacity: 0;
+    // left: 450px;
+    z-index: 3;
+    transform: scale(1);
+    opacity: 0;
+  }
+
+  17%,
+  33% {
+    opacity: 1;
+    z-index: 2;
+    // left: 0;
+  }
+
+  50%,
+  100% {
+    /* 33 + 17 = 50 */
+    opacity: 0;
+    // left: -450px;
+    z-index: 1;
+  }
+}
+
+.ng-select .ng-select-container {
+  background-color: transparent !important;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-placeholder {
+  color: white !important;
+}
+
+.ng-select div,
+.ng-select input,
+.ng-select span {
+  color: white !important;
+}
+
+.ng-dropdown-panel.ng-select-bottom {
+  z-index: 9999999 !important;
+}
+
+/* Target the date input's calendar icon */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  /* Set the color of the icon */
+  color: white !important;
+  /* Change this to your desired color */
+}
+
+/* Target the date input's calendar icon in Firefox */
+input[type="date"]::-moz-calendar-picker-indicator {
+  /* Set the color of the icon */
+  color: white !important;
+  /* Change this to your desired color */
+}
+
+/* Target the date input's calendar icon in Edge */
+input[type="date"]::-ms-calendar-clear {
+  /* Set the color of the icon */
+  color: white !important;
+  /* Change this to your desired color */
+}
+
+input {
+  background: transparent !important;
+}
+
+
+
+
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+.service-extra {
+  display: none;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s, transform 0.3s ease-in-out;
+  /* Add transition for transform property */
+  transform: translateX(200%);
+  // backdrop-filter: blur(10px);
+  // background-color: rgba(255, 255, 255, 0.2);
+}
+
+.service-text:hover .service-extra {
+  display: block;
+  opacity: 1;
+  // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); 
+  transform: translateX(0%);
+}
+
+
+
+.blog-text {
+  display: none;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s, transform 0.3s ease-in-out;
+  /* Add transition for transform property */
+  transform: translateX(200%);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.blog-slider:hover .blog-text {
+  display: block;
+  opacity: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transform: translateX(0%);
+}
+
+
+
+.icon {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  margin-right: 5px;
+  /* Adjust this value as needed for spacing */
+}
+
+.ng-select.ng-select-single .ng-select-container {
+  height: 48px !important;
+}
+
+.custom ::ng-deep .ng-placeholder::before {
+  font-family: FontAwesome;
+  content: "\f002";
+}
+
+.car-banner {
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-iteration-count: infinite;
+}
+
+@keyframes slidein {
+  0% {
+    top: 0%;
+  }
+
+  5% {
+    top: -1%;
+  }
+
+  10% {
+    top: -2%;
+  }
+
+  15% {
+    top: -3%;
+  }
+
+  20% {
+    top: -4%;
+  }
+
+  25% {
+    top: -5%;
+  }
+
+  30% {
+    top: -4%;
+  }
+
+  35% {
+    top:
+      -3%;
+  }
+
+  40% {
+    top: -2%;
+  }
+
+  45% {
+    top: -1%;
+  }
+
+  50% {
+    top: 0%;
+  }
+
+  55% {
+    top: 1%;
+  }
+
+  60% {
+    top: 2%;
+  }
+
+  65% {
+    top: 3%;
+  }
+
+  70% {
+    top: 4%;
+  }
+
+  75% {
+    top: 5%;
+  }
+
+  80% {
+    top: 4%;
+  }
+
+  85% {
+    top: 3%;
+  }
+
+  90% {
+    top: 2%;
+  }
+
+  95% {
+    top: 1%;
+  }
+
+  100% {
+    top: 0%;
+  }
+}
+
+
+.reveal {
+  position: relative;
+  transform: translateY(150px);
+  opacity: 0;
+  transition: 1s all ease;
+}
+
+.reveal.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.carousel-button {
+  background-color: red;
+  border: none;
+  /* Add any other styles you want to change */
 }

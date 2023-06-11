@@ -25,6 +25,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatChipsModule} from '@angular/material/chips';
 import {ToastrModule} from 'ngx-toastr'
 import { NgSelectModule } from '@ng-select/ng-select';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     RouterModule,
     QuillModule.forRoot(),
     ToastrModule.forRoot(),
+    CarouselModule.forRoot(),
     MatMenuModule,
     ReactiveFormsModule,
     FormsModule,
@@ -72,6 +75,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     MatChipsModule,
     ToastrModule,
     NgSelectModule,
+    CarouselModule
   ]
 })
 export class SharedModule { }

@@ -15,8 +15,8 @@
         </div>
     </div>
 
-    <div
-        class="flex flex-col lg:flex-row xl:flex-row 2xl:flex-row justify-between p-6  px-[10px] xl:px-[150px] 2xl:px-[150px] border-b-2 border-black">
+    <div #base class="flex flex-col lg:flex-row xl:flex-row 2xl:flex-row justify-between p-6  px-[10px] xl:px-[150px] 2xl:px-[150px] border-b-2 border-black md:sticky top-0 bg-white"
+        style="z-index: 9999 !important;">
 
         <div class="flex justify-center items-center py-4">
             <div
@@ -61,6 +61,8 @@
                     (click)="scroll(review)">
                     Reviews
                 </button>
+
+                
             </div>
         </div>
         <div class="flex flex-row justify-center px-2 items-center xl:px-16 2xl:px-16 gap-4 py-4">
@@ -68,9 +70,15 @@
                 class="px-2 py-1 w-full rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center">
                 Video
             </button>
-            <button (click)="openMedia('photo')"
+            <button (click)="openMedia('photo')" 
                 class="px-2 py-1 rounded-full w-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center">
                 Images
+            </button>
+
+            <button
+                class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black  h-[30px] flex items-center justify-center"
+                (click)="scroll(bookingSection)">
+                Book&nbsp;this&nbsp;trip
             </button>
         </div>
 
@@ -170,17 +178,138 @@
                     </div>
                 </div>
 
+                <div class="py-4">
+                    <h1 class="text-2xl font-semibold pt-4">Trip itinerary </h1>
+                    <div class="bg-gray-50 p-2 overflow-auto">
+                        <table class="bg-blue-600 w-full overflow-auto">
+                            <thead>
+                                <tr>
+                                    <th class="p-2 text-white">Day</th>
+                                    <th class="p-2 text-white">Mode</th>
+                                    <th class="p-2 text-white">Route Itinerary</th>
+                                    <th class="p-2 text-white">Elevation</th>
+                                    <th class="p-2 text-white">Duration</th>
+                                    <th class="p-2 text-white">Overnight</th>
+                                    <th class="p-2 text-white">Included</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of packageDetails?.itinerary?.details;let i = index;"
+                                    [ngClass]="i%2 ==0 ?' bg-gray-100' :'bg-white' ">
+                                    <td class="p-2">Day {{i+1}}</td>
+                                    <td class="p-2">{{data?.mode ? data?.mode : '----' }}</td>
+                                    <td class="p-2">{{data?.routeItinerary ? data?.routeItinerary : '----' }}</td>
+                                    <td class="p-2">{{data?.elevation ? data?.elevation : '----' }}</td>
+                                    <td class="p-2">{{data?.duration ? data?.duration : '----' }}</td>
+                                    <td class="p-2">{{data?.overnight ? data?.overnight : '----' }}</td>
+                                    <td class="p-2">{{data?.included ? data?.included : '----' }}</td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+
                 <div #itinerary>
-                    <h1 class="text-2xl font-semibold pt-4">ITINERARY</h1>
+                    <h1 class="text-2xl font-semibold pt-4">Detail Itinerary - Day to Day Route Description </h1>
                     <p class="pt-4 " [innerHTML]="packageDetails?.itinerary?.description">
                     </p>
 
                     <div class="flex flex-col gap-y-4 pt-4">
-                        <div class="border-b flex flex-col gap-2"
-                            *ngFor="let data of packageDetails?.itinerary?.details">
-                            <div>{{data?.head}}</div>
-                            <div class="pt-4 " [innerHTML]="data?.headDetails">
+                        <div class="flex flex-col gap-2"
+                            *ngFor="let data of packageDetails?.itinerary?.details; let i = index;">
+                            <div class="flex flex-row gap-x-4">
+                                <span class="w-24 h-20 p-1 bg-blue-600 rounded-full flex items-center justify-center">
+                                    <span
+                                        class="w-16 h-16 flex items-center text-xs justify-center flex-col border-2 border-white rounded-full p-1  bg-blue-600 text-white">
+                                        <span>
+                                            Day
+                                        </span>
+                                        <span>
+                                            {{i+1}}
+                                        </span>
+                                    </span>
+                                </span>
+                                <div class="flex flex-col">
+                                    <div class="flex flex-row items-center gap-x-4">
+                                        <span class="w-full font-semibold">
+                                            {{data?.head}}
+                                        </span>
+
+                                        <span class="cursor-pointer">
+                                            <mat-icon>keyboard_arrow_down</mat-icon>
+                                        </span>
+                                    </div>
+                                    <div class="pt-4 " [innerHTML]="data?.headDetails">
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 pt-4">
+                                        <div class="flex flex-row gap-2">
+                                            <span>
+                                                <img [src]="data?.activity == 'Car' ? 'assets/car.png' : data?.activity == 'Bus' ? 'assets/bus.png' : 'assets/activity.png'"
+                                                    class="w-8 h-8" />
+                                            </span>
+                                            <span class="flex flex-col">
+                                                <div>
+                                                    {{data?.activity}}
+                                                </div>
+                                                <div>
+                                                    {{data?.activityDuration}}
+                                                </div>
+                                            </span>
+                                        </div>
+
+                                        <div class="flex flex-row gap-2">
+                                            <span>
+                                                <img [src]="'assets/accommodation.png'" class="w-8 h-8" />
+                                            </span>
+                                            <span class="flex flex-col">
+                                                <div>
+                                                    Accomodation
+                                                </div>
+                                                <div>
+                                                    {{data?.overnight}}
+                                                </div>
+                                            </span>
+                                        </div>
+
+                                        <div class="flex flex-row gap-2">
+                                            <span>
+                                                <img [src]="'assets/meals.png'" class="w-8 h-8" />
+                                            </span>
+                                            <span class="flex flex-col">
+                                                <div>
+                                                    Meals
+                                                </div>
+                                                <div>
+                                                    {{data?.included}}
+                                                </div>
+                                            </span>
+                                        </div>
+
+                                        <div class="flex flex-row gap-2">
+                                            <span>
+                                                <img [src]="'assets/max-altitude.png'" class="w-8 h-8" />
+                                            </span>
+                                            <span class="flex flex-col">
+                                                <div>
+                                                    Altitude
+                                                </div>
+                                                <div>
+                                                    {{data?.elevation}}
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -189,8 +318,7 @@
                     <h1 class="text-2xl font-semibold pt-4">Inclusion</h1>
                     <div class="grid grid-cols-1 gap-4 pt-4">
                         <div *ngFor="let data of packageDetails?.inclusion">
-                            <span class="flex flex-row gap-x-4"><img src="assets/images/inclusion.png"
-                                    class="w-6 h-6" />
+                            <span class="flex flex-row gap-x-4"><img src="assets/checked.png" class="w-6 h-6" />
                                 <span>{{data}}</span>
                             </span>
                         </div>
@@ -202,7 +330,7 @@
 
                     <div class="grid grid-cols-1 gap-4 pt-4">
                         <div class="" *ngFor="let data of packageDetails?.exclusion">
-                            <span class="flex flex-row gap-x-4"><img src="assets/images/close.png" class="w-6 h-6" />
+                            <span class="flex flex-row gap-x-4"><img src="assets/no.png" class="w-6 h-6" />
                                 <span>{{data}}</span>
                             </span>
                         </div>
@@ -267,8 +395,52 @@
                 </div>
 
             </div>
-            <div class="lg:w-1/4 xl:w-1/4 2xl:w-1/4 w-full relative">
-                <div class="sticky top-0">
+            <div #bookingSection class="lg:w-1/4 xl:w-1/4 2xl:w-1/4 w-full relative">
+                <div class="">
+
+                    <div class="border border-black rounded-lg p-2 w-full mb-2">
+                        Private Group Discounts Available
+
+                        <span class="pt-4 flex flex-col gap-2">
+                            <span class="flex flex-row ">
+                                Upto 1 people :
+                                <span class="font-semibold pl-4">
+                                    {{packageDetails?.offerPrice ? packageDetails?.offerPrice : packageDetails?.price}}
+                                </span>
+                            </span>
+
+                            <span class="flex flex-row ">
+                                Upto 2 people :
+                                <span class="font-semibold pl-4">
+                                    {{packageDetails?.pax2Price}}
+                                </span>
+                            </span>
+
+                            <span class="flex flex-row ">
+                                Upto 5 people :
+                                <span class="font-semibold pl-4">
+                                    {{packageDetails?.pax5price}}
+                                </span>
+                            </span>
+
+                            <span class="flex flex-row ">
+                                Upto 15 people :
+                                <span class="font-semibold pl-4">
+                                    {{packageDetails?.pax15price}}
+                                </span>
+                            </span>
+
+                            <span class="flex flex-row ">
+                                16+ people :
+                                <span class="font-semibold pl-4">
+                                    {{packageDetails?.pax16price}}
+                                </span>
+                            </span>
+
+                        </span>
+
+                    </div>
+
                     <div class="lg:hidden xl:hidden 2xl:hidden block w-full mb-2">
                         <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg w-full"
                             (click)="bookingDiv = !bookingDiv">Book this trip</button>
@@ -290,7 +462,7 @@
                                 formControlName="address" placeholder="Address" />
                             <input type="number" min="1" class="h-[40px] p-2 rounded-lg w-full border border-black"
                                 formControlName="totalTraveller" placeholder="Total Traveller"
-                                (change)="calculatePrice($event)" />
+                                (keyup)="calculatePrice($event)" />
                             <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black"
                                 formControlName="date" placeholder="Expected Date" onfocus="this.type = 'date' " />
                             <textarea name="" id="" cols="30" rows="10"
@@ -318,7 +490,7 @@
                                 placeholder="Address" formControlName="address" />
                             <input type="number" class="h-[40px] p-2 rounded-lg w-full border border-black"
                                 placeholder="Total Traveller" formControlName="totalTraveller"
-                                (change)="calculatePrice($event)" />
+                                (keyup)="calculatePrice($event)" />
                             <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black"
                                 formControlName="date" placeholder="Expected Date" onfocus="this.type = 'date' " />
                             <textarea name="" id="" cols="30" rows="10" formControlName="message" placeholder="Message"
@@ -340,12 +512,12 @@
         <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-2 py-4">
             <ng-container *ngFor="let data of tripList">
                 <div class="package-div unhide flex flex-col rounded-xl relative cursor-pointer"
-                    [routerLink]="['/package/package-details', data._id]" (click)="scrolltotop()" >
+                    [routerLink]="['/package/package-details', data._id]" (click)="scrolltotop()">
                     <div class="p-1 relative z-99">
                         <span class="bannerDiv rounded-xl"> <img [src]="imageEnvironmentUrl+data?.tripImage"
                                 class="w-full h-[40vh] rounded-xl object-cover z-90" /></span>
                         <span *ngIf="data.isSpecialOffer == true" class="absolute top-[-12%] right-[-5%]"><img
-                                src="assets/images/discount.png" loading="lazy" class="w-12 h-12" /></span>
+                                src="assets/images/discount.png" loading="lazy" class="w-8 h-8" /></span>
                         <span
                             class="package-div absolute bottom-[2%] right-[3%] px-1 flex flex-row gap-x-2 !rounded-lg items-center">
                             <span class="font-semibold text-black ">{{data.rating}}</span> <img

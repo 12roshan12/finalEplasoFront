@@ -1,4 +1,207 @@
-<div class="banner p-10 lg:p-40 xl:p-40 2xl:p-40 flex flex-col justify-center ">
+<div class="slide animate relative bg-black md:h-[100vh] h-[150vh] " id="slide-02">
+  <div class="image-rotator opacity-60">
+    <img src="assets/lb1.jpg" alt="Car1" class="object-cover ">
+    <img src="assets/lb2.jpg" alt="Car2" class="object-cover ">
+    <img src="assets/images/m1.jpg" alt="Car3" class="object-cover ">
+  </div>
+
+  <div style="z-index: 4 !important;"
+    class="absolute  lg:top-[15%] top-[0%] left-0 p-8 lg:text-6xl text-4xl text-white ">
+    <div class="text-white  p-2 ">
+      <h1 class="text-2xl lg:text-4xl font-semibold tracking-wide pr-16 pb-4 leading-relaxed">
+        {{masterData?.bannerQuote}}</h1>
+      <p class="text-xl lg:text-3xl md:text-3xl xl:text-3xl 2xl:text-3xl font-medium">{{masterData?.bannerBio |
+        titlecase}}
+      </p>
+    </div>
+
+    <div
+      class="flex lg:flex-row md:flex-row xl:flex-row 2xl:flex-row flex-col pt-4  lg:w-3/4  md:w-3/4  xl:w-3/4  2xl:w-3/4  w-full">
+      <div class=" p-2">
+        <button class="text-white !text-lg px-4 w-full py-2 bg-blue-700">Where?</button>
+        <div class="w-full pt-4">
+          <mat-form-field class="w-full" appearance="fill">
+            <input matInput placeholder="Location" />
+            <mat-icon color="primary" matPrefix>location_on</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class=" py-2 pl-2">
+        <button class="text-white !text-lg px-4 py-2 bg-blue-700 w-full">Desired
+          Trip!</button>
+        <div class="w-full pt-4">
+          <mat-form-field class="w-full" appearance="fill">
+            <input matInput placeholder="Trip name" [(ngModel)]="searchTripName" />
+            <mat-icon color="primary" matPrefix>gesture</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="p-2 flex items-end justify-center pb-[30px] mb-4">
+        <button [routerLink]="['/package']" [queryParams]="{trip:searchTripName}"
+          class="text-white lg:w-auto md:w-auto xl:w-auto 2xl:w-auto w-full px-4 rounded-lg py-2 h-[56px] bg-blue-700 !text-lg flex flex-row gap-x-2 items-center justify-center"><span>
+            Search</span> <mat-icon>search</mat-icon> </button>
+      </div>
+    </div>
+
+    <div
+      class="flex  flex-col lg:flex-row sm:flex-row md:flex-row xl:flex-row 2xl:flex-row gap-4 lg:divide-y-0 sm:divide-y-0 md:divide-y-0 xl:divide-y-0 2xl:divide-y-0 divide-y-2 lg:divide-x-2 sm:divide-x-2 md:divide-x-2 xl:divide-x-2 2xl:divide-x-2 lg:!text-2xl !text-sm">
+      <div class="text-white p-4 flex flex-col gap-2 ">
+        <h4>1200 +</h4>
+        <p>Happy Clients</p>
+      </div>
+      <div class="text-white p-4 flex flex-col gap-2">
+        <h4>100 +</h4>
+        <p>Packages</p>
+      </div>
+      <div class="text-white p-4 flex flex-col gap-2">
+        <h4>200 + </h4>
+        <p>Trips Completed</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div style="z-index: 4 !important; 
+ background: rgba( 122, 118, 118, 0.35 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 1px );
+-webkit-backdrop-filter: blur( 1px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );"
+      class="absolute bottom-0 text-white bg-transparent w-full shadow-xl shadow-black flex lg:flex-row xl:flex-row 2xl:flex-row flex-col gap-3 items-center justify-center p-4 lg:px-28 xl:px-28 2xl:px-28 px-8"
+      [formGroup]="landingForm">
+
+      <div class="w-full">
+          <label class="">Pickup Point</label>
+          <div class="w-full relative">
+              <ng-select
+                  class="border-none xl:max-w-[350px] 2xl:max-w-[350px] lg:max-w-[350px] w-full focus-visible:outline-none custom "
+                  [(ngModel)]="pickupTemp" [ngModelOptions]="{standalone: true}" appendTo="body"
+                  placeholder="Pickup Point" (keyup)="pickupLocationSearch($event.target)"
+                  (change)="pickupSuggestionChanged($event)">
+                  <ng-option *ngIf="pickupSuggestion.length == 0" disabled="">Pickup Location</ng-option>
+                  <ng-option *ngFor="let car of pickupSuggestion" [value]="car">{{car.place_name}}</ng-option>
+              </ng-select>
+          </div>
+      </div>
+
+
+      <div class="w-full ">
+          <label>Pickup date time</label>
+          <div
+              class="border border-black rounded-lg flex flex-row justify-center items-center  p-2 pl-4 w-full relative">
+              <input type="date" min="{{ currentDate }}" formControlName="pickUpDate"
+                  class="p-2 border-none lg:w-10/12 xl:w-10/12 2xlw-10/12 w-full focus-visible:outline-none"
+                  placeholder="Pick-up Date" />
+
+              <div class="w-full flex justify-center" (click)="showPickupDropdown = !showPickupDropdown">
+                  {{landingForm.value.pickUpTime}}
+              </div>
+
+              <div *ngIf="showPickupDropdown" style="z-index: 9999 !important;" tabindex="0"
+                  (blur)="showPickupDropdown = false"
+                  class="absolute h-[35vh] bottom-[-230px] !text-black  w-[400px] bg-gray-100 flex flex-row gap-x-2 py-4 px-2 ">
+                  <div class="w-full p-2 font-semibold">
+                      <label class="pb-2">Pickup Point</label>
+                      <br />
+                      {{landingForm.value.pickUpLocation.name}}
+                  </div>
+                  <div class="w-full ">
+                      <label class="pb-2 font-semibold">Pickup Time</label>
+                      <div class="w-full overflow-auto h-[25vh]">
+                          <table class="overflow-auto bg-white w-full ">
+                              <tbody>
+                                  <td colspan="2">
+                                      <tr *ngFor="let data of timeArray">
+                                          <span
+                                              [ngClass]=" data.name == landingForm.value.pickUpTime ? 'bg-blue-600 text-white' :'' "
+                                              class="flex w-full items-center justify-center cursor-pointer hover:bg-blue-600 hover:text-white p-2 "
+                                              (click)="landingForm.get('pickUpTime')?.setValue(data.name)"
+                                              (click)="showPickupDropdown = false">
+                                              {{data.name}}
+                                          </span>
+                                      </tr>
+                                  </td>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+ 
+          </div>
+      </div>
+
+      <div class="w-full">
+          <label>Drop off point</label>
+          <div class="w-full relative">
+              <ng-select
+                  class="border-none  xl:max-w-[350px] 2xl:max-w-[350px] lg:max-w-[350px] w-full  focus-visible:outline-none custom "
+                  [(ngModel)]="dropOffTemp" [ngModelOptions]="{standalone: true}" appendTo="body"
+                  placeholder="Dropoff Point" (keyup)="dropOffLocationSearch($event.target)"
+                  (change)="dropOffSuggestionChanged($event)">
+                  <ng-option *ngIf="dropOffSuggestion.length == 0" disabled="">Pickup Location</ng-option>
+                  <ng-option *ngFor="let car of dropOffSuggestion" [value]="car">{{car.place_name}}</ng-option>
+              </ng-select>
+          </div>
+      </div>
+
+      <div class="w-full">
+          <label>Drop off date time</label>
+          <div
+              class="border border-black rounded-lg flex flex-row justify-center items-center p-2 pl-4 w-full relative">
+              <input type="date" min="{{ currentDate }}" formControlName="dropOffDate"
+                  class="p-2 border-none w-full lg:w-10/12 xl:w-10/12 2xlw-10/12 focus-visible:outline-none"
+                  placeholder="Drop-off Date" />
+        
+              <div class="w-full flex justify-center" (click)="showDropOffDropdown = !showDropOffDropdown">
+                  {{landingForm.value.dropOffTime}}
+              </div>
+
+              <div *ngIf="showDropOffDropdown" style="z-index: 9999 !important;" tabindex="0"
+                  (blur)="showDropOffDropdown = false"
+                  class="absolute h-[35vh] bottom-[-230px] w-[400px] !text-black bg-gray-100 flex flex-row gap-x-2 py-4 px-2 ">
+                  <div class="w-full p-2  font-semibold">
+                      <label class="pb-2">Dropoff Point</label>
+                      <br />
+                      {{landingForm.value.dropOffLocation.name}}
+                  </div>
+                  <div class="w-full ">
+                      <label class="font-semibold pb-2">Dropoff Time</label>
+                      <div class="w-full overflow-auto h-[25vh]">
+                          <table class="overflow-auto bg-white w-full ">
+                              <tbody>
+                                  <td colspan="2">
+                                      <tr style="width: 100%;" class="p-2 text-center"
+                                          *ngFor="let data of timeArray">
+                                          <span
+                                              [ngClass]=" data.name == landingForm.value.dropOffTime ? 'bg-blue-600 text-white' :'' "
+                                              class="flex w-full items-center justify-center cursor-pointer hover:bg-blue-600 hover:text-white p-2"
+                                              (click)="landingForm.get('dropOffTime')?.setValue(data.name)"
+                                              (click)="showDropOffDropdown = false">
+                                              {{data.name}}
+                                          </span>
+                                      </tr>
+                                  </td>
+                              </tbody>
+                          </table>
+                      </div>
+
+                  </div>
+              </div>
+   
+          </div>
+      </div>
+
+      <div class=" w-full">
+          <button type="submit"
+              class="rounded border border-white text-white lg:min-w-[150px] xl:min-w-[150px] 2xl:min-w-[150px] w-full h-[52px] mt-3 px-2  text-lg "
+              (click)="landingSearch()">Search</button>
+      </div>
+  </div> -->
+
+</div>
+
+
+<!-- <div class="banner p-10 lg:p-40 xl:p-40 2xl:p-40 flex flex-col justify-center ">
   <div class="text-white  p-2">
     <h1
       class="text-2xl lg:text-5xl md:text-5xl xl:text-5xl 2xl:text-5xl font-semibold tracking-wide pr-16 pb-4 leading-relaxed">
@@ -52,50 +255,163 @@
   </div>
 
 
-</div>
+</div> -->
 
-<div class="job-category-area py-6 xl:px-16 px-4">
-  <h2>Popular Categories</h2>
+<div class="job-category-area py-6 xl:px-16 px-4 flex flex-col md:flex-row  justify-center">
+  <div class="w-full pt-8">
+    <span class="text-xl font-semibold py-4">Why Choose Us?</span>
+    <div class="py-4">
+      <span class="font-semibold"> With over 10+
+        Years of Experience in tourism industry</span>,
+      <div [innerHTML]="masterData?.aboutUsDescription"></div>
 
-  <div class="job-category">
-    <div *ngFor="let data of categoryList" class="job-card relative">
-      <img [src]="imageEnvironmentUrl+data?.image" loading="lazy" class="w-full h-[200px] cardImg" alt="">
-      <div class="absolute w-full flex flex-col justify-center cardDesc">
-        <div class="flex w-full flex-col justify-center">
-          <h3 class="flex justify-center font-semibold uppercase pb-2 cardDesc">{{data.name}}</h3>
-          <p class=" px-2 cardDesc">&#8220; {{data.slogan}} &#8221; </p>
+      <div class="py-4">
+        <span class="font-semibold">Recognized and certified by </span>
+        <div class="grid grid-cols-3 md:grid-cols-6 pt-4 gap-4">
+          <img src="assets/taan.png" class="w-20 h-20" />
+          <img src="assets/rotary.jpg" class="w-20 h-20" />
+          <img src="assets/ntb.png" class="w-20 h-20" />
+          <img src="assets/npl.png" class="w-20 h-20" />
+          <img src="assets/nma.png" class="w-20 h-20" />
+          <img src="assets/natta.png" class="w-20 h-20" />
+          <img src="assets/iata.png" class="w-20 h-20" />
+          <img src="assets/hra.png" class="w-20 h-20" />
+          <img src="assets/himalaya-trail.png" class="w-20 h-20" />
         </div>
-        <button class="cardDesc " [routerLink]="['/package']" [queryParams]="{category:data.name}" >Explore -></button>
       </div>
     </div>
   </div>
+
+  <div class="job-category !flex-col  w-full">
+    <ng-container *ngFor="let data of categoryList">
+      <ng-container *ngIf="data.name == 'Peak Climbing' ">
+        <div class="job-card shadow-2xl gap-y-2">
+          <img [src]="'assets/peak-climbing.png'" loading="lazy" class="w-[100px] h-[100px] " alt="">
+          <div class=" w-full flex flex-col justify-center cardDesc pt-2">
+            <div class="flex w-full flex-col justify-center">
+              <h3 class="flex justify-center font-semibold uppercase pb-2 cardDesc">{{data.name}}</h3>
+              <!-- <p class=" px-2 cardDesc">&#8220; {{data.slogan}} &#8221; </p> -->
+            </div>
+            <button class="cardDesc " [routerLink]="['/package']" [queryParams]="{category:data.name}">Explore
+              -></button>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="data.name == 'Trekking' ">
+        <div class="job-card shadow-2xl gap-y-2">
+          <img [src]="'assets/trekking.png'" loading="lazy" class="w-[100px] h-[100px] " alt="">
+          <div class=" w-full flex flex-col justify-center cardDesc pt-2">
+            <div class="flex w-full flex-col justify-center">
+              <h3 class="flex justify-center font-semibold uppercase pb-2 cardDesc">{{data.name}}</h3>
+              <!-- <p class=" px-2 cardDesc">&#8220; {{data.slogan}} &#8221; </p> -->
+            </div>
+            <button class="cardDesc " [routerLink]="['/package']" [queryParams]="{category:data.name}">Explore
+              -></button>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="data.name == 'City Tours' ">
+        <div class="job-card shadow-2xl gap-y-2">
+          <img [src]="'assets/tours.png'" loading="lazy" class="w-[100px] h-[100px] " alt="">
+          <div class=" w-full flex flex-col justify-center cardDesc pt-2">
+            <div class="flex w-full flex-col justify-center">
+              <h3 class="flex justify-center font-semibold uppercase pb-2 cardDesc">{{data.name}}</h3>
+              <!-- <p class=" px-2 cardDesc">&#8220; {{data.slogan}} &#8221; </p> -->
+            </div>
+            <button class="cardDesc " [routerLink]="['/package']" [queryParams]="{category:data.name}">Explore
+              -></button>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="data.name == 'Jungle Safari' ">
+        <div class="job-card shadow-2xl gap-y-2">
+          <img [src]="'assets/saffari.png'" loading="lazy" class="w-[100px] h-[100px] " alt="">
+          <div class=" w-full flex flex-col justify-center cardDesc pt-2">
+            <div class="flex w-full flex-col justify-center">
+              <h3 class="flex justify-center font-semibold uppercase pb-2 cardDesc">{{data.name}}</h3>
+              <!-- <p class=" px-2 cardDesc">&#8220; {{data.slogan}} &#8221; </p> -->
+            </div>
+            <button class="cardDesc " [routerLink]="['/package']" [queryParams]="{category:data.name}">Explore
+              -></button>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="data.name == 'Water Activity' ">
+        <div class="job-card shadow-2xl gap-y-2">
+          <img [src]="'assets/rafting.png'" loading="lazy" class="w-[100px] h-[100px] " alt="">
+          <div class=" w-full flex flex-col justify-center cardDesc pt-2">
+            <div class="flex w-full flex-col justify-center">
+              <h3 class="flex justify-center font-semibold uppercase pb-2 cardDesc">{{data.name}}</h3>
+              <!-- <p class=" px-2 cardDesc">&#8220; {{data.slogan}} &#8221; </p> -->
+            </div>
+            <button class="cardDesc " [routerLink]="['/package']" [queryParams]="{category:data.name}">Explore
+              -></button>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="data.name == 'Recreational Activity' ">
+        <div class="job-card shadow-2xl gap-y-2">
+          <img [src]="'assets/paragliding.png'" loading="lazy" class="w-[100px] h-[100px] " alt="">
+          <div class=" w-full flex flex-col justify-center cardDesc pt-2">
+            <div class="flex w-full flex-col justify-center">
+              <h3 class="flex justify-center font-semibold uppercase pb-2 cardDesc">{{data.name}}</h3>
+              <!-- <p class=" px-2 cardDesc">&#8220; {{data.slogan}} &#8221; </p> -->
+            </div>
+            <button class="cardDesc " [routerLink]="['/package']" [queryParams]="{category:data.name}">Explore
+              -></button>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- <ng-container *ngIf="data.name == 'peak climbing' ">
+        <div class="job-card shadow-2xl">
+          <img [src]="imageEnvironmentUrl+data?.image" loading="lazy" class="w-full h-[200px] " alt="">
+          <div class=" w-full flex flex-col justify-center cardDesc">
+            <div class="flex w-full flex-col justify-center">
+              <h3 class="flex justify-center font-semibold uppercase pb-2 cardDesc">{{data.name}}</h3>
+               <p class=" px-2 cardDesc">&#8220; {{data.slogan}} &#8221; </p> 
+            </div>
+            <button class="cardDesc " [routerLink]="['/package']" [queryParams]="{category:data.name}">Explore
+              -></button>
+          </div>
+        </div>
+      </ng-container> -->
+    </ng-container>
+  </div>
 </div>
 
-<div class="city-images">
+<div class="flex items-center justify-center fles-row pt-6">
+  <div class="flex flex-col divide-x divide-y divide-white md:flex-row">
+    <button class="p-4 bg-blue-400 text-white text-xl relative " [ngClass]="showSpecial  ? 'excButton' : '' "
+      (click)="showSpecial = true">
+      Special Ofers
+    </button>
+    <button class="p-4 bg-blue-400 text-white text-xl" [ngClass]="!showSpecial ? 'excButton' : '' "
+      (click)="showSpecial = false">Exclusive package</button>
+    <button class="p-4 bg-blue-400 text-white text-xl" routerLink="/package">All package</button>
+  </div>
+</div>
+
+
+
+<div *ngIf="showSpecial" class="city-images" >
   <div class="flex flex-col lg:flex-row xl:flex-row 2xl:flex-row ">
     <h2 class="pb-8">Special&nbsp;Offers</h2>
     <div class=" justify-end w-full hidden xl:flex 2xl:flex">
       <button
-        class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center" routerLink="/package" >Load
+        class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center"
+        routerLink="/package">Load
         More</button>
-      <!-- <button
-          class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center">Expedition</button>
-        <button
-          class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center">Trek</button>
-        <button
-          class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center">Tours</button> -->
-      <!-- <div class="flex flex-row gap-x-2">
-        <button class=" w-[30px] h-[30px] flex items-center justify-center"><img src="assets/images/previous.png"
-            class="h-full w-full" /></button>
-        <button class=" w-[30px] h-[30px] flex items-center justify-center"><img src="assets/images/previous.png"
-            class="h-full w-full" style="-webkit-transform: scaleX(-1);
-          transform: scaleX(-1);" /></button>
-      </div> -->
 
     </div>
   </div>
-  <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-2 py-4">
-    <ng-container *ngFor="let data of offerTripList">
+  <carousel [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="singleSlideOffset" [interval]="1500" [noPause]="false">
+    <slide *ngFor="let data of offerTripList" class="p-8">
       <div class="package-div unhide flex flex-col rounded-xl relative cursor-pointer"
         [routerLink]="['/package/package-details', data._id]">
         <div class="p-1 relative z-99">
@@ -119,72 +435,103 @@
               ({{calculateDiscount(data?.price,data?.offerPrice)}})%Off
             </span>
           </p>
-          <span class="flex flex-row gap-x-2 items-center pb-2"> <img src="assets/images/calendar.png"
-              class="w-6 h-6" />
-            <p>{{data.summary.duration | titlecase}}</p>
-          </span>
-          <span class="flex flex-row gap-x-2 items-center pb-2"> <img src="assets/images/location.png"
-              class="w-6 h-6" />
-            <p>{{data.summary.destination | titlecase}}</p>
-          </span>
-          <span class="flex flex-row gap-x-2 items-center pb-2"> <img src="assets/images/categories.png"
-              class="w-6 h-6" />
-            <p>{{data.category | titlecase}}</p>
-          </span>
-          <span class="flex flex-row gap-x-2 items-center"> <img src="assets/images/group.png" class="w-6 h-6" />
-            <p>{{data.summary.groupSize }} People</p>
-          </span>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
+            <span class="flex flex-row gap-x-2 items-center pb-2"> <img src="assets/images/calendar.png"
+                class="w-6 h-6" />
+              <p>{{data.summary.duration | titlecase}}</p>
+            </span>
+            <span class="flex flex-row gap-x-2 items-center pb-2"> <img src="assets/images/location.png"
+                class="w-6 h-6" />
+              <p>{{data.summary.destination | titlecase}}</p>
+            </span>
+            <span class="flex flex-row gap-x-2 items-center pb-2"> <img src="assets/images/categories.png"
+                class="w-6 h-6" />
+              <p>{{data.category | titlecase}}</p>
+            </span>
+            <span class="flex flex-row gap-x-2 items-center"> <img src="assets/images/group.png" class="w-6 h-6" />
+              <p>{{data.summary.groupSize }} People</p>
+            </span>
+          </div>
+
         </div>
       </div>
-    </ng-container>
-  </div>
+    </slide>
+
+  </carousel>
+
 
   <div class=" justify-end w-full flex  xl:hidden 2xl:hidden">
     <button
-      class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black w-full h-[30px] flex items-center justify-center" routerLink="/package" >Load
+      class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black w-full h-[30px] flex items-center justify-center"
+      routerLink="/package">Load
       More</button>
-    <!-- <button
-      class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center">Expedition</button>
-    <button
-      class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center">Trek</button>
-    <button
-      class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center">Tours</button> -->
-    <!-- <div class="flex flex-row gap-x-2">
-    <button class=" w-[30px] h-[30px] flex items-center justify-center"><img src="assets/images/previous.png"
-        class="h-full w-full" /></button>
-    <button class=" w-[30px] h-[30px] flex items-center justify-center"><img src="assets/images/previous.png"
-        class="h-full w-full" style="-webkit-transform: scaleX(-1);
-      transform: scaleX(-1);" /></button>
-  </div> -->
+
 
   </div>
 </div>
 
-<div class="city-images">
+<div *ngIf="!showSpecial" class="city-images">
   <div
     class="flex flex-col lg:flex-row xl:flex-row 2xl:flex-row lg:justify-between 2xl:justify-between xl:justify-between">
     <h2 class="pb-8">Exclusive&nbsp;Packages</h2>
     <div class=" justify-end w-full hidden xl:flex 2xl:flex">
       <button
-        class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center" routerLink="/package" >Load
+        class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center"
+        routerLink="/package">Load
         More</button>
-      <!-- <button
-        class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center">Expedition</button>
-      <button
-        class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center">Trek</button>
-      <button
-        class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center">Tours</button> -->
-      <!-- <div class="flex flex-row gap-x-2">
-      <button class=" w-[30px] h-[30px] flex items-center justify-center"><img src="assets/images/previous.png"
-          class="h-full w-full" /></button>
-      <button class=" w-[30px] h-[30px] flex items-center justify-center"><img src="assets/images/previous.png"
-          class="h-full w-full" style="-webkit-transform: scaleX(-1);
-        transform: scaleX(-1);" /></button>
-    </div> -->
-
     </div>
   </div>
-  <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-2 py-4">
+
+  <carousel [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="singleSlideOffset" [interval]="1500" [noPause]="false">
+    <slide *ngFor="let data of normalTripList" class="p-8">
+      <div class="package-div unhide flex flex-col rounded-xl relative cursor-pointer"
+        [routerLink]="['/package/package-details', data._id]">
+        <div class="p-1 relative z-99">
+          <span class="bannerDiv rounded-xl"> <img [src]="imageEnvironmentUrl+data.tripImage" loading="lazy"
+              class="w-full h-[40vh] rounded-xl object-cover z-90" /></span>
+          <span *ngIf="data.isSpecialOffer == true" class="absolute top-[-12%] right-[-5%]"><img
+              src="assets/images/discount.png" class="w-12 h-12" /></span>
+          <span class="package-div absolute bottom-[2%] right-[3%] px-1 flex flex-row gap-x-2 !rounded-lg items-center">
+            <span class="font-semibold text-black ">{{data.rating}}</span> <img src="assets/images/star.png"
+              class="w-4 h-4 " /></span>
+        </div>
+        <div class="p-2 gap-y-4">
+          <div class="flex flex-row justify-between items-center">
+            <p class="pTitle font-semibold pb-2">{{data.name}}</p> <span class="flex gap-x-2 items-center"
+              matTooltip="Total Views"> <img src="assets/images/visiblity.png" class="w-4 h-4 text-xs" />
+              {{data.totalViews}} </span>
+          </div>
+          <p class=" flex flex-col gap-x-4 pb-2"> <span
+              [ngClass]="data.isSpecialOffer.toString() == 'true'? 'text-red-600 line-through':'' ">USD.{{data.price}}</span>
+            <span *ngIf="data.isSpecialOffer == true" class="text-green-600">USD.{{data.offerPrice}}
+              ({{calculateDiscount(data?.price,data?.offerPrice)}})%Off
+            </span>
+          </p>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
+            <span class="flex flex-row gap-x-2 items-center pb-2"> <img src="assets/images/calendar.png"
+                class="w-6 h-6" />
+              <p>{{data.summary.duration | titlecase}}</p>
+            </span>
+            <span class="flex flex-row gap-x-2 items-center pb-2"> <img src="assets/images/location.png"
+                class="w-6 h-6" />
+              <p>{{data.summary.destination | titlecase}}</p>
+            </span>
+            <span class="flex flex-row gap-x-2 items-center pb-2"> <img src="assets/images/categories.png"
+                class="w-6 h-6" />
+              <p>{{data.category | titlecase}}</p>
+            </span>
+            <span class="flex flex-row gap-x-2 items-center"> <img src="assets/images/group.png" class="w-6 h-6" />
+              <p>{{data.summary.groupSize }} People</p>
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </slide>
+
+  </carousel>
+<!-- 
+  <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 px-2 py-4">
     <ng-container *ngFor="let data of normalTripList">
       <div class="package-div unhide flex flex-col rounded-xl relative cursor-pointer"
         [routerLink]="['/package/package-details', data._id]">
@@ -227,25 +574,13 @@
         </div>
       </div>
     </ng-container>
-  </div>
+  </div> -->
 
   <div class=" justify-end w-full flex  xl:hidden 2xl:hidden">
     <button
-      class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black w-full h-[30px] flex items-center justify-center" routerLink="/package" >Load
+      class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black w-full h-[30px] flex items-center justify-center"
+      routerLink="/package">Load
       More</button>
-    <!-- <button
-      class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center">Expedition</button>
-    <button
-      class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center">Trek</button>
-    <button
-      class="px-2 py-1 rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center">Tours</button> -->
-    <!-- <div class="flex flex-row gap-x-2">
-    <button class=" w-[30px] h-[30px] flex items-center justify-center"><img src="assets/images/previous.png"
-        class="h-full w-full" /></button>
-    <button class=" w-[30px] h-[30px] flex items-center justify-center"><img src="assets/images/previous.png"
-        class="h-full w-full" style="-webkit-transform: scaleX(-1);
-      transform: scaleX(-1);" /></button>
-  </div> -->
 
   </div>
 </div>
@@ -261,7 +596,7 @@
     <div class="w-full text-xl font-normal pl-2 flex flex-col gap-y-4">
       <div> <span class="font-semibold"> With over 10+
           Years of Experience in tourism industry</span>,
-       <div [innerHTML]="masterData?.aboutUsDescription"></div>
+        <div [innerHTML]="masterData?.aboutUsDescription"></div>
       </div>
       <div>
         <span class="underline pb-2">Our Services</span>
@@ -344,9 +679,10 @@
       </div>
       <div class="flex items-center justify-center gap-2">
         <div class="flex flex-row gap-x-6 ">
-          <span class="cursor-pointer"><i class="fa-brands fa-facebook fa-2xl" (click)="goto(data.facebook)" ></i></span>
-          <span class="cursor-pointer"><i class="fa-brands fa-instagram fa-2xl" (click)="goto(data.instagram)" ></i></span>
-          <span class="cursor-pointer"><i class="fa-brands fa-twitter fa-2xl" (click)="goto(data.twitter)" ></i></span>
+          <span class="cursor-pointer"><i class="fa-brands fa-facebook fa-2xl" (click)="goto(data.facebook)"></i></span>
+          <span class="cursor-pointer"><i class="fa-brands fa-instagram fa-2xl"
+              (click)="goto(data.instagram)"></i></span>
+          <span class="cursor-pointer"><i class="fa-brands fa-twitter fa-2xl" (click)="goto(data.twitter)"></i></span>
         </div>
       </div>
 

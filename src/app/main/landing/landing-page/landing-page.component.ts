@@ -1,18 +1,41 @@
-import { Component, ViewEncapsulation, OnInit } from "@angular/core"
+import { Component, ViewEncapsulation, OnInit, HostListener, ViewChild } from "@angular/core"
 import { MatDialog } from "@angular/material/dialog"
 import { environment } from "src/environments/environment"
 import { AdminService } from "../../dashboard/dashboard.service"
 import { LandingService } from "../landing.service"
 import { NoticePopComponent } from "./notice-pop/notice-pop.component"
+import { CarouselComponent, CarouselConfig } from "ngx-bootstrap/carousel"
 
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
+  providers: [
+    { provide: CarouselConfig, useValue: { interval: 1500, noPause: false, showIndicators: true } }
+  ],
   encapsulation: ViewEncapsulation.None
 })
 export class LandingPageComponent implements OnInit {
+
+
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.itemsPerSlide = 3
+
+    if (window.innerWidth <= 1024) {
+      this.itemsPerSlide = 2
+    }
+
+    if (window.innerWidth <= 425) {
+      this.itemsPerSlide = 1
+    }
+
+    console.log(this.itemsPerSlide);
+
+
+  }
 
   noticeList: any[] = []
   categoryList: any[] = []
@@ -22,11 +45,28 @@ export class LandingPageComponent implements OnInit {
   offerTripList: any[] = []
   normalTripList: any[] = []
   masterData: any
-  searchTripName:any
+  itemsPerSlide = 3
+  singleSlideOffset = true;
+
+  searchTripName: any
+  showSpecial: boolean = true
+  showExclusive: boolean = false
   imageEnvironmentUrl = environment.Main_Api + 'media/file/'
   constructor(private adminService: AdminService, private landingService: LandingService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+
+    this.itemsPerSlide = 3
+
+    if (window.innerWidth <= 1024) {
+      this.itemsPerSlide = 2
+    }
+
+    if (window.innerWidth <= 425) {
+      this.itemsPerSlide = 1
+
+    }
+
 
     setTimeout(() => {
     }, 3000);
@@ -99,8 +139,7 @@ export class LandingPageComponent implements OnInit {
         this.noticeList = data.data
         if (sessionStorage.getItem('notice') != 'true') {
           for (let i = 0; i < this.noticeList.length; i++) {
-            if(this.noticeList[i].status == true)
-            {
+            if (this.noticeList[i].status == true) {
               this.openNoticePop(this.noticeList[i])
             }
           }
@@ -116,8 +155,8 @@ export class LandingPageComponent implements OnInit {
     return Math.round(discount)
   }
 
-  goto(link:any){
-    if(link == "") return
+  goto(link: any) {
+    if (link == "") return
     window.open(link, "_blank");
   }
 
