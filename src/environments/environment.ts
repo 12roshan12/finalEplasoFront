@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  Main_Api: 'http://192.168.1.80:8000/api/'
-  // Main_Api: 'http://192.168.110.131:8000/api/'
+  Main_Api: 'http://192.168.1.69:8000/api/'
+  // Main_Api: 'http://192.168.182.13:8000/api/'
   // Main_Api: 'https://backend.elpasoadventure.com/api/'
 
 }
