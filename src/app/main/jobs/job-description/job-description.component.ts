@@ -135,7 +135,8 @@ export class JobDescriptionComponent implements OnInit {
     this.finalPrice = this.toNumber(e.target.value) * this.toNumber(e.target.value == 1 ? this.packageDetails.offerPrice ? Number(this.packageDetails.offerPrice.substring(1)) : Number(this.packageDetails.price.substring(1))
       : e.target.value == 2 ? Number(this.packageDetails.pax2Price.substring(1))
         : e.target.value > 2 && e.target.value <= 5 ? Number(this.packageDetails.pax5price.substring(1))
-          : e.target.value > 5 && e.target.value < 16 ? this.packageDetails.pax15price.substring(1)
+        : e.target.value > 5 && e.target.value <= 10 ? Number(this.packageDetails.pax10price.substring(1))
+          : e.target.value > 11 && e.target.value < 16 ? this.packageDetails.pax15price.substring(1)
             : Number(this.packageDetails.pax16price.substring(1)))
     console.log(this.finalPrice);
   }
@@ -157,6 +158,15 @@ export class JobDescriptionComponent implements OnInit {
   }
 
   calculateDiscount(basePrice: any, offerPrice: any) {
+    if(basePrice.toString().startsWith("$")) {
+      basePrice = basePrice.toString().substring(1)
+    }
+
+    if(offerPrice.toString().startsWith("$")) {
+      offerPrice = offerPrice.toString().substring(1)
+    }
+  
+    
     let discount = ((basePrice - offerPrice) / basePrice) * 100
     return Math.round(discount)
   }
