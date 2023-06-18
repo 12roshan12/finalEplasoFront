@@ -106,7 +106,7 @@ export class LandingPageComponent implements OnInit {
       next: (data: any) => {
         this.teamList = data.data
         this.teamList.sort((a, b) => b.updatedon.localeCompare(a.updatedon))
-        this.teamList = this.teamList.splice(0, 3)
+        // this.teamList = this.teamList.splice(0, 3)
 
       },
       error: (err: any) => {

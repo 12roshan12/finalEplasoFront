@@ -482,7 +482,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );"
     </div>
   </div>
 
-  <carousel [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="singleSlideOffset" [interval]="1500" [noPause]="false">
+  <carousel [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="singleSlideOffset" [interval]="2500" [noPause]="false">
     <slide *ngFor="let data of normalTripList" class="p-8">
       <div class="package-div unhide flex flex-col rounded-xl relative cursor-pointer"
         [routerLink]="['/package/package-details', data._id]">
@@ -663,6 +663,24 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );"
     Meet Our Teams
   </div>
 
+  <div class="py-4 flex flex-col gap-y-4 overflow-hidden">
+    <div  class="w-full flex xl:flex-none 2xl:flex-none gap-x-4 flex-row-reverse">
+      <div
+        class="flex flex-col gap-y-4 items-start justify-start lg:p-12 xl:p-12 2xl:p-12 p-4 rounded-xl bg-gray-100 w-full  xl:w-2/3  2xl:w-2/3 ">
+        <span class="visible xl:hidden 2xl:hidden  w-full">
+          <img [src]="'assets/shishir.jpg'" class="w-full h-[40vh] object-contain" />
+        </span>
+        <span class="text-2xl">Sishir Acharya (M.D El Paso Adventure)</span>
+        <span class="">
+          I am the Director of El Paso Adventure, an esteemed tourism and hospitality organization. With a Master's degree in Tourism and Hospitality Studies, I have over 12 years of experience leading groups as a professional trekking and tour guide. My expertise extends to various mountaineering disciplines, including basic mountain rescue, rock climbing, first aid, and navigation training. I have successfully conquered challenging peaks like Mt. Ama Dablam, Island Peak, Mera Peak, Yala Peak, Himlung Peak, and Chulu East Peak. Additionally, I have volunteered to discover new rock spots near the Kathmandu Valley, expanding trekking possibilities. Despite being Nepali, I am fluent in English, Spanish, Hindi, French, and other languages, enabling effective communication with a diverse range of clients. I have dedicated a significant portion of my life to accompanying tourists to the Himalayas, gaining invaluable experience and expertise. As the Director, I am committed to enhancing the El Paso brand by providing exceptional service, personalized experiences, and unforgettable adventures.
+        </span>
+      </div>
+      <div class="xl:w-1/3 2xl:1/3 w-full hidden xl:block 2xl:block float-left">
+        <img [src]="'assets/shishir.jpg'" class="!w-full h-[40vh] object-contain rounded-lg" />
+      </div>
+    </div>
+  </div>
+
   <div class="p-4  grid lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 2xl:grid-cols-3 grid-cosl-1 gap-4">
     <div *ngFor="let data of teamList" class="rounded-xl flex flex-col gap-4 bg-gray-100 p-6 ">
       <div class="flex flex-col justify-center items-center gap-2 pt-4">
@@ -674,7 +692,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );"
           <span class="text-md">{{data.profession}}</span>
         </div>
       </div>
-      <div class="text-lg font-normal">
+      <div class="text-lg font-normal flex justify-center">
         {{data?.bio}}
       </div>
       <div class="flex items-center justify-center gap-2">
@@ -698,54 +716,54 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );"
   </div>
 
   <div class="p-4  grid lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-2 2xl:grid-cols-3 grid-cosl-1 gap-4">
-    <div class="rounded-xl bg-gray-100 p-6 ">
+    <div class="rounded-xl bg-gray-100 p-6 flex flex-col gap-4">
+      <div class="flex flex-row gap-x-4 pt-4">
+        <div class="w-20 h-20 rounded-full ">
+          <img src="assets/random3.jpg" class="w-20 h-20 rounded-full" />
+        </div>
+        <div class="flex flex-col justify-center gap-y-1 font-semibold">
+          <span class="text-lg">Sarah M.</span>
+          <span class="text-md">Musician</span>
+        </div>
+      </div>
 
       <div class="text-xl font-semibold">
-        At first, it may be intimidating to see all of the available courses. Pick a track that interests you and work
-        through it at your own pace.
+        I had an amazing experience trekking with El Paso Adventure. As a solo traveler, I was initially apprehensive, but the professionalism and expertise of the mountain guides quickly put me at ease. They were knowledgeable about the trekking route, safety precautions, and provided excellent guidance throughout the journey. The breathtaking views, well-organized logistics, and the friendly atmosphere created by the guides and fellow trekkers made this an unforgettable adventure. I highly recommend El Paso Adventure for anyone seeking a thrilling and well-planned trekking experience." 
       </div>
-      <div class="flex flex-row gap-x-4 pt-4">
-        <div class="w-10 h-10 rounded-full ">
-          <img src="assets/images/pokhara.jpg" class="w-10 h-10 rounded-full" />
-        </div>
-        <div class="flex flex-col justify-center gap-y-1">
-          <span class="text-md">Roshan Sharma</span>
-          <span class="text-xs">Computer Engineer</span>
-        </div>
-      </div>
+    
 
     </div>
 
-    <div class="rounded-xl bg-gray-100 p-6 ">
-      <div class="text-xl font-semibold">
-        At first, it may be intimidating to see all of the available courses. Pick a track that interests you and work
-        through it at your own pace.
-      </div>
+    <div class="rounded-xl bg-gray-100 p-6 flex flex-col gap-4">
       <div class="flex flex-row gap-x-4 pt-4">
-        <div class="w-10 h-10 rounded-full ">
-          <img src="assets/images/pokhara.jpg" class="w-10 h-10 rounded-full" />
+        <div class="w-20 h-20 rounded-full ">
+          <img src="assets/random1.jpg" class="w-20 h-20 rounded-full" />
         </div>
-        <div class="flex flex-col justify-center gap-y-1">
-          <span class="text-md">Roshan Sharma</span>
-          <span class="text-xs">Computer Engineer</span>
+        <div class="flex flex-col justify-center gap-y-1 font-semibold">
+          <span class="text-lg">John D.</span>
+          <span class="text-md">Physicist</span>
         </div>
       </div>
+      <div class="text-xl font-semibold">
+        "I recently embarked on a trekking expedition with El Paso Adventure, and it surpassed all my expectations. From the moment I contacted them to inquire about the trip until the last day of the trek, their team displayed professionalism and commitment to ensuring a memorable experience. The mountain guides were exceptional, sharing their wealth of knowledge about the local culture, flora, and fauna, while also ensuring our safety and well-being. The trekking route was carefully planned, offering diverse landscapes and stunning views that left me in awe. Thank you, El Paso Adventure, for an extraordinary adventure!"
+      </div>
+     
     </div>
 
-    <div class="rounded-xl bg-gray-100 p-6 ">
-      <div class="text-xl font-semibold">
-        At first, it may be intimidating to see all of the available courses. Pick a track that interests you and work
-        through it at your own pace.
-      </div>
+    <div class="rounded-xl bg-gray-100 p-6 flex flex-col gap-4">
       <div class="flex flex-row gap-x-4 pt-4">
-        <div class="w-10 h-10 rounded-full ">
-          <img src="assets/images/pokhara.jpg" class="w-10 h-10 rounded-full" />
+        <div class="w-20 h-20 rounded-full ">
+          <img src="assets/random2.jpg" class="w-20 h-20 rounded-full" />
         </div>
-        <div class="flex flex-col justify-center gap-y-1">
-          <span class="text-md">Roshan Sharma</span>
-          <span class="text-xs">Computer Engineer</span>
+        <div class="flex flex-col justify-center gap-y-1 font-semibold">
+          <span class="text-lg">Mark S.</span>
+          <span class="text-md">School Counselor</span>
         </div>
       </div>
+      <div class="text-xl font-semibold">
+        "I cannot thank El Paso Adventure enough for the incredible trekking experience I had with them. From the moment I arrived, I felt like I was part of a close-knit family. The mountain guides were not only knowledgeable and experienced but also friendly and approachable. They took the time to understand our individual needs and ensured that everyone in the group was well taken care of. The trekking route was diverse and challenging, offering breathtaking vistas that left us in awe. The level of organization and attention to detail displayed by El Paso Adventure was truly commendable. I would wholeheartedly recommend them to anyone seeking an exceptional trekking adventure.".
+      </div>
+    
     </div>
   </div>
 
