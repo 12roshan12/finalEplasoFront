@@ -237,7 +237,7 @@
 
                     <div class="pt-4">
                         <img [src]="imageEnvironmentUrl+packageDetails?.mapImage"
-                            class="rounded-lg w-full h-[80vh] object-cover py-4" />
+                            class="rounded-lg w-full h-[80vh] object-fit py-4" />
                     </div>
                 </div>
 
@@ -276,7 +276,6 @@
                     <div class="italic font-semibold pt-4">
                         Note: B-Breakfast, L-Lunch, D-Dinner
                     </div>
-
                 </div>
 
 
@@ -378,6 +377,10 @@
 
                         </div>
                     </div>
+
+                    <div class="italic font-semibold pt-4 flex flex-row gap-x-4">
+                       <span> If you are not satisfied with this itinerary , you can customize it.</span><span (click)="scroll(bookingSection)" class="text-blue-600 cursor-pointer" >Customize</span>
+                    </div>
                 </div>
 
                 <div #inclusion>
@@ -473,10 +476,10 @@
                 </div>
 
             </div>
-            <div #bookingSection class="lg:w-1/4 xl:w-1/4 2xl:w-1/4 w-full sticky top-0">
+            <div  class="lg:w-1/4 xl:w-1/4 2xl:w-1/4 w-full sticky top-0">
                 <div class="">
 
-                    <div class="border border-black rounded-lg p-2 w-full mb-2 bg-blue-600 text-white">
+                    <div #bookingSection class="border border-black rounded-lg p-2 w-full mb-2 bg-blue-600 text-white">
                        <span class="text-lg font-semibold">Private Group Discounts Available</span> 
 
                         <span class="pt-4 flex flex-col gap-2">
