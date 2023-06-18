@@ -14,20 +14,21 @@ export class TopNavBarComponent implements OnInit {
 
   isAuthorized = sessionStorage.getItem('token')
   role = sessionStorage.getItem('role')
-  userDetails:any
+  userDetails: any
   imageEnvironmentUrl = environment.Main_Api + 'media/file/'
-  masterData:any
+  masterData: any
   constructor(
     private _route: Router,
-    private service:ProfileService,
-    private landingService:LandingService
+    private service: ProfileService,
+    private landingService: LandingService
   ) { }
 
   ngOnInit(): void {
-    if(this.isAuthorized){
+    if (this.isAuthorized) {
       this.service.getUserDetails(sessionStorage.getItem('userId')).subscribe({
         next: (res: any) => {
           this.userDetails = res.data
+          
         },
         error: (err: any) => {
         }
@@ -37,17 +38,23 @@ export class TopNavBarComponent implements OnInit {
       next: (data: any) => {
         this.masterData = data.data[0]
         console.log(this.masterData);
+        sessionStorage.setItem('userDetails', JSON.stringify(this.masterData))
       },
       error: (err: any) => {
       }
     })
   }
 
+  goto(link:any){
+    if(link == "") return
+    window.open(link, "_blank");
+  }
+
   goToLogin() {
     this._route.navigate(['/login']);
     this.goToLoginPage.emit(true);
   }
-  signout(){
+  signout() {
     sessionStorage.clear()
     localStorage.clear()
     window.location.reload()

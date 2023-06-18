@@ -502,9 +502,9 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );"
               {{data.totalViews}} </span>
           </div>
           <p class=" flex flex-col gap-x-4 pb-2"> <span
-              [ngClass]="data.isSpecialOffer.toString() == 'true'? 'text-red-600 line-through':'' ">USD.{{data.price}}</span>
+              [ngClass]="data.isSpecialOffer.toString() == 'true'? 'text-red-600 line-through':'' ">USD.{{data.pax2Price}}</span>
             <span *ngIf="data.isSpecialOffer == true" class="text-green-600">USD.{{data.offerPrice}}
-              ({{calculateDiscount(data?.price,data?.offerPrice)}})%Off
+              ({{calculateDiscount(data?.pax2Price,data?.offerPrice)}})%Off
             </span>
           </p>
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">

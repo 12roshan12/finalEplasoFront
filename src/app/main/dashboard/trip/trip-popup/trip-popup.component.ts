@@ -22,6 +22,7 @@ export class TripPopupComponent implements OnInit {
     readonly separatorKeysCodes = [ENTER, COMMA] as const;
     inclusions: any[] = ['Food', 'Hotels', 'Guide'];
     exclusions: any[] = ['Food', 'Hotels', 'Guide'];
+    additionalInclusions: any[] = ['Food', 'Hotels', 'Guide'];
     tripHighlightss:any[]=[]
 
     imageGalleryList: any = []
@@ -35,6 +36,8 @@ export class TripPopupComponent implements OnInit {
     bannerImageTemp = null;
     DetailImageModel: any = '';
     DetailImageTemp = null;
+    MapImageTemp: any;
+    MapImageModel: any;
     constructor(
         private route: ActivatedRoute,
         private service: AdminService,
@@ -60,6 +63,7 @@ export class TripPopupComponent implements OnInit {
             itinerary: this.getIteniraryFrom(),
             inclusion: new FormArray([]),
             exclusion: new FormArray([]),
+            optionalInclusion: new FormArray([]),
             tripHighlight: new FormArray([]),
             aboutTrip: new FormArray([this.getAboutTripDetail()]),
             faq: new FormArray([this.getFaqDetail()]),
@@ -119,6 +123,7 @@ export class TripPopupComponent implements OnInit {
             price: [elem ? elem.price : '', Validators.required],
             pax2Price: [elem ? elem.pax2Price : ''],
             pax5price: [elem ? elem.pax5price : ''],
+            pax10price: [elem ? elem.pax10price : ''],
             pax15price: [elem ? elem.pax15price : ''],
             pax16price: [elem ? elem.pax16price : ''],
             summary: this.getSummaryFrom(elem),
@@ -130,6 +135,7 @@ export class TripPopupComponent implements OnInit {
             itinerary: this.getIteniraryFrom(),
             inclusion: new FormArray([]),
             exclusion: new FormArray([]),
+            optionalInclusion: new FormArray([]),
             tripHighlight: new FormArray([]),
             aboutTrip: new FormArray([this.getAboutTripDetail()]),
             faq: new FormArray([this.getFaqDetail()]),
@@ -162,6 +168,7 @@ export class TripPopupComponent implements OnInit {
 
             this.inclusions = this.data?.inclusion
             this.exclusions = this.data?.exclusion
+            this.additionalInclusions = this.data?.optionalInclusion
             this.tripHighlightss = this.data?.tripHighlight
 
             for (let i = 0; i < this.data.imageGallery.length; i++) {
@@ -177,6 +184,10 @@ export class TripPopupComponent implements OnInit {
             startPoint: [elem?.summary ? elem?.summary.startPoint : '', Validators.required],
             endPoint: [elem?.summary ? elem?.summary.endPoint : '', Validators.required],
             groupSize: [elem?.summary ? elem?.summary.groupSize : '', Validators.required],
+            difficulty: [elem?.summary ? elem?.summary.difficulty : '', Validators.required],
+            meals: [elem?.summary ? elem?.summary.meals : '', Validators.required],
+            accomodation: [elem?.summary ? elem?.summary.accomodation : '', Validators.required],
+            activities: [elem?.summary ? elem?.summary.activities : '', Validators.required],
             maxaltitude: [elem?.summary ? elem?.summary.maxaltitude : '', Validators.required],
             bestSeason: [elem?.summary ? elem?.summary.bestSeason : '', Validators.required],
         })
@@ -285,6 +296,10 @@ export class TripPopupComponent implements OnInit {
         return this.tripForm.controls['exclusion'] as FormArray;
     }
 
+    get AdditionalInclusionArray() {
+        return this.tripForm.controls['optionalInclusion'] as FormArray;
+    }
+
     get TripHiglightsArray() {
         return this.tripForm.controls['tripHighlight'] as FormArray;
     }
@@ -301,8 +316,12 @@ export class TripPopupComponent implements OnInit {
             this.ExclusionArray.push(this.fb.control(this.exclusions[i]))
         }
 
-        for (let i = 0; i < this.tripHighlightss.length; i++) {
+        for (let i = 0; i < this.tripHighlightss?.length; i++) {
             this.TripHiglightsArray.push(this.fb.control(this.tripHighlightss[i]))
+        }
+
+        for (let i = 0; i < this.additionalInclusions?.length; i++) {
+            this.AdditionalInclusionArray.push(this.fb.control(this.additionalInclusions[i]))
         }
 
 
@@ -379,6 +398,35 @@ export class TripPopupComponent implements OnInit {
         this.DetailImageTemp = null
     }
 
+    
+    changeMapImage(event: any) {
+        const reader = new FileReader();
+        if (event.target.files && event.target.files.length) {
+            const [file] = event.target.files;
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                var imageSrc = reader.result as string;
+                this.MapImageModel = imageSrc
+            };
+            var selectedFiles = event.target.files;
+            var currentFileUpload = selectedFiles.item(0);
+            let formData = new FormData()
+            formData.append('image', currentFileUpload);
+            formData.append('labelName', currentFileUpload.name);
+            this.service.uploadPhoto(formData).subscribe((res: any) => {
+                res.path = res.path.replace('"', '')
+                res.path = res.path.replace('"', '')
+                this.MapImageModel = environment.Main_Api + 'media/file/' + res.path
+                this.tripForm.get('mapImage')?.setValue(res.path)
+            })
+        }
+    }
+
+    clearMapImage() {
+        this.tripForm.get('mapImage')?.setValue('')
+        this.MapImageTemp = null
+    }
+
     get ImageArray() {
         return this.tripForm.controls['imageGallery'] as FormArray;
     }
@@ -411,6 +459,8 @@ export class TripPopupComponent implements OnInit {
         this.ImageArray.removeAt(index)
     }
 
+
+
     addInclusion(event: MatChipInputEvent): void {
         const value = (event.value || '').trim();
         if (value) {
@@ -437,6 +487,34 @@ export class TripPopupComponent implements OnInit {
             this.inclusions[index] = value;
         }
     }
+
+    addAdditionalInclusion(event: MatChipInputEvent): void {
+        const value = (event.value || '').trim();
+        if (value) {
+            this.additionalInclusions.push(value);
+        }
+        event.chipInput!.clear();
+    }
+
+    removeAdditionalInclusion(inclusion: any): void {
+        const index = this.additionalInclusions.indexOf(inclusion);
+        if (index >= 0) {
+            this.additionalInclusions.splice(index, 1);
+        }
+    }
+
+    editAdditionalInclusion(inclusion: any, event: MatChipEditedEvent) {
+        const value = event.value.trim();
+        if (!value) {
+            this.removeAdditionalInclusion(inclusion);
+            return;
+        }
+        const index = this.additionalInclusions.indexOf(inclusion);
+        if (index >= 0) {
+            this.additionalInclusions[index] = value;
+        }
+    }
+
 
     addExclusion(event: MatChipInputEvent): void {
         const value = (event.value || '').trim();

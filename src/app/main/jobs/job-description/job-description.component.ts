@@ -131,14 +131,13 @@ export class JobDescriptionComponent implements OnInit {
   }
 
   calculatePrice(e: any) {
-    this.finalPrice = this.price
-    this.finalPrice = this.toNumber(e.target.value) * this.toNumber(e.target.value == 1 ? this.packageDetails.offerPrice ? Number(this.packageDetails.offerPrice) : Number(this.packageDetails.price)
-      : e.target.value == 2 ? Number(this.packageDetails.pax2Price)
-        : e.target.value > 2 && e.target.value <= 5 ? Number(this.packageDetails.pax5price)
-          : e.target.value > 5 && e.target.value < 16 ? this.packageDetails.pax15price
-            : Number(this.packageDetails.pax16price))
+    this.finalPrice = this.price.substring(1)
+    this.finalPrice = this.toNumber(e.target.value) * this.toNumber(e.target.value == 1 ? this.packageDetails.offerPrice ? Number(this.packageDetails.offerPrice.substring(1)) : Number(this.packageDetails.price.substring(1))
+      : e.target.value == 2 ? Number(this.packageDetails.pax2Price.substring(1))
+        : e.target.value > 2 && e.target.value <= 5 ? Number(this.packageDetails.pax5price.substring(1))
+          : e.target.value > 5 && e.target.value < 16 ? this.packageDetails.pax15price.substring(1)
+            : Number(this.packageDetails.pax16price.substring(1)))
     console.log(this.finalPrice);
-
   }
 
   openMedia(data: any) {

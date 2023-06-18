@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthentictaionService } from '../authentication.service';
 import { RequestOTPComponent } from '../request-otp/request-otp.component';
 import { RegisterComponent } from '../register/register.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,8 @@ export class LoginComponent implements OnInit {
 
   form!: FormGroup;
   isPassVisible: boolean = false;
+  userDetails:any = sessionStorage.getItem('userDetails')
+  imageEnvironmentUrl = environment.Main_Api + 'media/file/'
 
   constructor(
     private _fb: FormBuilder,
@@ -29,7 +32,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.userDetails = JSON.parse(this.userDetails)
     this.createForm();
+    
   }
 
   createForm() {

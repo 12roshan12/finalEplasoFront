@@ -151,6 +151,15 @@ export class LandingPageComponent implements OnInit {
   }
 
   calculateDiscount(basePrice: any, offerPrice: any) {
+    if(basePrice.toString().startsWith("$")) {
+      basePrice = basePrice.toString().substring(1)
+    }
+
+    if(offerPrice.toString().startsWith("$")) {
+      offerPrice = offerPrice.toString().substring(1)
+    }
+  
+    
     let discount = ((basePrice - offerPrice) / basePrice) * 100
     return Math.round(discount)
   }

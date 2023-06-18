@@ -15,7 +15,8 @@
         </div>
     </div>
 
-    <div #base class="flex flex-col lg:flex-row xl:flex-row 2xl:flex-row justify-between p-6  px-[10px] xl:px-[150px] 2xl:px-[150px] border-b-2 border-black md:sticky top-0 bg-white"
+    <div #base
+        class="flex flex-col lg:flex-row xl:flex-row 2xl:flex-row justify-between p-6  px-[10px] xl:px-[150px] 2xl:px-[150px] border-b-2 border-black md:sticky top-0 bg-white"
         style="z-index: 9999 !important;">
 
         <div class="flex justify-center items-center py-4">
@@ -62,7 +63,7 @@
                     Reviews
                 </button>
 
-                
+
             </div>
         </div>
         <div class="flex flex-row justify-center px-2 items-center xl:px-16 2xl:px-16 gap-4 py-4">
@@ -70,7 +71,7 @@
                 class="px-2 py-1 w-full rounded-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center">
                 Video
             </button>
-            <button (click)="openMedia('photo')" 
+            <button (click)="scroll(gallerySection)"
                 class="px-2 py-1 rounded-full w-full bg-gray-100 border-2 border-black min-w-[40px] h-[30px] flex items-center justify-center">
                 Images
             </button>
@@ -84,7 +85,7 @@
 
     </div>
 
-    <div class="p-6 px-[10px]  xl:px-[150px] 2xl:px-[150px] ">
+    <div class="p-6 px-[10px]  xl:px-[150px] 2xl:px-[150px] relative">
 
         <span class="flex flex-row justify-start mb-4">
             <h1 class="text-2xl font-bold pb-2">{{packageDetails?.name}}</h1>
@@ -150,20 +151,62 @@
                             <img src="assets/images/altitude.png" class="w-6 h-6" />
                         </div>
                         <div>
-                            <p class="text-sm">Altitude</p>
+                            <p class="text-sm">Max Altitude</p>
                             <p class="text-md">{{packageDetails?.summary?.maxaltitude}}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="flex flex-row gap-x-2">
+                        <div>
+                            <img src="assets/max-altitude.png" class="w-6 h-6" />
+                        </div>
+                        <div>
+                            <p class="text-sm">Difficulty</p>
+                            <p class="text-md">{{packageDetails?.summary?.difficulty}}</p>
                         </div>
                     </div>
 
                     <div class="flex flex-row gap-x-2">
                         <div>
+                            <img src="assets/meals.png" class="w-6 h-6" />
+                        </div>
+                        <div>
+                            <p class="text-sm">Meals</p>
+                            <p class="text-md">{{packageDetails?.summary?.meals}}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row gap-x-2">
+                        <div>
+                            <img src="assets/accommodation.png" class="w-6 h-6" />
+                        </div>
+                        <div>
+                            <p class="text-sm">Accomodation</p>
+                            <p class="text-md">{{packageDetails?.summary?.accomodation}}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row gap-x-2">
+                        <div>
+                            <img src="assets/activities.png" class="w-6 h-6" />
+                        </div>
+                        <div>
+                            <p class="text-sm">Activities</p>
+                            <p class="text-md">{{packageDetails?.summary?.activities}}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row gap-x-2 col-span-2">
+                        <div>
                             <img src="assets/images/weather.png" class="w-6 h-6" />
                         </div>
                         <div>
-                            <p class="text-sm">Weather</p>
+                            <p class="text-sm">Season</p>
                             <p class="text-md">{{packageDetails?.summary?.bestSeason}}</p>
                         </div>
                     </div>
+
 
                 </div>
 
@@ -177,6 +220,27 @@
                     <div [innerHTML]="packageDetails?.description">
                     </div>
                 </div>
+
+                <div #gallerySection>
+                    <h1 class="text-2xl font-semibold pt-4">Images of {{packageDetails?.name}}</h1>
+
+                    <div class="pt-4 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-4">
+                        <div *ngFor="let data of packageDetails?.imageGallery" class="rounded-lg">
+                            <img [src]="imageEnvironmentUrl+data" class=" w-full h-[30vh] object-cover rounded-lg" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div *ngIf="packageDetails?.mapImage">
+                    <h1 class="text-2xl font-semibold pt-4">Route map of {{packageDetails?.name}}</h1>
+
+                    <div class="pt-4">
+                        <img [src]="imageEnvironmentUrl+packageDetails?.mapImage"
+                            class="rounded-lg w-full h-[80vh] object-cover py-4" />
+                    </div>
+                </div>
+
 
                 <div class="py-4">
                     <h1 class="text-2xl font-semibold pt-4">Trip itinerary </h1>
@@ -209,9 +273,11 @@
                         </table>
 
                     </div>
+                    <div class="italic font-semibold pt-4">
+                        Note: B-Breakfast, L-Lunch, D-Dinner
+                    </div>
 
                 </div>
-
 
 
                 <div #itinerary>
@@ -325,6 +391,18 @@
                     </div>
                 </div>
 
+                <div *ngIf="packageDetails?.optionalInclusion">
+                    <h1 class="text-2xl font-semibold pt-4">Optional</h1>
+                    <h1 class="text-lgxl font-semibold pt-4">(Available on extra charges.)</h1>
+                    <div class="grid grid-cols-1 gap-4 pt-4">
+                        <div *ngFor="let data of packageDetails?.optionalInclusion">
+                            <span class="flex flex-row gap-x-4"><img src="assets/checked.png" class="w-6 h-6" />
+                                <span>{{data}}</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
                 <div #exclusion>
                     <h1 class="text-2xl font-semibold pt-4">Exclusion</h1>
 
@@ -395,11 +473,11 @@
                 </div>
 
             </div>
-            <div #bookingSection class="lg:w-1/4 xl:w-1/4 2xl:w-1/4 w-full relative">
+            <div #bookingSection class="lg:w-1/4 xl:w-1/4 2xl:w-1/4 w-full sticky top-0">
                 <div class="">
 
-                    <div class="border border-black rounded-lg p-2 w-full mb-2">
-                        Private Group Discounts Available
+                    <div class="border border-black rounded-lg p-2 w-full mb-2 bg-blue-600 text-white">
+                       <span class="text-lg font-semibold">Private Group Discounts Available</span> 
 
                         <span class="pt-4 flex flex-col gap-2">
                             <span class="flex flex-row ">
@@ -445,30 +523,30 @@
                         <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg w-full"
                             (click)="bookingDiv = !bookingDiv">Book this trip</button>
                     </div>
-                    <div *ngIf="bookingDiv" class="border border-black rounded-lg p-2 w-full mb-2 "
+                    <div *ngIf="bookingDiv" class="border border-black rounded-lg p-2 w-full mb-2 bg-blue-600 text-white"
                         [formGroup]="bookingForm">
                         <h1 class="text-xl font-bold pb-2">Book this trip</h1>
                         <h1 class="text-xl font-bold">USD {{finalPrice}} <span class="text-sm font-normal">per
                                 person</span> </h1>
                         <h1 class="text-xs font-normal"> price may vary depend upon total person</h1>
                         <div class="flex flex-col gap-y-4 pt-6">
-                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black"
+                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black text-black"
                                 formControlName="name" placeholder="Name" />
-                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black"
+                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black text-black"
                                 formControlName="email" placeholder="Email" />
-                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black"
+                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black text-black"
                                 formControlName="contactnumber" placeholder="Contact Number" />
-                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black"
+                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black text-black"
                                 formControlName="address" placeholder="Address" />
-                            <input type="number" min="1" class="h-[40px] p-2 rounded-lg w-full border border-black"
+                            <input type="number" min="1" class="h-[40px] p-2 rounded-lg w-full border border-black text-black"
                                 formControlName="totalTraveller" placeholder="Total Traveller"
                                 (keyup)="calculatePrice($event)" />
-                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black"
+                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black text-black"
                                 formControlName="date" placeholder="Expected Date" onfocus="this.type = 'date' " />
                             <textarea name="" id="" cols="30" rows="10"
-                                class=" p-2 rounded-lg w-full border border-black" placeholder="Message"
+                                class=" p-2 rounded-lg w-full border border-black text-black" placeholder="Message"
                                 formControlName="message">Message</textarea>
-                            <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg"
+                            <button class="mt-2 px-4 py-2 bg-white text-black hover:!bg-blue-400 rounded-lg"
                                 (click)="placeBooking()">Book
                                 Now</button>
                         </div>
@@ -477,26 +555,26 @@
                         <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg w-full"
                             (click)="enquiryDiv = !enquiryDiv">Enquiry about this trip</button>
                     </div>
-                    <div *ngIf="enquiryDiv" class="border border-black rounded-lg p-2 w-full mb-2">
+                    <div *ngIf="enquiryDiv" class="border border-black rounded-lg p-2 w-full mb-2 bg-blue-600 text-white">
                         <h1 class="text-xl font-bold">Message or query for this trip</h1>
                         <div class="flex flex-col gap-y-4 pt-6" [formGroup]="enquiryFrom">
-                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black"
+                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black text-black"
                                 placeholder="Name" formControlName="name" />
-                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black"
+                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black text-black"
                                 placeholder="Email" formControlName="email" />
-                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black"
+                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black text-black"
                                 placeholder="Contact Number" formControlName="contactnumber" />
-                            <input type="text" min="1" class="h-[40px] p-2 rounded-lg w-full border border-black"
+                            <input type="text" min="1" class="h-[40px] p-2 rounded-lg w-full border border-black text-black"
                                 placeholder="Address" formControlName="address" />
-                            <input type="number" class="h-[40px] p-2 rounded-lg w-full border border-black"
+                            <input type="number" class="h-[40px] p-2 rounded-lg w-full border border-black text-black"
                                 placeholder="Total Traveller" formControlName="totalTraveller"
                                 (keyup)="calculatePrice($event)" />
-                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black"
+                            <input type="text" class="h-[40px] p-2 rounded-lg w-full border border-black text-black"
                                 formControlName="date" placeholder="Expected Date" onfocus="this.type = 'date' " />
                             <textarea name="" id="" cols="30" rows="10" formControlName="message" placeholder="Message"
-                                class=" p-2 rounded-lg w-full border border-black">Message</textarea>
+                                class=" p-2 rounded-lg w-full border border-black text-black">Message</textarea>
 
-                            <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg"
+                            <button class="mt-2 px-4 py-2 bg-white text-black hover:!bg-blue-400 rounded-lg"
                                 (click)="placeEnquiry()">Send</button>
                         </div>
                     </div>

@@ -4,13 +4,11 @@
   </div>
   <div class="login-form">
     <div class="form-header">
-      <h3>
-        <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M18 30L0.916656 10L6.04166 0H29.9583L35.0833 10L18 30ZM13.9427 8.33333H22.0573L19.4948 3.33333H16.5052L13.9427 8.33333ZM16.2917 22.7917V11.6667H6.81041L16.2917 22.7917ZM19.7083 22.7917L29.1896 11.6667H19.7083V22.7917ZM25.8583 8.33333H30.3854L27.8229 3.33333H23.2958L25.8583 8.33333ZM5.61457 8.33333H10.1417L12.7042 3.33333H8.17707L5.61457 8.33333Z"
-            fill="#3563E9" />
-        </svg>
-        elpaso
+      <h3 class="flex flex-row gap-x-2 items-center">
+        <img [src]="imageEnvironmentUrl+userDetails?.logo" class="w-40 h-20" />
+        <span>
+          Elpaso Adventure
+        </span>
       </h3>
       <p>Sign in to your account</p>
     </div>
