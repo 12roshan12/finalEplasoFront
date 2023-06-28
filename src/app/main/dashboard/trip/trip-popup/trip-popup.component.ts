@@ -133,7 +133,7 @@ export class TripPopupComponent implements OnInit {
             offerPrice: [elem ? elem.offerPrice : ''],
             description: [elem ? elem.description : '', Validators.required],
             bannerImage: [elem ? elem.bannerImage : '', Validators.required],
-            mapImage: [elem.mapImage ? elem.mapImage : '', Validators.required],
+            mapImage: [elem.mapImage ? elem.mapImage : ''],
             tripImage: [elem ? elem.tripImage : '', Validators.required],
             itinerary: this.getIteniraryFrom(),
             inclusion: new FormArray([]),
@@ -309,7 +309,8 @@ export class TripPopupComponent implements OnInit {
 
 
     submit() {
-
+        console.log(this.tripForm);
+        console.log(this.tripForm.value);
         this.tripForm.markAllAsTouched()
         if (this.tripForm.invalid) return
         for (let i = 0; i < this.inclusions.length; i++) {
@@ -327,7 +328,8 @@ export class TripPopupComponent implements OnInit {
             this.AdditionalInclusionArray.push(this.fb.control(this.additionalInclusions[i]))
         }
 
-
+     
+        
 
         this.service.createTrip(this.tripForm.value).subscribe({
             next: (data: any) => {
