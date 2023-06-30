@@ -94,7 +94,7 @@
             <div #outline class=" lg:w-3/4 xl:w-3/4 2xl:w-3/4 w-full">
                 <p class="pb-2 text-xl font-semibold">Summary</p>
                 <div
-                    class="grid lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 border border-black rounded-lg p-4">
+                    class="grid lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 md:grid-cols-2 gap-4 border border-black rounded-lg p-4">
 
                     <div class="flex flex-row gap-x-2">
                         <div>
@@ -284,10 +284,10 @@
                     <p class="pt-4 " [innerHTML]="packageDetails?.itinerary?.description">
                     </p>
 
-                    <div class="flex flex-col gap-y-4 pt-4">
-                        <div class="flex flex-col gap-2"
+                    <div class="flex flex-col gap-y-4 pt-4 w-full">
+                        <div class="flex flex-col gap-2 w-full"
                             *ngFor="let data of packageDetails?.itinerary?.details; let i = index;">
-                            <div class="flex flex-row gap-x-4">
+                            <div class="flex flex-row gap-x-4 w-full">
                                 <span class="w-24 h-20 p-1 bg-blue-600 rounded-full flex items-center justify-center">
                                     <span
                                         class="w-16 h-16 flex items-center text-xs justify-center flex-col border-2 border-white rounded-full p-1  bg-blue-600 text-white">
@@ -299,7 +299,7 @@
                                         </span>
                                     </span>
                                 </span>
-                                <div class="flex flex-col">
+                                <div class="flex flex-col w-full">
                                     <div class="flex flex-row items-center gap-x-4">
                                         <span class="w-full font-semibold">
                                             {{data?.head}}
@@ -476,7 +476,7 @@
                 </div>
 
             </div>
-            <div  class="lg:w-1/4 xl:w-1/4 2xl:w-1/4 w-full sticky top-0">
+            <div  class="lg:w-1/4 xl:w-1/4 2xl:w-1/4 w-full lg:sticky top-0">
                 <div class="">
 
                     <div #bookingSection class="border border-black rounded-lg p-2 w-full mb-2 bg-blue-600 text-white">

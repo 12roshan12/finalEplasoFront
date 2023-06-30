@@ -50,7 +50,26 @@ export class JobListComponent implements OnInit {
     this.tripsrvice.getAllTrip().subscribe({
       next: (data: any) => {
         this.tripList = data.data
-        this.sortedList = data.data
+        let currentLang = sessionStorage.getItem('language')
+
+        this.tripList = this.tripList.filter((e: any) => {
+
+          if (currentLang === 'spain') {
+            if (e.isSpanish == true) {
+              return e
+            }
+          } else {
+            if (e.isSpanish == false) {
+              return e
+            }
+          }
+
+        })
+
+        console.log(this.tripList);
+
+
+        this.sortedList = this.tripList
 
         if (this.fetchedTrip != null) {
           this.sortedList = this.tripList
@@ -62,7 +81,7 @@ export class JobListComponent implements OnInit {
           this.searchValue = this.fetchedTrip
         }
 
-        if(this.fetchedCategory != null){
+        if (this.fetchedCategory != null) {
           this.sortedList = this.tripList
           this.sortedList = this.sortedList.filter((data: any) => {
             if (data.category.toLowerCase().startsWith(this.fetchedCategory?.toLowerCase()) == true) {

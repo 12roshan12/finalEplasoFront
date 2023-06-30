@@ -16,6 +16,7 @@ export class TopNavBarComponent implements OnInit {
   role = sessionStorage.getItem('role')
   userDetails: any
   imageEnvironmentUrl = environment.Main_Api + 'media/file/'
+  defaultLanguage = sessionStorage.getItem('language') ? sessionStorage.getItem('language') : 'eng'
   masterData: any
   constructor(
     private _route: Router,
@@ -48,6 +49,13 @@ export class TopNavBarComponent implements OnInit {
   goto(link:any){
     if(link == "") return
     window.open(link, "_blank");
+  }
+
+  setLanguage(data:any){
+    this.defaultLanguage = data
+    console.log(this.defaultLanguage);
+    sessionStorage.setItem('language', data)
+    window.location.reload()
   }
 
   goToLogin() {
