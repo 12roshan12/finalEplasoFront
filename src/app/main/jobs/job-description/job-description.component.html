@@ -418,6 +418,17 @@
                     </div>
                 </div>
 
+                <div>
+                    <h1 class="text-2xl font-semibold pt-4">Things You Need To Bring</h1>
+                    <div class="grid grid-cols-1 gap-4 pt-4">
+                        <div *ngFor="let data of packageDetails?.itemsYouNeedToBring">
+                            <span class="flex flex-row gap-x-4"><img src="assets/checked.png" class="w-6 h-6" />
+                                <span>{{data}}</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
                 <div #aboutTrip>
                     <h1 class="text-2xl font-semibold pt-4">About Trip</h1>
 
@@ -477,9 +488,9 @@
 
             </div>
             <div  class="lg:w-1/4 xl:w-1/4 2xl:w-1/4 w-full lg:sticky top-0">
-                <div class="">
+                <div #bookingSection class="">
 
-                    <div #bookingSection class="border border-black rounded-lg p-2 w-full mb-2 bg-blue-600 text-white">
+                    <!-- <div  class="border border-black rounded-lg p-2 w-full mb-2 bg-blue-600 text-white">
                        <span class="text-lg font-semibold">Private Group Discounts Available</span> 
 
                         <span class="pt-4 flex flex-col gap-2">
@@ -520,7 +531,7 @@
 
                         </span>
 
-                    </div>
+                    </div> -->
 
                     <div class="lg:hidden xl:hidden 2xl:hidden block w-full mb-2">
                         <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg w-full"
@@ -529,8 +540,8 @@
                     <div *ngIf="bookingDiv" class="border border-black rounded-lg p-2 w-full mb-2 bg-blue-600 text-white"
                         [formGroup]="bookingForm">
                         <h1 class="text-xl font-bold pb-2">Book this trip</h1>
-                        <h1 class="text-xl font-bold">USD {{finalPrice}} <span class="text-sm font-normal">per
-                                person</span> </h1>
+                        <!-- <h1 class="text-xl font-bold">USD {{finalPrice}} <span class="text-sm font-normal">per
+                                person</span> </h1> -->
                         <h1 class="text-xs font-normal"> price may vary depend upon total person</h1>
                         <div class="flex flex-col gap-y-4 pt-6">
                             <input type="text" class="h-[40px] p-2 rounded-lg w-full border bg-white border-black text-black"
@@ -611,12 +622,12 @@
                                     src="assets/images/visiblity.png" class="w-4 h-4 text-xs" />
                                 {{data.totalViews}} </span>
                         </div>
-                        <p class=" flex flex-col gap-x-4 pb-2"> <span
+                        <!-- <p class=" flex flex-col gap-x-4 pb-2"> <span
                                 [ngClass]="data.isSpecialOffer.toString() == 'true'? 'text-red-600 line-through':'' ">USD.{{data.price}}</span>
                             <span *ngIf="data.isSpecialOffer == true" class="text-green-600">USD.{{data.offerPrice}}
                                 ({{calculateDiscount(data?.price,data?.offerPrice)}})%Off
                             </span>
-                        </p>
+                        </p> -->
                         <span class="flex flex-row gap-x-2 items-center pb-2"> <img src="assets/images/calendar.png"
                                 class="w-6 h-6" />
                             <p>{{data.summary.duration | titlecase}}</p>

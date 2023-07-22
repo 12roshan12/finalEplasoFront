@@ -38,6 +38,7 @@ export class TripPopupComponent implements OnInit {
     DetailImageTemp = null;
     MapImageTemp: any;
     MapImageModel: any;
+    itemsYouNeedToBringArray: any = [];
     constructor(
         private route: ActivatedRoute,
         private service: AdminService,
@@ -49,12 +50,12 @@ export class TripPopupComponent implements OnInit {
             name: ['', Validators.required],
             category: ['', Validators.required],
             video: [''],
-            price: ['', Validators.required],
-            pax2Price: [''],
-            pax5price: [''],
-            pax10price: [''],
-            pax15price: [''],
-            pax16price: [''],
+            // price: ['', Validators.required],
+            // pax2Price: [''],
+            // pax5price: [''],
+            // pax10price: [''],
+            // pax15price: [''],
+            // pax16price: [''],
             summary: this.getSummaryFrom(),
             isSpecialOffer: [false],
             isSpanish: ['', Validators.required],
@@ -66,6 +67,7 @@ export class TripPopupComponent implements OnInit {
             itinerary: this.getIteniraryFrom(),
             inclusion: new FormArray([]),
             exclusion: new FormArray([]),
+            itemsYouNeedToBring: new FormArray([]),
             optionalInclusion: new FormArray([]),
             tripHighlight: new FormArray([]),
             aboutTrip: new FormArray([this.getAboutTripDetail()]),
@@ -123,12 +125,12 @@ export class TripPopupComponent implements OnInit {
             name: [elem ? elem.name : '', Validators.required],
             category: [elem ? elem.category : '', Validators.required],
             video: [elem ? elem.video : ''],
-            price: [elem ? elem.price : '', Validators.required],
-            pax2Price: [elem ? elem.pax2Price : ''],
-            pax5price: [elem ? elem.pax5price : ''],
-            pax10price: [elem ? elem.pax10price : ''],
-            pax15price: [elem ? elem.pax15price : ''],
-            pax16price: [elem ? elem.pax16price : ''],
+            // price: [elem ? elem.price : '', Validators.required],
+            // pax2Price: [elem ? elem.pax2Price : ''],
+            // pax5price: [elem ? elem.pax5price : ''],
+            // pax10price: [elem ? elem.pax10price : ''],
+            // pax15price: [elem ? elem.pax15price : ''],
+            // pax16price: [elem ? elem.pax16price : ''],
             summary: this.getSummaryFrom(elem),
             isSpecialOffer: [elem ? elem.isSpecialOffer : false],
             isSpanish: [elem ? elem.isSpanish : false],
@@ -140,6 +142,8 @@ export class TripPopupComponent implements OnInit {
             itinerary: this.getIteniraryFrom(),
             inclusion: new FormArray([]),
             exclusion: new FormArray([]),
+            itemsYouNeedToBring: new FormArray([]),
+
             optionalInclusion: new FormArray([]),
             tripHighlight: new FormArray([]),
             aboutTrip: new FormArray([this.getAboutTripDetail()]),
@@ -173,6 +177,8 @@ export class TripPopupComponent implements OnInit {
 
             this.inclusions = this.data?.inclusion
             this.exclusions = this.data?.exclusion
+            this.itemsYouNeedToBringArray = this.data?.itemsYouNeedToBring
+            
             this.additionalInclusions = this.data?.optionalInclusion
             this.tripHighlightss = this.data?.tripHighlight
 
@@ -301,6 +307,10 @@ export class TripPopupComponent implements OnInit {
         return this.tripForm.controls['exclusion'] as FormArray;
     }
 
+    get itemsYouNeedToBringArrayArray() {
+        return this.tripForm.controls['itemsYouNeedToBring'] as FormArray;
+    }
+
     get AdditionalInclusionArray() {
         return this.tripForm.controls['optionalInclusion'] as FormArray;
     }
@@ -321,6 +331,11 @@ export class TripPopupComponent implements OnInit {
         for (let i = 0; i < this.exclusions.length; i++) {
             this.ExclusionArray.push(this.fb.control(this.exclusions[i]))
         }
+
+        for (let i = 0; i < this.itemsYouNeedToBringArray.length; i++) {
+            this.itemsYouNeedToBringArrayArray.push(this.fb.control(this.itemsYouNeedToBringArray[i]))
+        }
+
 
         for (let i = 0; i < this.tripHighlightss?.length; i++) {
             this.TripHiglightsArray.push(this.fb.control(this.tripHighlightss[i]))
@@ -547,6 +562,34 @@ export class TripPopupComponent implements OnInit {
         const index = this.exclusions.indexOf(inclusion);
         if (index >= 0) {
             this.exclusions.splice(index, 1);
+        }
+    }
+
+
+    addItemsYouNeedToBring(event: MatChipInputEvent): void {
+        const value = (event.value || '').trim();
+        if (value) {
+            this.itemsYouNeedToBringArray.push(value);
+        }
+        event.chipInput!.clear();
+    }
+
+    editItemsYouNeedToBring(inclusion: any, event: MatChipEditedEvent) {
+        const value = event.value.trim();
+        if (!value) {
+            this.removeItemsYouNeedToBring(inclusion);
+            return;
+        }
+        const index = this.itemsYouNeedToBringArray.indexOf(inclusion);
+        if (index >= 0) {
+            this.itemsYouNeedToBringArray[index] = value;
+        }
+    }
+
+    removeItemsYouNeedToBring(inclusion: any): void {
+        const index = this.itemsYouNeedToBringArray.indexOf(inclusion);
+        if (index >= 0) {
+            this.itemsYouNeedToBringArray.splice(index, 1);
         }
     }
 
